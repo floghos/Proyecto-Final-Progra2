@@ -14,11 +14,13 @@ public class Collision {
 //		
 //		return true;
 //	}
+        
+        // dududu
 	public static boolean circleVcircle(Circle a, Circle b) {
 		float r = a.radius + b.radius;
 		r *= r;
 		
 		return r < (Math.pow((a.pos.x - b.pos.x), 2) + Math.pow((a.pos.y - b.pos.y), 2));
 	}
-	
+	//making changes... changes, changes...
 }
