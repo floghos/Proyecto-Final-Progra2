@@ -21,6 +21,8 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     Box box1;//testing
     int fps;//cuadros por segundo
     Ventana v;
+	private int alto;
+	private int ancho;
     Circle cir;
     Circle obs1,obs2;
     ArrayList<Circle> obstaculos;
@@ -33,7 +35,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.am = am;
         this.v=v;
         this.addMouseListener(this);
-	this.caja = new Caja(v.ancho, v.alto);
+		this.caja = new Caja(v.ancho, v.alto);
         this.fps = 15;
         tiempo = new Timer(1000/fps,null);
         tiempo.addActionListener(this);
