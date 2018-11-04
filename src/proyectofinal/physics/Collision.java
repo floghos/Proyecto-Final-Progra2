@@ -1,10 +1,7 @@
-package proyectofinal.physics;
-
-import static java.lang.Math.*;
+package sum;
 
 public class Collision {
-	
-	public float distance(Vector2d a, Vector2d b) {
+    public float distance(Vector2d a, Vector2d b) {
 		return (float)sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
 	}
 	
@@ -19,7 +16,7 @@ public class Collision {
 	public static boolean circleVcircle(Circle a, Circle b) {
 		float r = a.radius + b.radius;
 		r *= r;
-		
+		//more meaningless changes
 		return r < (Math.pow((a.pos.x - b.pos.x), 2) + Math.pow((a.pos.y - b.pos.y), 2));
 	}
 	//making changes... changes, changes...
