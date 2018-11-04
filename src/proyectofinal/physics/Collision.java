@@ -23,4 +23,10 @@ public class Collision {
 		return r < (Math.pow((a.pos.x - b.pos.x), 2) + Math.pow((a.pos.y - b.pos.y), 2));
 	}
 	//making changes... changes, changes...
+	
+	public static Vector2d resColCircle() {
+		Vector2d newVector = new Vector2d();
+		
+		return newVector;
+	}
 }
