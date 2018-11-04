@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import proyectofinal.physics.*;
+import static proyectofinal.physics.Collision.circleVcircle;
+import static proyectofinal.physics.Vector2d.escalarProyeccion;
 
 public class PanelDibujo extends JPanel implements MouseListener,ActionListener {
     //ArrayList<Forma> al;
@@ -38,7 +40,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 //      tiempo.start();
 	//this.box1 = new Box(new Vector2d(200, 100), 20, 20);//testing
         cir= new Circle(new Vector2d(200, 100),20f,v);
-        obs1=new Circle(new Vector2d(210,110),20f,v);
+        obs1=new Circle(new Vector2d(210,150),20f,v);
 	obstaculos.add(obs1);
 	Vector2d dir = new Vector2d(1, 0);
 	Vector2d gravedad = new Vector2d(0, 1);
@@ -126,7 +128,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.repaint();
 	cir.update();
         for(int i=0; i<obstaculos.size();i++){
-            
+            if(circleVcircle(cir,obstaculos.get(i))&& escalarProyeccion(cir,obstaculos.get(i))>0){
+                System.out.println("chocan");
+                resColCircle(cir,obstaculos.get(i));
+            }
         }
     }
 }

@@ -27,6 +27,10 @@ public class Vector2d {
 	Vector2d temp = new Vector2d(a.x + b.x, a.y + b.y);
 	return temp;
     }
+    public static Vector2d resta(Vector2d a, Vector2d b){
+        Vector2d rest = new Vector2d(b.x - a.x, b.y - a.y);
+	return rest;
+    }
     public static float productoPunto(Vector2d a,Vector2d b){
         float pPunto;
 	pPunto=a.x*b.x+a.y*b.y;
@@ -43,6 +47,15 @@ public class Vector2d {
         float angulo;
         angulo=(float)Math.acos((productoPunto(a,b))/(norma(a)*norma(b)));
         return angulo;
+    }
+    
+    public static float escalarProyeccion(Circle a,Circle b){
+        //a sobre b= (a*b)/b^2
+        float escalar;
+        Vector2d vPosicion = resta(a.pos,b.pos);
+        escalar= (productoPunto(vPosicion,a.velocity)/productoPunto(vPosicion,vPosicion));
+        //escalar=productoPunto(a,b)/productoPunto(b,b);
+        return escalar;
     }
 	//para reflejar un vector, podemos reflejar el punto al que representa en torno al plano de incidencia
 	//ubicado en el origen.
