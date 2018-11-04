@@ -79,7 +79,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         g.setColor(Color.red);
         g.drawRect(20, 20, 10, 10);
         g.drawRect(v.ancho-235, 20, 10, 10);
-        g.drawRect(20, v.alto-25, 10, 10);
+        g.drawRect(20, v.alto-250, 10, 10);
         g.drawRect(v.ancho-235, v.alto-45, 10, 10);
         g.setColor(Color.black);
         for(int i=0; i<obstaculos.size();++i){
