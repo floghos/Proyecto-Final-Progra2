@@ -16,7 +16,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     AlmacenModo am;
     Caja caja;
     Timer tiempo;
-	Box box1;//testing
+    Box box1;//testing
     int fps;//cuadros por segundo
     Ventana v;
     Circle cir;
@@ -41,21 +41,19 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
 	float factor = (float)Math.random()*9 + 1;
 	dir.x *= factor;
-	dir.y *= factor;
-        
-		
+	dir.y *= factor;		
 	this.cir.setAccel(gravedad);
 	this.cir.setVelocity(dir);
     }
 	public void startStop(String accion) {
-		switch(accion) {
-			case "Start":
-				tiempo.start();
-				break;
-			case "Stop":
-				tiempo.stop();
-				break;
-		}
+            switch(accion) {
+		case "Start":
+                    tiempo.start();
+                    break;
+		case "Stop":
+                    tiempo.stop();
+                    break;
+            }
 	}
     public void paint (Graphics g){
         super.paint(g);//uso el paint de la super clase para que pinte

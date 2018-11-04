@@ -15,7 +15,6 @@ public class Caja{
         bordes.add((new Box(new Vector2d(0,alto-45),ancho-180,20)));
         bordes.add((new Box(new Vector2d(),20,alto-25)));
         bordes.add((new Box(new Vector2d(ancho-235,0),20,alto-25)));
-        
         this.ancho=ancho;
         this.alto=alto;
     }
@@ -30,11 +29,9 @@ public class Caja{
     
     public void paint (Graphics g){
         g.setColor(Color.black);        
-        
         g.fillRect(0,0,ancho-180,20); //borde superior
         g.fillRect(0,alto-45,ancho-180,20);// borde inferior
         g.fillRect(0,0,20,alto-25); //borde izquierdo
         g.fillRect(ancho-235,0,20,alto-25); //borde derecho 
     }
-    
 }
