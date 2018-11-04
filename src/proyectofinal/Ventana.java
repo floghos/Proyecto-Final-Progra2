@@ -49,6 +49,7 @@ public class Ventana extends JFrame{
         ButtonGroup bf=new ButtonGroup();//si apreta uno se descelecciona otro
         bf.add(x); //bf.add(y);
         controles.add(jp1);
+        
      
         //boton modo
         JPanel jp2=new JPanel(); jp2.setBackground(Color.LIGHT_GRAY);     //jp3.add(new JButton("3"));
