@@ -15,7 +15,7 @@ public class Ventana extends JFrame{
     public final int ancho=940;
 
 	public Ventana(){
-		super("Bounce!");
+	super("Bounce!");
         this.setLayout(new BorderLayout());
         af=new AlmacenForma();
         am=new AlmacenModo();
@@ -27,13 +27,13 @@ public class Ventana extends JFrame{
         controles.setLayout(new GridLayout(6,1));//panel con filas y columnas
         
         JPanel ja=new JPanel(); ja.setBackground(Color.LIGHT_GRAY); 
-		GravitySlider slider = new GravitySlider(0, 10, 1);
-		slider.setMajorTickSpacing(50);
-		slider.setMinorTickSpacing(10);
-		slider.setPaintTicks(true);
-		slider.setPaintLabels(true);
-		slider.setToolTipText("Modifica la gravedad");
-		ja.add(slider);
+	GravitySlider slider = new GravitySlider(0, 10, 1);
+	slider.setMajorTickSpacing(50);
+	slider.setMinorTickSpacing(10);
+	slider.setPaintTicks(true);
+	slider.setPaintLabels(true);
+	slider.setToolTipText("Modifica la gravedad");
+	ja.add(slider);
 		
         JPanel jb=new JPanel(); jb.setBackground(Color.LIGHT_GRAY); 
         controles.add(ja);
@@ -64,11 +64,10 @@ public class Ventana extends JFrame{
         controles.add(jc);
 		
         JPanel jd=new JPanel(); jd.setBackground(Color.LIGHT_GRAY);
-		jd.add(new ActionButton("Start"));
-		jd.add(new ActionButton("Stop"));
+	jd.add(new ActionButton("Start"));
+	jd.add(new ActionButton("Stop"));
         controles.add(jd);
-        
-        
+                
         this.setSize(ancho,alto);
         this.setVisible(true);
     }
@@ -101,29 +100,29 @@ public class Ventana extends JFrame{
         }
     } 
 	
-	private class ActionButton extends JButton implements ActionListener {
-		private String action;
-		public ActionButton (String nomnom) {
-			super(nomnom);
-			this.action = nomnom;
-			this.addActionListener(this);
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			dp.startStop(action);
-		}
-	}
+    private class ActionButton extends JButton implements ActionListener {
+    	private String action;
+    	public ActionButton (String nomnom) {
+            super(nomnom);
+            this.action = nomnom;
+            this.addActionListener(this);
+        }
 	
-	class GravitySlider extends JSlider implements ChangeListener{
-		public GravitySlider(int min, int max, int ini) {
-			super(min, max, ini);
-			this.addChangeListener(this);
-		}
-		public void stateChanged(ChangeEvent e) {
-			JSlider source = (JSlider)e.getSource();
-			System.out.println("Falta implementar");
-			//dp.changeSpeed(source.getValue()); //falta implementar
-		}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+            dp.startStop(action);
 	}
+    }
+	
+    class GravitySlider extends JSlider implements ChangeListener{
+    	public GravitySlider(int min, int max, int ini) {
+            super(min, max, ini);
+            this.addChangeListener(this);
+	}
+	public void stateChanged(ChangeEvent e) {
+            JSlider source = (JSlider)e.getSource();
+            System.out.println("Falta implementar");
+            //dp.changeSpeed(source.getValue()); //falta implementar
+	}
+    }
 }
