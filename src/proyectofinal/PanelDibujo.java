@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import proyectofinal.physics.*;
 import static proyectofinal.physics.Collision.circleVcircle;
+import static proyectofinal.physics.Collision.resColCircle;
 import static proyectofinal.physics.Vector2d.escalarProyeccion;
 
 public class PanelDibujo extends JPanel implements MouseListener,ActionListener {
