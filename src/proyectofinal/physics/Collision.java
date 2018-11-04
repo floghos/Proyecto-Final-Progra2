@@ -1,4 +1,6 @@
-package sum;
+package proyectofinal.physics;
+
+import static java.lang.Math.sqrt;
 
 public class Collision {
     public float distance(Vector2d a, Vector2d b) {
