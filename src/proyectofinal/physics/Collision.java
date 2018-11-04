@@ -14,17 +14,19 @@ public class Collision {
 //		return true;
 //	}
         
-        // dududu
     public static boolean circleVcircle(Circle a, Circle b) {
         float r = a.radius + b.radius;
 	r *= r;
-		//more meaningless changes
 	return r > (Math.pow((a.pos.x - b.pos.x), 2) + Math.pow((a.pos.y - b.pos.y), 2));
     }
-	//making changes... changes, changes...
 	
-	public static Vector2d resColCircle() {
+	public static Vector2d resColCircle(Circle a, Circle b) {
+		float m = (b.pos.y - a.pos.y)/(b.pos.x - a.pos.x);
+		m = -(1/m);
+		Vector2d velA = new Vector2d(a.velocity);
 		Vector2d newVector = new Vector2d();
+		newVector.x = ((1 - m*m) * velA.x + 2 * m * velA.y) / (m*m + 1);
+		newVector.y = ((m*m - 1) * velA.y + 2 * m * velA.x) / (m*m + 1);
 		
 		return newVector;
 	}
