@@ -44,8 +44,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	//this.box1 = new Box(new Vector2d(200, 100), 20, 20);//testing
         cir= new Circle(new Vector2d(200, 100),20f,v);
         obs1=new Circle(new Vector2d(210,150),20f,v);
-	obstaculos.add(obs1);
-	Vector2d dir = new Vector2d(1, 0);
+	obs2=new Circle(new Vector2d(400,400),20f,v);
+        obstaculos.add(obs1);
+	obstaculos.add(obs2);
+        Vector2d dir = new Vector2d(1, 0);
 	Vector2d gravedad = new Vector2d(0, 1);
 	dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
 	float factor = (float)Math.random()*9 + 1;
@@ -66,7 +68,9 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	}
     public void paint (Graphics g){
         super.paint(g);//uso el paint de la super clase para que pinte
+        //g.setColor(Color.red);
         caja.paint(g);
+        g.setColor(Color.red);
 	cir.paint(g);
 //        for(int i = 0; i < al.size(); i++){
 //            aux = (Forma)al.get(i);
@@ -77,6 +81,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         g.drawRect(v.ancho-235, 20, 10, 10);
         g.drawRect(20, v.alto-45, 10, 10);
         g.drawRect(v.ancho-235, v.alto-45, 10, 10);
+        g.setColor(Color.black);
         for(int i=0; i<obstaculos.size();++i){
             obstaculos.get(i).paint(g);
         }

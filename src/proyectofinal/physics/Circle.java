@@ -59,7 +59,7 @@ public class Circle {
     }
         
     public void paint (Graphics g){
-        g.setColor(Color.red);
+        //g.setColor(Color.red);
         g.fillOval((int)(pos.x+radius), (int)(pos.y-radius), (int)radius*2, (int)radius*2);
     }
 }
