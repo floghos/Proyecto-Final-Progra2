@@ -15,7 +15,7 @@ public class Collision {
 //	}
         
         // dududu
-	public static boolean circleVcircle(Circle a, Circle b) {
+	public static boolean circleVcircle(Circle a, Circle b, Circle d) {
 		float r = a.radius + b.radius;
 		r *= r;
 		//more meaningless changes
