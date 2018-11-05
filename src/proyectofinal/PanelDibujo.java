@@ -92,7 +92,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     factor = (float)Math.random()*9 + 1;
                     dir.x *= factor;
                     dir.y *= factor;
-                    cir.newPos(new Vector2d(200,100));
+                    cir.setPos(new Vector2d(200,100));
                     cir.setAccel(gravedad);
                     cir.setVelocity(dir);
                     this.repaint();
@@ -104,7 +104,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     factor = (float)Math.random()*9 + 1;
                     dir.x *= factor;
                     dir.y *= factor;
-                    cir.newPos(new Vector2d(200,100));
+                    cir.setPos(new Vector2d(200,100));
                     cir.setAccel(gravedad);
                     cir.setVelocity(dir);
                     this.repaint();
@@ -150,7 +150,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         if(am.getModo()==2){//borrar
             for(int i=obstaculos.size()-1;i>=0;i--){
               //  if(obstaculos.get(i).tipo()==1){//circulo
-                    if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).darR()*obstaculos.get(i).darR())){
+                    if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).getRadius()*obstaculos.get(i).getRadius())){
                         obstaculos.remove(i);
                         repaint(); //llama metodo paint
                         break;
