@@ -6,18 +6,30 @@ import proyectofinal.Ventana;
 
 public class Circle {
     float radius;
-    Vector2d pos;
+    public Vector2d pos;
     Vector2d velocity;
     Vector2d accel;
     Ventana v;
     final float restitucion = 0.8f;
 	
     public Circle(Vector2d pos,float radius, Ventana v){
-    	this.pos = new Vector2d(pos);		
+        this.pos = new Vector2d(pos);		
 	this.velocity = new Vector2d();
 	this.accel = new Vector2d();
         this.radius=radius;
         this.v=v;
+    }
+    
+    public float darR(){
+        return radius/2;
+    }
+    
+//    public Vector2d darPos(){
+//        return pos;
+//    }
+    
+    public void newPos(Vector2d a){
+        this.pos=a;
     }
         
     public void update(){
@@ -45,8 +57,8 @@ public class Circle {
             pos.y = 20+radius;
             velocity.y *= -restitucion;
 	}
-	if (pos.x < 20-radius) {
-            pos.x = 20-radius;
+	if (pos.x < 20+radius) {
+            pos.x = 20+radius;
             velocity.x *= -restitucion;
           //  v.dp.startStop("Stop");
           //  v.dp.repaint();
@@ -60,6 +72,6 @@ public class Circle {
         
     public void paint (Graphics g){
         //g.setColor(Color.red);
-        g.fillOval((int)(pos.x+radius), (int)(pos.y-radius), (int)radius*2, (int)radius*2);
+        g.fillOval((int)(pos.x-radius), (int)(pos.y-radius), (int)radius*2, (int)radius*2);
     }
 }

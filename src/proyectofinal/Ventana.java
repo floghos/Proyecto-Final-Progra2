@@ -57,6 +57,8 @@ public class Ventana extends JFrame{
         jp2.add(m1);
         BotonModo m2=new BotonModo("Quitar",2);
         jp2.add(m2);
+//        BotonModo m3=new BotonModo("Reset",3);
+//        jp2.add(m3);
         ButtonGroup bm=new ButtonGroup();//si apreta uno se descelecciona otro
         bm.add(m1);bm.add(m2);
         controles.add(jp2);
@@ -67,6 +69,7 @@ public class Ventana extends JFrame{
         JPanel jd=new JPanel(); jd.setBackground(Color.LIGHT_GRAY);
 	jd.add(new ActionButton("Start"));
 	jd.add(new ActionButton("Stop"));
+        jd.add(new ActionButton("reset"));
         controles.add(jd);
                 
         this.setSize(ancho,alto);
@@ -84,6 +87,7 @@ public class Ventana extends JFrame{
         public void actionPerformed(ActionEvent ae) {
             am.setModo(modo);
             dp.repaint();
+//            System.out.println(modo);
         }
     } 
      
