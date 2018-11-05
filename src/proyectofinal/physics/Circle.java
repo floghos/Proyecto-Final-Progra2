@@ -10,7 +10,7 @@ public class Circle {
     Vector2d velocity;
     Vector2d accel;
     Ventana v;
-    final float restitucion = 0.8f;
+    private float restitucion = 0.8f;
 	
     public Circle(Vector2d pos,float radius, Ventana v){
         this.pos = new Vector2d(pos);		
@@ -20,7 +20,8 @@ public class Circle {
         this.v=v;
     }
     
-    public float darR(){
+	
+    public float getRadius(){
         return radius;
     }
     
@@ -28,7 +29,7 @@ public class Circle {
 //        return pos;
 //    }
     
-    public void newPos(Vector2d a){
+    public void setPos(Vector2d a){
         this.pos=a;
     }
         
@@ -37,6 +38,10 @@ public class Circle {
 	this.pos = Vector2d.sum(pos, velocity);
         restriccion();
     }
+	
+	public void setRestitucion(float res) {
+		restitucion = res;
+	}
 	
     public void setAccel(Vector2d accel) {
 	this.accel = accel;

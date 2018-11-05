@@ -57,6 +57,8 @@ public class Vector2d {
         //escalar=productoPunto(a,b)/productoPunto(b,b);
         return escalar;
     }
-	//para reflejar un vector, podemos reflejar el punto al que representa en torno al plano de incidencia
-	//ubicado en el origen.
+	
+	public static Vector2d vecPorEscalar(Vector2d v, float e) {
+		return new Vector2d(v.x * e, v.y * e);
+	}
 }
