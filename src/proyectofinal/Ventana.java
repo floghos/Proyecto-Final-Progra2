@@ -38,31 +38,35 @@ public class Ventana extends JFrame{
         JPanel jb=new JPanel(); jb.setBackground(Color.LIGHT_GRAY); 
         controles.add(ja);
         controles.add(jb);
-        
-        //boton forma
-        this.add(controles,BorderLayout.WEST);
-        JPanel jp1=new JPanel(); jp1.setBackground(Color.LIGHT_GRAY);      
-        BotonFigura x=new BotonFigura("Circulo", 1);
-        jp1.add(x);
-//        BotonFigura y=new BotonFigura("Cuadrado", 2);
-//        jp1.add(y);
-        ButtonGroup bf=new ButtonGroup();//si apreta uno se descelecciona otro
-        bf.add(x); //bf.add(y);
-        controles.add(jp1);
-        
-     
+        JPanel jpd=new JPanel(); jpd.setBackground(Color.LIGHT_GRAY);
         //boton modo
         JPanel jp2=new JPanel(); jp2.setBackground(Color.LIGHT_GRAY);     //jp3.add(new JButton("3"));
-        BotonModo m1=new BotonModo("Añadir",1);
+        jpd.setLayout(new BorderLayout());             
+        BotonModo m1=new BotonModo("Añadir",1);        
         jp2.add(m1);
-        BotonModo m2=new BotonModo("Quitar",2);
+        BotonModo m2=new BotonModo("Quitar",2);        
         jp2.add(m2);
+        
+        
+        jpd.add(jp2,BorderLayout.NORTH);
 //        BotonModo m3=new BotonModo("Reset",3);
 //        jp2.add(m3);
         ButtonGroup bm=new ButtonGroup();//si apreta uno se descelecciona otro
         bm.add(m1);bm.add(m2);
-        controles.add(jp2);
-
+//        controles.add(jpd);
+//boton forma
+        
+        JPanel jp1=new JPanel(); jp1.setBackground(Color.LIGHT_GRAY);      
+        BotonFigura x=new BotonFigura("Circulo", 1);
+        jp1.add(x);
+        jpd.add(jp1,BorderLayout.CENTER);
+//        
+//        BotonFigura y=new BotonFigura("Cuadrado", 2);
+//        jp1.add(y);
+        ButtonGroup bf=new ButtonGroup();//si apreta uno se descelecciona otro
+        bf.add(x); //bf.add(y);
+        controles.add(jpd);
+        
         JPanel jc=new JPanel(); jc.setBackground(Color.LIGHT_GRAY);
         jc.add(new ActionButton("Reset"));
         jc.add(new ActionButton("Restart"));
@@ -73,7 +77,7 @@ public class Ventana extends JFrame{
 	jd.add(new ActionButton("Stop"));
 //        jc.add(new ActionButton("Reset"));
         controles.add(jd);
-                
+        this.add(controles,BorderLayout.WEST);     
         this.setSize(ancho,alto);
         this.setVisible(true);
     }
