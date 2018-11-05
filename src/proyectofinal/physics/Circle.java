@@ -21,7 +21,7 @@ public class Circle {
     }
     
     public float darR(){
-        return radius/2;
+        return radius;
     }
     
 //    public Vector2d darPos(){

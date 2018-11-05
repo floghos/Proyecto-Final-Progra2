@@ -52,7 +52,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         for(int i=0; i<12;i++){
             float x= (float)Math.random()*(v.ancho-215);
             float y= (float)Math.random()*(v.alto-25);
-            float rad=(float)Math.random()*80;
+            float rad=(float)Math.random()*80+5;
             Circle aux= new Circle(new Vector2d(x,y),rad,v);
             obstaculos.add(aux);
         }
@@ -83,7 +83,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     for(int i=0; i<12;i++){
                         float x= (float)Math.random()*(v.ancho-215);
                         float y= (float)Math.random()*(v.alto-25);
-                        float rad=(float)Math.random()*80;
+                        float rad=(float)Math.random()*80+5;
                         Circle aux= new Circle(new Vector2d(x,y),rad,v);
                         obstaculos.add(aux);
                     }
@@ -147,15 +147,15 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 //                repaint();//llama metodo paint
 //            }
         }
-//        if(am.getModo()==2){//borrar
-//            for(int i=obstaculos.size()-1;i>=0;i--){
-//              //  if(obstaculos.get(i).tipo()==1){//circulo
-//                    if(((e.getX()-obstaculos.get(i).pos.x-obstaculos.get(i).darR())*(e.getX()-obstaculos.get(i).pos.x-obstaculos.get(i).darR())+(e.getY()-obstaculos.get(i).pos.y-obstaculos.get(i).darR())*(e.getY()-obstaculos.get(i).pos.y-obstaculos.get(i).darR()))<=(obstaculos.get(i).darR()*obstaculos.get(i).darR())){
-//                        obstaculos.remove(i);
-//                        repaint(); //llama metodo paint
-//                        break;
-//                    }
-              //  }
+        if(am.getModo()==2){//borrar
+            for(int i=obstaculos.size()-1;i>=0;i--){
+              //  if(obstaculos.get(i).tipo()==1){//circulo
+                    if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).darR()*obstaculos.get(i).darR())){
+                        obstaculos.remove(i);
+                        repaint(); //llama metodo paint
+                        break;
+                    }
+                }
 //                if(al.get(i).tipo()==2){//cuadrado
 //                    if((e.getX()>=al.get(i).x() && e.getX()<=al.get(i).x()+60) && (e.getY()>=al.get(i).y() && e.getY()<=al.get(i).y()+50)){
 //                        al.remove(i);
@@ -163,7 +163,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 //                        break;
 //                    }
 //                }
-//            } 
+            } 
 //        }
             
 //            if(am.getModo()==3){
