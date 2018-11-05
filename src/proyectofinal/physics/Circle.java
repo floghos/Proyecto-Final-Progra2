@@ -48,13 +48,13 @@ public class Circle {
 	if (pos.x < 20-radius) {
             pos.x = 20-radius;
             velocity.x *= -restitucion;
-            v.dp.startStop("Stop");
-            v.dp.repaint();
+          //  v.dp.startStop("Stop");
+          //  v.dp.repaint();
                        
 	} else if (pos.x > v.ancho-235-radius*3) {
             pos.x =  v.ancho-235-radius*3;
             velocity.x *= -restitucion;
-            v.dp.startStop("Stop");
+           // v.dp.startStop("Stop");
 	}
     }
         

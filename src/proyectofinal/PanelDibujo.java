@@ -22,8 +22,8 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     Box box1;//testing
     int fps;//cuadros por segundo
     Ventana v;
-	private int alto;
-	private int ancho;
+//	private int alto;
+//	private int ancho;
     Circle cir;
     Circle obs1,obs2;
     ArrayList<Circle> obstaculos;
@@ -37,16 +37,22 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.v=v;
         this.addMouseListener(this);
 	this.caja = new Caja(v.ancho, v.alto);
-        this.fps = 15;
+        this.fps = 30;
         tiempo = new Timer(1000/fps,null);
         tiempo.addActionListener(this);
 //      tiempo.start();
 	//this.box1 = new Box(new Vector2d(200, 100), 20, 20);//testing
         cir= new Circle(new Vector2d(200, 100),20f,v);
-        obs1=new Circle(new Vector2d(210,150),20f,v);
-	obs2=new Circle(new Vector2d(400,400),20f,v);
-        obstaculos.add(obs1);
-	obstaculos.add(obs2);
+//        obs1=new Circle(new Vector2d(210,150),20f,v);
+//	obs2=new Circle(new Vector2d(400,400),20f,v);
+        for(int i=0; i<10;i++){
+            float x= (float)Math.random()*(v.ancho-215);
+            float y= (float)Math.random()*(v.alto-25);
+            Circle aux= new Circle(new Vector2d(x,y),20f,v);
+            obstaculos.add(aux);
+        }
+//        obstaculos.add(obs1);
+//	obstaculos.add(obs2);
         Vector2d dir = new Vector2d(1, 0);
 	Vector2d gravedad = new Vector2d(0, 1);
 	dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
@@ -77,10 +83,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 //            aux.paint(g);
 //        }
         g.setColor(Color.red);
-        g.drawRect(20, 20, 10, 10);
-        g.drawRect(v.ancho-235, 20, 10, 10);
-        g.drawRect(20, v.alto-250, 10, 10);
-        g.drawRect(v.ancho-235, v.alto-45, 10, 10);
+//        g.drawRect(20, 20, 10, 10);
+//        g.drawRect(v.ancho-215, 20, 10, 10);
+//        g.drawRect(20, v.alto-25, 10, 10);
+//        g.drawRect(v.ancho-235, v.alto-45, 10, 10);
         g.setColor(Color.black);
         for(int i=0; i<obstaculos.size();++i){
             obstaculos.get(i).paint(g);
@@ -139,6 +145,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             if(circleVcircle(cir,obstaculos.get(i))&& escalarProyeccion(cir,obstaculos.get(i))>0){
                 System.out.println("chocan");
                 cir.setVelocity(resColCircle(cir,obstaculos.get(i)));
+                
             }
         }
     }
