@@ -64,12 +64,14 @@ public class Ventana extends JFrame{
         controles.add(jp2);
 
         JPanel jc=new JPanel(); jc.setBackground(Color.LIGHT_GRAY);
+        jc.add(new ActionButton("Reset"));
+        jc.add(new ActionButton("Restart"));
         controles.add(jc);
 		
         JPanel jd=new JPanel(); jd.setBackground(Color.LIGHT_GRAY);
 	jd.add(new ActionButton("Start"));
 	jd.add(new ActionButton("Stop"));
-        jd.add(new ActionButton("Reset"));
+//        jc.add(new ActionButton("Reset"));
         controles.add(jd);
                 
         this.setSize(ancho,alto);

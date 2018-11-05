@@ -68,7 +68,8 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	this.cir.setVelocity(dir);
     }
 	public void startStop(String accion) {
-            switch(accion) {
+            float factor;
+            switch(accion) {                
 		case "Start":
                     tiempo.start();
                     break;
@@ -77,25 +78,35 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     break;
                 case "Reset":
                     tiempo.stop();
-//                    obstaculos.removeAll(obstaculos);
-//                    
-//                    for(int i=0; i<12;i++){
-//                        float x= (float)Math.random()*(v.ancho-215);
-//                        float y= (float)Math.random()*(v.alto-25);
-//                        float rad=(float)Math.random()*80;
-//                        Circle aux= new Circle(new Vector2d(x,y),rad,v);
-//                        obstaculos.add(aux);
-//                    }
+                    obstaculos.removeAll(obstaculos);
+                    
+                    for(int i=0; i<12;i++){
+                        float x= (float)Math.random()*(v.ancho-215);
+                        float y= (float)Math.random()*(v.alto-25);
+                        float rad=(float)Math.random()*80;
+                        Circle aux= new Circle(new Vector2d(x,y),rad,v);
+                        obstaculos.add(aux);
+                    }
                     dir = new Vector2d(1, 0);
                     dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
-                    float factor = (float)Math.random()*9 + 1;
+                    factor = (float)Math.random()*9 + 1;
                     dir.x *= factor;
                     dir.y *= factor;
-                    System.out.println("jajaja");
                     cir.newPos(new Vector2d(200,100));
                     cir.setAccel(gravedad);
                     cir.setVelocity(dir);
-                    System.out.println("jaja");
+                    this.repaint();
+                    break;
+                case "Restart":
+                    tiempo.stop();
+                    dir = new Vector2d(1, 0);
+                    dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
+                    factor = (float)Math.random()*9 + 1;
+                    dir.x *= factor;
+                    dir.y *= factor;
+                    cir.newPos(new Vector2d(200,100));
+                    cir.setAccel(gravedad);
+                    cir.setVelocity(dir);
                     this.repaint();
                     break;
             }
