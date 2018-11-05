@@ -75,17 +75,17 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		case "Stop":
                     tiempo.stop();
                     break;
-                case "reset":
-                    
-                    obstaculos.removeAll(obstaculos);
-                    
-                    for(int i=0; i<12;i++){
-                        float x= (float)Math.random()*(v.ancho-215);
-                        float y= (float)Math.random()*(v.alto-25);
-                        float rad=(float)Math.random()*80;
-                        Circle aux= new Circle(new Vector2d(x,y),rad,v);
-                        obstaculos.add(aux);
-                    }
+                case "Reset":
+                    tiempo.stop();
+//                    obstaculos.removeAll(obstaculos);
+//                    
+//                    for(int i=0; i<12;i++){
+//                        float x= (float)Math.random()*(v.ancho-215);
+//                        float y= (float)Math.random()*(v.alto-25);
+//                        float rad=(float)Math.random()*80;
+//                        Circle aux= new Circle(new Vector2d(x,y),rad,v);
+//                        obstaculos.add(aux);
+//                    }
                     dir = new Vector2d(1, 0);
                     dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
                     float factor = (float)Math.random()*9 + 1;
@@ -96,6 +96,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     cir.setAccel(gravedad);
                     cir.setVelocity(dir);
                     System.out.println("jaja");
+                    this.repaint();
                     break;
             }
 	}
