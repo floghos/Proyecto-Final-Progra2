@@ -1,6 +1,6 @@
 package proyectofinal.physics;
 
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.Graphics;
 import proyectofinal.Ventana;
 
@@ -10,25 +10,25 @@ public class Circle {
     Vector2d velocity;
     Vector2d accel;
     Ventana v;
-    private float restitucion = 0.8f;
+    private float restitucion;
 	
     public Circle(Vector2d pos,float radius, Ventana v){
         this.pos = new Vector2d(pos);		
-	this.velocity = new Vector2d();
-	this.accel = new Vector2d();
+		this.velocity = new Vector2d();
+		this.accel = new Vector2d();
         this.radius=radius;
         this.v=v;
+		this.restitucion = 0.9f;
     }
     
 	
     public float getRadius(){
         return radius;
     }
-    
-//    public Vector2d darPos(){
-//        return pos;
-//    }
-    
+	public float getRestitucion() {
+		return restitucion;
+	}
+        
     public void setPos(Vector2d a){
         this.pos=a;
     }
@@ -52,27 +52,23 @@ public class Circle {
     }
 	
     public void restriccion() {
-	if (pos.y > v.alto-45-radius) {
-            pos.y = v.alto-45-radius;
-            if (Math.abs(this.velocity.x) > 0.001f) {
-		this.velocity.x *= 0.95f;
-            }
+		if (pos.y > v.alto-45-radius) {
+			pos.y = v.alto-45-radius;
+			if (Math.abs(this.velocity.x) > 0.001f) {
+				this.velocity.x *= 0.95f;
+		    }
             velocity.y *= -restitucion;
-	} else if (pos.y < 20+radius) {
+		} else if (pos.y < 20+radius) {
             pos.y = 20+radius;
             velocity.y *= -restitucion;
-	}
-	if (pos.x < 20+radius) {
+		}
+		if (pos.x < 20+radius) {
             pos.x = 20+radius;
-            velocity.x *= -restitucion;
-          //  v.dp.startStop("Stop");
-          //  v.dp.repaint();
-                       
-	} else if (pos.x > v.ancho-235-radius) {
+            velocity.x *= -restitucion;               
+		} else if (pos.x > v.ancho-235-radius) {
             pos.x =  v.ancho-235-radius;
             velocity.x *= -restitucion;
-           // v.dp.startStop("Stop");
-	}
+		}
     }
         
     public void paint (Graphics g){

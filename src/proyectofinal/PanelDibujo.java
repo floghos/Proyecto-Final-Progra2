@@ -11,7 +11,7 @@ import javax.swing.Timer;
 import proyectofinal.physics.*;
 import static proyectofinal.physics.Collision.circleVcircle;
 import static proyectofinal.physics.Collision.resColCircle;
-import static proyectofinal.physics.Vector2d.escalarProyeccion;
+import static proyectofinal.physics.Vector2d.*;
 
 public class PanelDibujo extends JPanel implements MouseListener,ActionListener {
     //ArrayList<Forma> al;
@@ -195,7 +195,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         for(int i=0; i<obstaculos.size();i++){
             if(circleVcircle(cir,obstaculos.get(i))&& escalarProyeccion(cir,obstaculos.get(i))>0){
                 System.out.println("chocan");
-                cir.setVelocity(resColCircle(cir,obstaculos.get(i)));
+                cir.setVelocity(Vector2d.vecPorEscalar(resColCircle(cir,obstaculos.get(i)), cir.getRestitucion()));
                 
             }
         }
