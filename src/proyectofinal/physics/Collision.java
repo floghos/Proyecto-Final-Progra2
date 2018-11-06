@@ -30,4 +30,19 @@ public class Collision {
 		
 		return newVector;
 	}
+	
+	//Problema: jugador atraviesa obstaculos cuando reposa sobre ellos.
+	//posible sol: teletransportar al jugador al borde de la colision. La direccion esta dada por 
+	//			   la liena que conecta ambos centros. (dist centros) - (suma radios) = penetracion.
+	
+	
+	public static Vector2d pushOut(Circle player, Circle obstacle) {
+		Vector2d vecDir = Vector2d.resta(player.pos, obstacle.pos);
+		float sumRadios = player.radius + obstacle.radius;
+		float penetracion = sumRadios - Vector2d.module(vecDir);
+		vecDir = Vector2d.normalize(vecDir);
+		
+		return Vector2d.vecPorEscalar(vecDir, penetracion);
+	}
+	
 }
