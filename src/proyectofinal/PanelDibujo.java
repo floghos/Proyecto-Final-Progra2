@@ -27,9 +27,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     Circle inicio;
     Vector2d gravedad;
     Vector2d dir;
+    boolean comenzo;
 	
     public PanelDibujo(AlmacenForma af, AlmacenModo am, Ventana v){
-        //al = new ArrayList();
+        comenzo=false;
         this.setBackground(Color.cyan);
         obstaculos= new ArrayList();
         this.af = af;
@@ -40,12 +41,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.fps = 30;
         tiempo = new Timer(1000/fps,null);
         tiempo.addActionListener(this);
-//      tiempo.start();
-	//this.box1 = new Box(new Vector2d(200, 100), 20, 20);//testing
+
         cir= new Circle(new Vector2d(200, 100),20f,v);
         this.inicio=cir;
-//      obs1=new Circle(new Vector2d(210,150),20f,v);
-//	obs2=new Circle(new Vector2d(400,400),20f,v);
+
         for(int i=0; i<12;i++){
             float x= (float)Math.random()*(v.ancho-215);
             float y= (float)Math.random()*(v.alto-25);
@@ -53,12 +52,11 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             Circle aux= new Circle(new Vector2d(x,y),rad,v);
             obstaculos.add(aux);
         }
-//        obstaculos.add(obs1);
-//	obstaculos.add(obs2);
+
         dir = new Vector2d(1, 0);
 	gravedad = new Vector2d(0, 1);
 	dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
-	float factor = (float)Math.random()*9 + 1;
+	float factor = (float)Math.random()*20 + 5;
 	dir.x *= factor;
 	dir.y *= factor;		
 	this.cir.setAccel(gravedad);
@@ -69,11 +67,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             switch(accion) {                
 		case "Start":
                     tiempo.start();
+                    comenzo=true;
                     break;
 		case "Stop":
                     tiempo.stop();
                     break;
                 case "Reset":
+                    comenzo=false;                    
                     tiempo.stop();
                     obstaculos.removeAll(obstaculos);
                     
@@ -86,7 +86,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     }
                     dir = new Vector2d(1, 0);
                     dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
-                    factor = (float)Math.random()*9 + 1;
+                    factor = (float)Math.random()*20 + 5;
                     dir.x *= factor;
                     dir.y *= factor;
                     cir.setPos(new Vector2d(200,100));
@@ -95,10 +95,11 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     this.repaint();
                     break;
                 case "Restart":
+                    comenzo=false;
                     tiempo.stop();
                     dir = new Vector2d(1, 0);
                     dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
-                    factor = (float)Math.random()*9 + 1;
+                    factor = (float)Math.random()*20 + 5;
                     dir.x *= factor;
                     dir.y *= factor;
                     cir.setPos(new Vector2d(200,100));
@@ -109,15 +110,18 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             }
 	}
         public void direccionInicial(String accion){
-            switch(accion){
+            
+            if(!comenzo){
+                switch(accion){
                 case "<--":
-                    
-                    
+                    dir=rotateVector(dir,-Math.PI/36);                           
+                    break;                    
+                case "-->":                    
+                    dir=rotateVector(dir,Math.PI/36);                                
                     break;
-                case "-->":
-                    
-                    
-                    break;
+                }
+                cir.setVelocity(dir);
+                repaint();
             }
         }
         
@@ -127,19 +131,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         caja.paint(g);
         g.setColor(Color.red);
 	cir.paint(g);
-//        for(int i = 0; i < al.size(); i++){
-//            aux = (Forma)al.get(i);
-//            aux.paint(g);
-//        }
         g.setColor(Color.red);
-//        g.drawRect(20, 20, 10, 10);
-//        g.drawRect(v.ancho-215, 20, 10, 10);
-//        g.drawRect(20, v.alto-25, 10, 10);
-//        g.drawRect(v.ancho-235, v.alto-45, 10, 10);
         g.setColor(Color.black);
         for(int i=0; i<obstaculos.size();++i){
             obstaculos.get(i).paint(g);
         }
+        if(!comenzo)g.drawLine((int)cir.pos.x, (int)cir.pos.y, (int)(cir.pos.x+dir.x*3), (int)(cir.pos.y+dir.y*3));
+        
     }
     public void mousePressed(MouseEvent e) {//e informa donde ocurre el evento
 		
@@ -150,11 +148,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 obstaculos.add(aux);
                 repaint();//llama metodo paint
             }
-//            if(af.getForma()==2){
-//                Cuadrado g=new Cuadrado(e.getX(),e.getY(), 50);
-//                al.add(g);
-//                repaint();//llama metodo paint
-//            }
         }
         if(am.getModo()==2){//borrar
             for(int i=obstaculos.size()-1;i>=0;i--){
@@ -165,25 +158,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                         break;
                     }
                 }
-//                if(al.get(i).tipo()==2){//cuadrado
-//                    if((e.getX()>=al.get(i).x() && e.getX()<=al.get(i).x()+60) && (e.getY()>=al.get(i).y() && e.getY()<=al.get(i).y()+50)){
-//                        al.remove(i);
-//                        repaint();//llama metodo paint
-//                        break;
-//                    }
-//                }
             } 
-//        }
-            
-//            if(am.getModo()==3){
-//            
-//                System.out.println("jajaja");
-//                cir.newPos(new Vector2d(200,100));
-//                cir.setAccel(gravedad);
-//                cir.setVelocity(dir);
-//                System.out.println("jaja");
-//             
-//            }
     }
     
     
