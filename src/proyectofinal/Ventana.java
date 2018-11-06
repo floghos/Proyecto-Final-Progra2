@@ -35,8 +35,18 @@ public class Ventana extends JFrame{
 	slider.setToolTipText("Modifica la gravedad");
 	ja.add(slider);
 		
+        JLabel direccion= new JLabel("Direccion");        
+        JPanel dir=new JPanel();
+        dir.add(direccion);
+        dir.add(new BotonDireccion("<--"));
+        dir.add(new BotonDireccion("-->"));
+        
+        
         JPanel jb=new JPanel(); jb.setBackground(Color.LIGHT_GRAY); 
         controles.add(ja);
+        
+        controles.add(dir);
+        
         controles.add(jb);
         JPanel jpd=new JPanel(); jpd.setBackground(Color.LIGHT_GRAY);
         //boton modo
@@ -46,8 +56,7 @@ public class Ventana extends JFrame{
         jp2.add(m1);
         BotonModo m2=new BotonModo("Quitar",2);        
         jp2.add(m2);
-        
-        
+                
         jpd.add(jp2,BorderLayout.NORTH);
 //        BotonModo m3=new BotonModo("Reset",3);
 //        jp2.add(m3);
@@ -80,6 +89,19 @@ public class Ventana extends JFrame{
         this.add(controles,BorderLayout.WEST);     
         this.setSize(ancho,alto);
         this.setVisible(true);
+    }
+        
+    private class BotonDireccion extends JButton implements ActionListener{
+        public String direccion;
+        public BotonDireccion(String direccion){
+            super(direccion);
+            this.direccion=direccion;
+            this.addActionListener(this);
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dp.direccionInicial(direccion);
+        }        
     }
     
     private class BotonModo extends JRadioButton implements ActionListener{

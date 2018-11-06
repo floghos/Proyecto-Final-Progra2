@@ -14,7 +14,6 @@ import static proyectofinal.physics.Collision.resColCircle;
 import static proyectofinal.physics.Vector2d.*;
 
 public class PanelDibujo extends JPanel implements MouseListener,ActionListener {
-    //ArrayList<Forma> al;
     AlmacenForma af;
     AlmacenModo am;
     Caja caja;
@@ -22,8 +21,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     Box box1;//testing
     int fps;//cuadros por segundo
     Ventana v;
-//	private int alto;
-//	private int ancho;
     Circle cir;
     Circle obs1,obs2;
     ArrayList<Circle> obstaculos;
@@ -111,6 +108,18 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     break;
             }
 	}
+        public void direccionInicial(String accion){
+            switch(accion){
+                case "<--":
+                    
+                    
+                    break;
+                case "-->":
+                    
+                    
+                    break;
+            }
+        }
         
     public void paint (Graphics g){
         super.paint(g);//uso el paint de la super clase para que pinte
