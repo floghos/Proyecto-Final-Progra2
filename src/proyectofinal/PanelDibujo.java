@@ -44,7 +44,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 
         cir= new Circle(new Vector2d(200, 100),20f,v);
         this.inicio=cir;
-
         for(int i=0; i<12;i++){
             float x= (float)Math.random()*(v.ancho-215);
             float y= (float)Math.random()*(v.alto-25);
@@ -178,7 +177,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		cir.update();
         for(int i=0; i<obstaculos.size();i++){
             if(circleVcircle(cir,obstaculos.get(i))&& escalarProyeccion(cir,obstaculos.get(i))>0){
-                System.out.println("chocan");
+				cir.translate(Collision.pushOut(cir, obstaculos.get(i)));
                 cir.setVelocity(Vector2d.vecPorEscalar(resColCircle(cir,obstaculos.get(i)), cir.getRestitucion()));
                 
             }

@@ -4,7 +4,7 @@ import static java.lang.Math.sqrt;
 
 public class Collision {
     public float distance(Vector2d a, Vector2d b) {
-	return (float)sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
+		return (float)sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
     }
 	
 //	public static boolean boxVbox(Box a, Box b) {
@@ -16,8 +16,8 @@ public class Collision {
         
     public static boolean circleVcircle(Circle a, Circle b) {
         float r = a.radius + b.radius;
-	r *= r;
-	return r > (Math.pow((a.pos.x - b.pos.x), 2) + Math.pow((a.pos.y - b.pos.y), 2));
+		r *= r;
+		return r > (Math.pow((a.pos.x - b.pos.x), 2) + Math.pow((a.pos.y - b.pos.y), 2));
     }
 	
 	public static Vector2d resColCircle(Circle a, Circle b) {
@@ -31,18 +31,14 @@ public class Collision {
 		return newVector;
 	}
 	
-	//Problema: jugador atraviesa obstaculos cuando reposa sobre ellos.
-	//posible sol: teletransportar al jugador al borde de la colision. La direccion esta dada por 
-	//			   la liena que conecta ambos centros. (dist centros) - (suma radios) = penetracion.
-	
-	
 	public static Vector2d pushOut(Circle player, Circle obstacle) {
 		Vector2d vecDir = Vector2d.resta(player.pos, obstacle.pos);
 		float sumRadios = player.radius + obstacle.radius;
 		float penetracion = sumRadios - Vector2d.module(vecDir);
+		System.out.println(penetracion);
 		vecDir = Vector2d.normalize(vecDir);
 		
-		return Vector2d.vecPorEscalar(vecDir, penetracion);
+		return Vector2d.vecPorEscalar(vecDir, -penetracion);
 	}
 	
 }
