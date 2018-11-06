@@ -34,58 +34,50 @@ public class Ventana extends JFrame{
 	slider.setPaintLabels(true);
 	slider.setToolTipText("Modifica la gravedad");
 	ja.add(slider);
+        controles.add(ja);
 		
+        //direccion
         JLabel direccion= new JLabel("Direccion");        
         JPanel dir=new JPanel();
         dir.add(direccion);
         dir.add(new BotonDireccion("<--"));
         dir.add(new BotonDireccion("-->"));
-        
-        
-        JPanel jb=new JPanel(); jb.setBackground(Color.LIGHT_GRAY); 
-        controles.add(ja);
-        
         controles.add(dir);
         
+        //nada
+        JPanel jb=new JPanel(); jb.setBackground(Color.LIGHT_GRAY); 
         controles.add(jb);
+        
+        //jpd contiene agregar y quitar obstaculos
+        //jpd contiene jp2 al norte y jp1 al centro
         JPanel jpd=new JPanel(); jpd.setBackground(Color.LIGHT_GRAY);
-        //boton modo
-        JPanel jp2=new JPanel(); jp2.setBackground(Color.LIGHT_GRAY);     //jp3.add(new JButton("3"));
-        jpd.setLayout(new BorderLayout());             
+        jpd.setLayout(new BorderLayout());   
+        JPanel jp2=new JPanel(); jp2.setBackground(Color.LIGHT_GRAY);                
         BotonModo m1=new BotonModo("Añadir",1);        
         jp2.add(m1);
         BotonModo m2=new BotonModo("Quitar",2);        
-        jp2.add(m2);
-                
-        jpd.add(jp2,BorderLayout.NORTH);
-//        BotonModo m3=new BotonModo("Reset",3);
-//        jp2.add(m3);
-        ButtonGroup bm=new ButtonGroup();//si apreta uno se descelecciona otro
-        bm.add(m1);bm.add(m2);
-//        controles.add(jpd);
-//boton forma
-        
+        jp2.add(m2);                
+        jpd.add(jp2,BorderLayout.NORTH);        
+        ButtonGroup bm=new ButtonGroup();
+        bm.add(m1);bm.add(m2);        
         JPanel jp1=new JPanel(); jp1.setBackground(Color.LIGHT_GRAY);      
         BotonFigura x=new BotonFigura("Circulo", 1);
         jp1.add(x);
-        jpd.add(jp1,BorderLayout.CENTER);
-//        
-//        BotonFigura y=new BotonFigura("Cuadrado", 2);
-//        jp1.add(y);
-        ButtonGroup bf=new ButtonGroup();//si apreta uno se descelecciona otro
-        bf.add(x); //bf.add(y);
+        jpd.add(jp1,BorderLayout.CENTER);     
         controles.add(jpd);
         
+        //reset y restart
         JPanel jc=new JPanel(); jc.setBackground(Color.LIGHT_GRAY);
-        jc.add(new ActionButton("Reset"));
         jc.add(new ActionButton("Restart"));
+        jc.add(new ActionButton("Reset"));        
         controles.add(jc);
 		
+        // start stop
         JPanel jd=new JPanel(); jd.setBackground(Color.LIGHT_GRAY);
 	jd.add(new ActionButton("Start"));
 	jd.add(new ActionButton("Stop"));
-//        jc.add(new ActionButton("Reset"));
         controles.add(jd);
+        
         this.add(controles,BorderLayout.WEST);     
         this.setSize(ancho,alto);
         this.setVisible(true);
@@ -115,7 +107,6 @@ public class Ventana extends JFrame{
         public void actionPerformed(ActionEvent ae) {
             am.setModo(modo);
             dp.repaint();
-//            System.out.println(modo);
         }
     } 
      
@@ -143,7 +134,7 @@ public class Ventana extends JFrame{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-            dp.startStop(action);
+            dp.accion(action);
 	}
     }
 	

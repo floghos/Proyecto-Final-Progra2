@@ -31,7 +31,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	
     public PanelDibujo(AlmacenForma af, AlmacenModo am, Ventana v){
         comenzo=false;
-        this.setBackground(Color.cyan);
+        this.setBackground(Color.darkGray);
         obstaculos= new ArrayList();
         this.af = af;
         this.am = am;
@@ -61,7 +61,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	this.cir.setAccel(gravedad);
 	this.cir.setVelocity(dir);
     }
-	public void startStop(String accion) {
+	public void accion(String accion) {
             float factor;
             switch(accion) {                
 		case "Start":
@@ -108,8 +108,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                     break;
             }
 	}
-        public void direccionInicial(String accion){
-            
+        public void direccionInicial(String accion){            
             if(!comenzo){
                 switch(accion){
                 case "<--":
@@ -125,8 +124,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         }
         
     public void paint (Graphics g){
-        super.paint(g);//uso el paint de la super clase para que pinte
-        //g.setColor(Color.red);
+        super.paint(g);
         caja.paint(g);
         g.setColor(Color.red);
 	cir.paint(g);
@@ -135,25 +133,25 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         for(int i=0; i<obstaculos.size();++i){
             obstaculos.get(i).paint(g);
         }
+        g.setColor(Color.white);
         if(!comenzo)g.drawLine((int)cir.pos.x, (int)cir.pos.y, (int)(cir.pos.x+dir.x*3), (int)(cir.pos.y+dir.y*3));
         
     }
-    public void mousePressed(MouseEvent e) {//e informa donde ocurre el evento
+    public void mousePressed(MouseEvent e) {
 		
         if(am.getModo()==1){//crear
             System.out.println("crear");
             if(af.getForma()==1){
                 Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),20f,v);
                 obstaculos.add(aux);
-                repaint();//llama metodo paint
+                repaint();
             }
         }
         if(am.getModo()==2){//borrar
             for(int i=obstaculos.size()-1;i>=0;i--){
-              //  if(obstaculos.get(i).tipo()==1){//circulo
                     if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).getRadius()*obstaculos.get(i).getRadius())){
                         obstaculos.remove(i);
-                        repaint(); //llama metodo paint
+                        repaint();
                         break;
                     }
                 }
