@@ -32,10 +32,15 @@ public class Circle {
     public void setPos(Vector2d a){
         this.pos=a;
     }
+	
+	public void translate(Vector2d t) {
+		this.pos.x += t.x;
+		this.pos.y += t.y;
+	}
         
-    public void update(){
+    public void update(/*Vector2d gravedad, Vector2d accel*/) {
         this.velocity = Vector2d.sum(velocity, accel);
-	this.pos = Vector2d.sum(pos, velocity);
+		this.pos = Vector2d.sum(pos, velocity);
         restriccion();
     }
 	

@@ -47,7 +47,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	//this.box1 = new Box(new Vector2d(200, 100), 20, 20);//testing
         cir= new Circle(new Vector2d(200, 100),20f,v);
         this.inicio=cir;
-//        obs1=new Circle(new Vector2d(210,150),20f,v);
+//      obs1=new Circle(new Vector2d(210,150),20f,v);
 //	obs2=new Circle(new Vector2d(400,400),20f,v);
         for(int i=0; i<12;i++){
             float x= (float)Math.random()*(v.ancho-215);
