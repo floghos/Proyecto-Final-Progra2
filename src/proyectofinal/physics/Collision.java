@@ -34,8 +34,7 @@ public class Collision {
 	public static Vector2d pushOut(Circle player, Circle obstacle) {
 		Vector2d vecDir = Vector2d.resta(player.pos, obstacle.pos);
 		float sumRadios = player.radius + obstacle.radius;
-		float penetracion = sumRadios - Vector2d.module(vecDir);
-		System.out.println(penetracion);
+		float penetracion = sumRadios - Vector2d.modulo(vecDir);
 		vecDir = Vector2d.normalize(vecDir);
 		
 		return Vector2d.vecPorEscalar(vecDir, -penetracion);

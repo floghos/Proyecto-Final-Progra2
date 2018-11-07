@@ -29,6 +29,12 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     Vector2d dir;
     boolean comenzo;
 	
+	/**
+	 * Método constructor 
+	 * @param af 
+	 * @param am
+	 * @param v 
+	 */
     public PanelDibujo(AlmacenForma af, AlmacenModo am, Ventana v){
         comenzo=false;
         this.setBackground(Color.darkGray);
@@ -61,6 +67,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		this.cir.setAccel(gravedad);
 		this.cir.setVelocity(dir);
     }
+	/**
+	 * Detiene y reanuda el tiempo, además de reiniciar y reconfigurar la simulacion.
+	 * @param accion "Start", "Stop", "Reset", "Restart"
+	 */
 	public void accion(String accion) {
         float factor;
         switch(accion) {                
@@ -107,7 +117,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 break;
         }
 	}
-	
+	/**
+	 * Modifica la dirección inicial en la cual saldrá la pelota.
+	 * @param accion "<--" gira la la dirección en sentido anti-horario, "-->" gira la dirección en sentido horario
+	 */
     public void direccionInicial(String accion){            
         if(!comenzo){
             switch(accion){
