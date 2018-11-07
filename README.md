@@ -3,6 +3,4 @@
 Projecto Final para Programacion 2.
 
 Trabajo Grupal.
-  Integrantes:
-    Javiera Cerda
-    Pablo Furet
+  Integrantes: Javiera Cerda, Pablo Furet
