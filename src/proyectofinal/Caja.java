@@ -9,8 +9,14 @@ public class Caja{
     int ancho;
     int alto;
     ArrayList<Box> bordes;
+	
+	/**
+	 * Método constructor
+	 * @param ancho
+	 * @param alto 
+	 */
     public Caja(int ancho, int alto){
-	this.bordes = new ArrayList();
+		this.bordes = new ArrayList();
         bordes.add((new Box(new Vector2d(),ancho-180,20)));
         bordes.add((new Box(new Vector2d(0,alto-45),ancho-180,20)));
         bordes.add((new Box(new Vector2d(),20,alto-25)));
@@ -19,13 +25,14 @@ public class Caja{
         this.alto=alto;
     }
     
+	/* //metodo no utilizado
     public boolean colision(Box box) {
         int i;
         for (i = 0; i < bordes.size(); ++i) {
             if(bordes.get(i).intersects(box)) return true;
         }
         return false;
-    }
+    }*/
     
     public void paint (Graphics g){
         g.setColor(Color.black);        
