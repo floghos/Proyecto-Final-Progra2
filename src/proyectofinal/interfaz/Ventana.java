@@ -1,4 +1,4 @@
-package interfaz;
+package proyectofinal.interfaz;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -6,6 +6,7 @@ import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import proyectofinal.interfaz.PanelDibujo;
 
 public class Ventana extends JFrame{
     public PanelDibujo dp;

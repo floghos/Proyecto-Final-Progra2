@@ -1,4 +1,4 @@
-package interfaz;
+package proyectofinal.interfaz;
 
 import interfaz.AlmacenForma;
 import interfaz.AlmacenModo;
@@ -189,7 +189,9 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.repaint();
 		cir.update();
         for(int i=0; i<obstaculos.size();i++){
-            if(circleVcircle(cir,obstaculos.get(i))&& escalarProyeccion(cir,obstaculos.get(i))>0){
+			Vector2d vPosicion = resta(cir.pos,obstaculos.get(i).pos);
+//        return (productoPunto(vPosicion,a.velocity)/productoPunto(vPosicion,vPosicion));
+            if(circleVcircle(cir,obstaculos.get(i)) && escalarProyeccion(cir.velocity, vPosicion)>0){
 				cir.translate(Collision.pushOut(cir, obstaculos.get(i)));
                 cir.setVelocity(Vector2d.vecPorEscalar(resColCircle(cir,obstaculos.get(i)), cir.getRestitucion()));     
             }

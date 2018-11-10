@@ -99,9 +99,10 @@ public class Vector2d {
 	 * @param b
 	 * @return 
 	 */
-    public static float escalarProyeccion(Circle a,Circle b){
-        Vector2d vPosicion = resta(a.pos,b.pos);
-        return (productoPunto(vPosicion,a.velocity)/productoPunto(vPosicion,vPosicion));
+    public static float escalarProyeccion(Vector2d u,Vector2d v){
+//        Vector2d vPosicion = resta(a.pos,b.pos);
+//        return (productoPunto(vPosicion,a.velocity)/productoPunto(vPosicion,vPosicion));
+		return (productoPunto(u, v)/productoPunto(v, v));
     }
 	
 	/**
