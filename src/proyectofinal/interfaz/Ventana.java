@@ -41,43 +41,73 @@ public class Ventana extends JFrame{
         JLabel direccion= new JLabel("Direccion");        
         JPanel pDireccion=new JPanel();
         pDireccion.add(direccion);
-        pDireccion.add(new BotonDireccion("<--"));
-        pDireccion.add(new BotonDireccion("-->"));
+        pDireccion.add(new BotonDireccion("↺"));
+        pDireccion.add(new BotonDireccion("↻"));
         controles.add(pDireccion);
+        
+        //Panel Rapidez
+        JLabel rapidez= new JLabel("Rapidez");        
+        JPanel pRapidez=new JPanel();
+        pRapidez.add(rapidez);
+        pRapidez.add(new BotonDireccion("-"));
+        pRapidez.add(new BotonDireccion("+"));
+        controles.add(pRapidez);
+        
+        
+        //Panel ordenar 1   
+        JPanel pOrdenar1=new JPanel(); pOrdenar1.setBackground(Color.LIGHT_GRAY);
+        pOrdenar1.setLayout(new BorderLayout());
+        pOrdenar1.add(pDireccion,BorderLayout.NORTH);
+        pOrdenar1.add(pRapidez,BorderLayout.CENTER);
+        controles.add(pOrdenar1);
         
         //Panel Extra
         JPanel pExtra1=new JPanel(); pExtra1.setBackground(Color.LIGHT_GRAY); 
         controles.add(pExtra1);
         
         //Panel Añadir y Quitar Obstaculos
-        //jpd contiene jp2 al norte y jp1 al centro
-        JPanel pOrdenar1=new JPanel(); pOrdenar1.setBackground(Color.LIGHT_GRAY);
-        pOrdenar1.setLayout(new BorderLayout());   
+        //jpd contiene jp2 al norte y jp1 al centro          
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(Color.LIGHT_GRAY);                
         BotonModo añadir=new BotonModo("Añadir",1);        
         pAñadirQuitar.add(añadir);
-        BotonModo m2=new BotonModo("Quitar",2);        
-        pAñadirQuitar.add(m2);                
-        pOrdenar1.add(pAñadirQuitar,BorderLayout.NORTH);        
-        ButtonGroup bm=new ButtonGroup();
-        bm.add(añadir);bm.add(m2);        
-        JPanel jp1=new JPanel(); jp1.setBackground(Color.LIGHT_GRAY);      
-        BotonFigura x=new BotonFigura("Circulo", 1);
-        jp1.add(x);
-        pOrdenar1.add(jp1,BorderLayout.CENTER);     
-        controles.add(pOrdenar1);
+        BotonModo quitar=new BotonModo("Quitar",2);        
+        pAñadirQuitar.add(quitar);    
+        ButtonGroup bGrupo1=new ButtonGroup();
+        bGrupo1.add(añadir);bGrupo1.add(quitar);   
         
-        //reset y restart
-        JPanel jc=new JPanel(); jc.setBackground(Color.LIGHT_GRAY);
-        jc.add(new ActionButton("Restart"));
-        jc.add(new ActionButton("Reset"));        
-        controles.add(jc);
+        //Panel Ordenar 2
+        JPanel pOrdenar2=new JPanel(); pOrdenar2.setBackground(Color.LIGHT_GRAY);
+        pOrdenar2.setLayout(new BorderLayout()); 
+        pOrdenar2.add(pAñadirQuitar,BorderLayout.NORTH);        
+        controles.add(pOrdenar2);     
+//        JPanel pObstaculo=new JPanel(); pObstaculo.setBackground(Color.LIGHT_GRAY);      
+//        BotonFigura circulo=new BotonFigura("Circulo", 1);
+//        pObstaculo.add(circulo);
+//        pOrdenar2.add(pObstaculo,BorderLayout.CENTER);     
+        
+        
+        //Panel reset-restart
+        JPanel pRestartReset=new JPanel(); pRestartReset.setBackground(Color.LIGHT_GRAY);
+        pRestartReset.add(new ActionButton("Restart"));
+        pRestartReset.add(new ActionButton("Reset"));        
+        controles.add(pRestartReset);
 		
-        // start stop
-        JPanel jd=new JPanel(); jd.setBackground(Color.LIGHT_GRAY);
-	jd.add(new ActionButton("Start"));
-	jd.add(new ActionButton("Stop"));
-        controles.add(jd);
+        //Panel start-stop
+        JPanel pStartStop=new JPanel(); pStartStop.setBackground(Color.LIGHT_GRAY);
+	pStartStop.add(new ActionButton("Start"));
+	pStartStop.add(new ActionButton("Stop"));
+        controles.add(pStartStop);
+        
+        //Panel Extra
+        JPanel pExtra2=new JPanel(); pExtra2.setBackground(Color.LIGHT_GRAY); 
+        controles.add(pExtra2);
+        
+        //Panel Ordenar 3
+        JPanel pOrdenar3=new JPanel(); pOrdenar3.setBackground(Color.LIGHT_GRAY);
+        pOrdenar3.setLayout(new BorderLayout()); 
+        pOrdenar3.add(pStartStop,BorderLayout.NORTH); 
+        pOrdenar3.add(pRestartReset,BorderLayout.CENTER);
+        controles.add(pOrdenar3);
         
         this.add(controles,BorderLayout.WEST);     
         this.setSize(ancho,alto);
@@ -93,7 +123,7 @@ public class Ventana extends JFrame{
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-            dp.direccionInicial(direccion);
+            dp.velocidadInicial(direccion);
         }        
     }
     
