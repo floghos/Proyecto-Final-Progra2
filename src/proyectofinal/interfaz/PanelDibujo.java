@@ -24,7 +24,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     Circle pelota;
     ArrayList<Circle> obstaculos;
     Vector2d gravedad;
-    Vector2d dir;
+    Vector2d velPelota;
     boolean comenzo;
     Vector2d respaldoVel;
 	
@@ -56,14 +56,14 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             obstaculos.add(aux);
         }
 
-        dir = new Vector2d(1, 0);
-		gravedad = new Vector2d(0, 1);
-		dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
-		float factor = (float)Math.random()*20 + 5;
-		dir.x *= factor;
-		dir.y *= factor;		
-		this.pelota.setAccel(gravedad);
-		this.pelota.setVelocity(dir);
+        velPelota = new Vector2d(1, 0);
+        gravedad = new Vector2d(0, 1);
+        velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
+        float factor = (float)Math.random()*20 + 5;
+        velPelota.x *= factor;
+        velPelota.y *= factor;		
+        this.pelota.setAccel(gravedad);
+        this.pelota.setVelocity(velPelota);
     }
 	/**
 	 * Detiene y reanuda el tiempo, además de reiniciar y reconfigurar la simulacion.
@@ -72,78 +72,78 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	public void accion(String accion) {
         float factor;
         switch(accion) {                
-			case "Start":
+            case "Start":
                 tiempo.start();
                 comenzo=true;
                 break;
-			case "Stop":
-				tiempo.stop();
+            case "Stop":
+		tiempo.stop();
                 break;
-			case "Reset":
-				comenzo=false;                    
-				tiempo.stop();
+            case "Reset":
+		comenzo=false;                    
+		tiempo.stop();
                 obstaculos.removeAll(obstaculos);    
                 for(int i=0; i<12;i++){
-					float x= (float)Math.random()*(ventana.ancho-215);
+                    float x= (float)Math.random()*(ventana.ancho-215);
                     float y= (float)Math.random()*(ventana.alto-25);
                     float rad=(float)Math.random()*80+5;
                     Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
                     obstaculos.add(aux);
                 }
-                dir = new Vector2d(1, 0);
-                dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
+                velPelota = new Vector2d(1, 0);
+                velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
                 factor = (float)Math.random()*20 + 5;
-                dir.x *= factor;
-                dir.y *= factor;
+                velPelota.x *= factor;
+                velPelota.y *= factor;
                 pelota.setPos(new Vector2d(200,100));
                 pelota.setAccel(gravedad);
-                pelota.setVelocity(dir);
+                pelota.setVelocity(velPelota);
                 this.repaint();
                 break;
             case "Restart":
 		comenzo=false;
                 tiempo.stop();
-                dir = new Vector2d(1, 0);
-                dir = Vector2d.rotateVector(dir, Math.random()*2*Math.PI);
+                velPelota = new Vector2d(1, 0);
+                velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
                 factor = (float)Math.random()*20 + 5;
-                dir.x *= factor;
-                dir.y *= factor;
+                velPelota.x *= factor;
+                velPelota.y *= factor;
                 pelota.setPos(new Vector2d(200,100));
                 pelota.setAccel(gravedad);
-                pelota.setVelocity(dir);
+                pelota.setVelocity(velPelota);
                 this.repaint();
                 break;
-        }
+            }
 	}
 	/**
 	 * Modifica la dirección inicial en la cual saldrá la pelota.
-	 * @param accion "<--" gira la la dirección en sentido anti-horario, "-->" gira la dirección en sentido horario
+	 * @param accion "↺" gira la dirección en sentido anti-horario, "↻" gira la dirección en sentido horario, "+" aumenta la rapidez inicial, "-" dismunuye la rapidez inicial
 	 */
-    public void velocidadInicial(String accion){            
-        if(!comenzo){
-            switch(accion){
-            case "↺":
-                dir=rotateVector(dir,-Math.PI/36);                           
-                break;                    
-            case "↻":                    
-                dir=rotateVector(dir,Math.PI/36);                                
-                break;
-            case "+":
-                if(modulo(dir)==0) dir=respaldoVel;
-                dir=sum(dir,normalize(dir));
-                break;
-            case "-":      
-                if(modulo(dir)!=0) respaldoVel=dir;
-                if(modulo(dir)<1){
-                    dir=new Vector2d();
-                }else{                    
-                    dir=resta(normalize(dir),dir);
-                }
-                break;
-            }            
-            pelota.setVelocity(dir);
-            repaint();
-		}
+        public void velocidadInicial(String accion){            
+            if(!comenzo){
+                switch(accion){
+                case "↺":
+                    velPelota=rotateVector(velPelota,-Math.PI/36);                           
+                    break;                    
+                case "↻":                    
+                    velPelota=rotateVector(velPelota,Math.PI/36);                                
+                    break;
+                case "+":
+                    if(modulo(velPelota)==0) velPelota=respaldoVel;
+                    velPelota=sum(velPelota,normalize(velPelota));
+                    break;
+                case "-":      
+                    if(modulo(velPelota)!=0) respaldoVel=velPelota;
+                    if(modulo(velPelota)<1){
+                        velPelota=new Vector2d();
+                    }else{                    
+                        velPelota=resta(normalize(velPelota),velPelota);
+                    }
+                    break;
+                }            
+                pelota.setVelocity(velPelota);
+                repaint();
+	}
     }
         
     public void paint (Graphics g){
@@ -157,16 +157,15 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             obstaculos.get(i).paint(g);
         }
         g.setColor(Color.white);
-        if(!comenzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+dir.x*3), (int)(pelota.pos.y+dir.y*3));       
+        if(!comenzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*3), (int)(pelota.pos.y+velPelota.y*3));       
     }
 	
     public void mousePressed(MouseEvent e) {	
         if(am.getModo()==1){//crear obstaculo
-            //if(af.getForma()==1){ //circulo
-                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),20f,ventana);
-                obstaculos.add(aux);
-                repaint();
-            //}
+            float rad=(float)Math.random()*40+5;
+            Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,ventana);
+            obstaculos.add(aux);
+            repaint();
         }
         if(am.getModo()==2){//borrar obstaculo
             for(int i=obstaculos.size()-1;i>=0;i--){
@@ -179,8 +178,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         } 
     }
     
-    
-	
     @Override
     public void mouseClicked(MouseEvent e) {}
     @Override
@@ -193,7 +190,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         this.repaint();
-		pelota.update();
+	pelota.update();
         for(int i=0; i<obstaculos.size();i++){
             Vector2d vPosicion = resta(pelota.pos,obstaculos.get(i).pos);
             if(circleVcircle(pelota,obstaculos.get(i)) && escalarProyeccion(pelota.velocity, vPosicion)>0){
