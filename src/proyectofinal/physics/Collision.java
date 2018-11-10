@@ -1,11 +1,11 @@
 package proyectofinal.physics;
 
-import static java.lang.Math.sqrt;
-
+/**
+ * Esta clase contiene metodos para lidiar con colisiones
+ * 
+ */
 public class Collision {
-    public float distance(Vector2d a, Vector2d b) {
-		return (float)sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
-    }
+	
 	
 //	public static boolean boxVbox(Box a, Box b) {
 //		if (a.min.x < b.max.x || a.max.x > b.min.x) return false;
@@ -13,13 +13,25 @@ public class Collision {
 //		
 //		return true;
 //	}
-        
+	
+	/**
+	 * Determina si 2 circulos, a y b, estan colisionando
+	 * @param a
+	 * @param b
+	 * @return
+	 */
     public static boolean circleVcircle(Circle a, Circle b) {
         float r = a.radius + b.radius;
 		r *= r;
 		return r > (Math.pow((a.pos.x - b.pos.x), 2) + Math.pow((a.pos.y - b.pos.y), 2));
     }
 	
+	/**
+	 * Resuelve una colision entre 2 circulos, devolviendo el vector velocidad con el que debe rebotar la pelota.
+	 * @param a
+	 * @param b
+	 * @return 
+	 */
 	public static Vector2d resColCircle(Circle a, Circle b) {
 		float m = (b.pos.y - a.pos.y)/(b.pos.x - a.pos.x);
 		m = -(1/m);
@@ -31,6 +43,12 @@ public class Collision {
 		return newVector;
 	}
 	
+	/**
+	 * En caso de que la pelota (player) esté sobreponiedose a un obstaculo, el metodo devuelve el vector que indica la distancia sobrepuesta
+	 * @param player 
+	 * @param obstacle
+	 * @return 
+	 */
 	public static Vector2d pushOut(Circle player, Circle obstacle) {
 		Vector2d vecDir = Vector2d.resta(player.pos, obstacle.pos);
 		float sumRadios = player.radius + obstacle.radius;

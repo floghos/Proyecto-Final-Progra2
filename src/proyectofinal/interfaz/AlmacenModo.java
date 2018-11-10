@@ -1,10 +1,15 @@
 package proyectofinal.interfaz;
+
 public class AlmacenModo {
     private int m;
 	
+	/**
+	 * Método constructor
+	 */
     public AlmacenModo(){
         m=0;
     }
+	
     public void setModo(int forma){
         m=forma;
     }
