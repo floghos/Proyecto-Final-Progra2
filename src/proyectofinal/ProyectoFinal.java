@@ -1,6 +1,6 @@
 package proyectofinal;
 
-import interfaz.Ventana;
+import proyectofinal.interfaz.Ventana;
 
 public class ProyectoFinal {
     public static void main(String[] args) {

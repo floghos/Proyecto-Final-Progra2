@@ -1,4 +1,4 @@
-package interfaz;
+package proyectofinal.interfaz;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -26,45 +26,46 @@ public class Ventana extends JFrame{
         JPanel controles=new JPanel();//panel instanciado directamente
         controles.setLayout(new GridLayout(6,1));//panel con filas y columnas
         
-        JPanel ja=new JPanel(); ja.setBackground(Color.LIGHT_GRAY); 
+        //Panel Gravedad
+        JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
 	GravitySlider slider = new GravitySlider(0, 10, 1);
 	slider.setMajorTickSpacing(50);
 	slider.setMinorTickSpacing(10);
 	slider.setPaintTicks(true);
 	slider.setPaintLabels(true);
 	slider.setToolTipText("Modifica la gravedad");
-	ja.add(slider);
-        controles.add(ja);
+	pGravedad.add(slider);
+        controles.add(pGravedad);
 		
-        //direccion
+        //Panel Dirección
         JLabel direccion= new JLabel("Direccion");        
-        JPanel dir=new JPanel();
-        dir.add(direccion);
-        dir.add(new BotonDireccion("<--"));
-        dir.add(new BotonDireccion("-->"));
-        controles.add(dir);
+        JPanel pDireccion=new JPanel();
+        pDireccion.add(direccion);
+        pDireccion.add(new BotonDireccion("<--"));
+        pDireccion.add(new BotonDireccion("-->"));
+        controles.add(pDireccion);
         
-        //nada
-        JPanel jb=new JPanel(); jb.setBackground(Color.LIGHT_GRAY); 
-        controles.add(jb);
+        //Panel Extra
+        JPanel pExtra1=new JPanel(); pExtra1.setBackground(Color.LIGHT_GRAY); 
+        controles.add(pExtra1);
         
-        //jpd contiene agregar y quitar obstaculos
+        //Panel Añadir y Quitar Obstaculos
         //jpd contiene jp2 al norte y jp1 al centro
-        JPanel jpd=new JPanel(); jpd.setBackground(Color.LIGHT_GRAY);
-        jpd.setLayout(new BorderLayout());   
-        JPanel jp2=new JPanel(); jp2.setBackground(Color.LIGHT_GRAY);                
-        BotonModo m1=new BotonModo("Añadir",1);        
-        jp2.add(m1);
+        JPanel pOrdenar1=new JPanel(); pOrdenar1.setBackground(Color.LIGHT_GRAY);
+        pOrdenar1.setLayout(new BorderLayout());   
+        JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(Color.LIGHT_GRAY);                
+        BotonModo añadir=new BotonModo("Añadir",1);        
+        pAñadirQuitar.add(añadir);
         BotonModo m2=new BotonModo("Quitar",2);        
-        jp2.add(m2);                
-        jpd.add(jp2,BorderLayout.NORTH);        
+        pAñadirQuitar.add(m2);                
+        pOrdenar1.add(pAñadirQuitar,BorderLayout.NORTH);        
         ButtonGroup bm=new ButtonGroup();
-        bm.add(m1);bm.add(m2);        
+        bm.add(añadir);bm.add(m2);        
         JPanel jp1=new JPanel(); jp1.setBackground(Color.LIGHT_GRAY);      
         BotonFigura x=new BotonFigura("Circulo", 1);
         jp1.add(x);
-        jpd.add(jp1,BorderLayout.CENTER);     
-        controles.add(jpd);
+        pOrdenar1.add(jp1,BorderLayout.CENTER);     
+        controles.add(pOrdenar1);
         
         //reset y restart
         JPanel jc=new JPanel(); jc.setBackground(Color.LIGHT_GRAY);
