@@ -1,8 +1,6 @@
 package proyectofinal.interfaz;
 
-import interfaz.AlmacenForma;
-import interfaz.AlmacenModo;
-import interfaz.Ventana;
+import proyectofinal.interfaz.Ventana;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

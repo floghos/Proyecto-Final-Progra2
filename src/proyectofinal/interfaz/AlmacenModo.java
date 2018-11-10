@@ -1,4 +1,4 @@
-package interfaz;
+package proyectofinal.interfaz;
 public class AlmacenModo {
     private int m;
     public AlmacenModo(){
