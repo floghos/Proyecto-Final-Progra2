@@ -1,6 +1,5 @@
 package proyectofinal.interfaz;
 
-import proyectofinal.interfaz.Ventana;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -196,9 +195,11 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.repaint();
 		pelota.update();
         for(int i=0; i<obstaculos.size();i++){
-            if(circleVcircle(pelota,obstaculos.get(i))&& escalarProyeccion(pelota,obstaculos.get(i))>0){
+            Vector2d vPosicion = resta(pelota.pos,obstaculos.get(i).pos);
+            if(circleVcircle(pelota,obstaculos.get(i)) && escalarProyeccion(pelota.velocity, vPosicion)>0){
 		pelota.translate(Collision.pushOut(pelota, obstaculos.get(i)));
                 pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,obstaculos.get(i)), pelota.getRestitucion()));     
+
             }
         }
     }

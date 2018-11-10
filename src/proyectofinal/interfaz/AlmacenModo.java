@@ -1,6 +1,7 @@
 package proyectofinal.interfaz;
 public class AlmacenModo {
     private int m;
+	
     public AlmacenModo(){
         m=0;
     }

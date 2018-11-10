@@ -6,8 +6,8 @@ import proyectofinal.interfaz.Ventana;
 public class Circle {
     float radius;
     public Vector2d pos;
-    Vector2d velocity;
-    Vector2d accel;
+    public Vector2d velocity;
+    public Vector2d accel;
     Ventana v;
     private float restitucion;
 	

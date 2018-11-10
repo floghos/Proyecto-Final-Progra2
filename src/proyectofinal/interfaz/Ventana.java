@@ -13,7 +13,10 @@ public class Ventana extends JFrame{
     AlmacenModo am;
     public final int alto=600;
     public final int ancho=940;
-
+	
+	/**
+	 * Método constructor
+	 */
 	public Ventana(){
 	super("Bounce!");
         this.setLayout(new BorderLayout());
@@ -28,13 +31,13 @@ public class Ventana extends JFrame{
         
         //Panel Gravedad
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
-	GravitySlider slider = new GravitySlider(0, 10, 1);
-	slider.setMajorTickSpacing(50);
-	slider.setMinorTickSpacing(10);
-	slider.setPaintTicks(true);
-	slider.setPaintLabels(true);
-	slider.setToolTipText("Modifica la gravedad");
-	pGravedad.add(slider);
+		GravitySlider slider = new GravitySlider(0, 10, 1);
+		slider.setMajorTickSpacing(50);
+		slider.setMinorTickSpacing(10);
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
+		slider.setToolTipText("Modifica la gravedad");
+		pGravedad.add(slider);
         controles.add(pGravedad);
 		
         //Panel Dirección
@@ -126,9 +129,15 @@ public class Ventana extends JFrame{
             dp.velocidadInicial(direccion);
         }        
     }
-    
+   
     private class BotonModo extends JRadioButton implements ActionListener{
         private int modo;
+		
+		/**
+		 * Método constructor
+		 * @param nom nombre del botón
+		 * @param modo (1 = añadir, 2 = quitar) 
+		 */
         BotonModo(String nom, int modo){
             super(nom);
             this.addActionListener(this);
@@ -143,6 +152,12 @@ public class Ventana extends JFrame{
      
     private class BotonFigura extends JRadioButton implements ActionListener{
         private int forma;
+		
+		/**
+		 * Método constructor
+		 * @param nom Nombre del botón
+		 * @param forma (1 = circulo, 2 = rectángulo)
+		 */
         BotonFigura(String nom, int forma){
             super(nom);
             this.forma=forma;
@@ -157,27 +172,39 @@ public class Ventana extends JFrame{
 	
     private class ActionButton extends JButton implements ActionListener {
     	private String action;
+		
+		/**
+		 * Método constructor
+		 * @param nomnom Nombre del boton e identificador de la accion (Start, Stop, Reset, Restart)
+		 */
     	public ActionButton (String nomnom) {
             super(nomnom);
             this.action = nomnom;
             this.addActionListener(this);
         }
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-            dp.accion(action);
-	}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+		dp.accion(action);
+		}
     }
 	
     class GravitySlider extends JSlider implements ChangeListener{
+		/**
+		 * Método constructor
+		 * @param min valor mínimo
+		 * @param max valor máximo
+		 * @param ini valor inicial
+		 */
     	public GravitySlider(int min, int max, int ini) {
             super(min, max, ini);
             this.addChangeListener(this);
-	}
-	public void stateChanged(ChangeEvent e) {
+		}
+		
+		public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
             System.out.println("Falta implementar");
             //dp.changeSpeed(source.getValue()); //falta implementar
-	}
+		}
     }
 }
