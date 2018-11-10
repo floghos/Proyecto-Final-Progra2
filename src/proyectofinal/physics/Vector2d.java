@@ -1,5 +1,7 @@
 package proyectofinal.physics;
 
+import static java.lang.Math.sqrt;
+
 public class Vector2d {
     public float x;
     public float y;
@@ -25,6 +27,16 @@ public class Vector2d {
     public Vector2d(float x, float y) {
 		this.x = x;
 		this.y = y;
+    }
+	
+	/**
+	 * Determina la distancia entre 2 puntos
+	 * @param a
+	 * @param b
+	 * @return 
+	 */
+    public static float distance(Vector2d a, Vector2d b) {
+		return (float)sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
     }
 	
 	/**
