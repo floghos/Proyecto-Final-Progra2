@@ -94,10 +94,10 @@ public class Vector2d {
     }
 	
     /**
-	 * Retorna el modulo de la proyeccion de u sobre v (será negativo si la proyección de u sobre v es en el sentido opuesto).
-	 * @param a
-	 * @param b
-	 * @return 
+	 * Retorna el factor escalar de la proyeccion de u sobre v (será negativo si la proyección de u sobre v es en el sentido opuesto).
+	 * @param u vector proyectado.
+	 * @param v vector sobre el cual se proyecta u.
+	 * @return retorna el factor escalar de la proyeccion.
 	 */
     public static float escalarProyeccion(Vector2d u,Vector2d v){
 		return (productoPunto(u, v)/productoPunto(v, v));
