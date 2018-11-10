@@ -1,4 +1,4 @@
-package proyectofinal;
+package interfaz;
 
 import java.awt.*;
 import java.awt.event.*;

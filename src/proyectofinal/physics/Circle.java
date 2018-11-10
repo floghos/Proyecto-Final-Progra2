@@ -1,7 +1,7 @@
 package proyectofinal.physics;
 
 import java.awt.Graphics;
-import proyectofinal.Ventana;
+import interfaz.Ventana;
 
 public class Circle {
     float radius;

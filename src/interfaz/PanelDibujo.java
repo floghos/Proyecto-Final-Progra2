@@ -1,5 +1,8 @@
-package proyectofinal;
+package interfaz;
 
+import interfaz.AlmacenForma;
+import interfaz.AlmacenModo;
+import interfaz.Ventana;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import proyectofinal.Caja;
 import proyectofinal.physics.*;
 import static proyectofinal.physics.Collision.circleVcircle;
 import static proyectofinal.physics.Collision.resColCircle;
