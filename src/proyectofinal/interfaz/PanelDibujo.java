@@ -188,7 +188,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		cir.update();
         for(int i=0; i<obstaculos.size();i++){
 			Vector2d vPosicion = resta(cir.pos,obstaculos.get(i).pos);
-//        return (productoPunto(vPosicion,a.velocity)/productoPunto(vPosicion,vPosicion));
             if(circleVcircle(cir,obstaculos.get(i)) && escalarProyeccion(cir.velocity, vPosicion)>0){
 				cir.translate(Collision.pushOut(cir, obstaculos.get(i)));
                 cir.setVelocity(Vector2d.vecPorEscalar(resColCircle(cir,obstaculos.get(i)), cir.getRestitucion()));     

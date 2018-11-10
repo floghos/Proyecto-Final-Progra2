@@ -84,7 +84,7 @@ public class Vector2d {
     }
 	
      /**
-	  * Retorna el angulo entre 2 vectores
+	  * Retorna el angulo entre 2 vectores.
 	  * @param a
 	  * @param b
 	  * @return 
@@ -94,14 +94,12 @@ public class Vector2d {
     }
 	
     /**
-	 * Retorna el modulo de la proyeccion de u sobre v (Falta generalizar el uso de esta funcion!!!)
+	 * Retorna el modulo de la proyeccion de u sobre v (será negativo si la proyección de u sobre v es en el sentido opuesto).
 	 * @param a
 	 * @param b
 	 * @return 
 	 */
     public static float escalarProyeccion(Vector2d u,Vector2d v){
-//        Vector2d vPosicion = resta(a.pos,b.pos);
-//        return (productoPunto(vPosicion,a.velocity)/productoPunto(vPosicion,vPosicion));
 		return (productoPunto(u, v)/productoPunto(v, v));
     }
 	
@@ -116,7 +114,7 @@ public class Vector2d {
 	}
 	
 	/**
-	 * Retorna un vector unitario con la direccion del vector original
+	 * Retorna un vector unitario con la dirección del vector original
 	 * @param vec
 	 * @return 
 	 */
