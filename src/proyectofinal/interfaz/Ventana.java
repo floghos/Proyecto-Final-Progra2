@@ -7,7 +7,13 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+
+/**
+ * Extensión de JFrame, crea una ventana para nuestra aplicación
+ * 
+ */
 public class Ventana extends JFrame{
+	//Crea la ventana en la cual trabajara nuestra aplicación
     public PanelDibujo dp;
     AlmacenForma af;
     AlmacenModo am;
@@ -18,7 +24,7 @@ public class Ventana extends JFrame{
 	 * Método constructor
 	 */
 	public Ventana(){
-	super("Bounce!");
+		super("Bounce!");
         this.setLayout(new BorderLayout());
         af=new AlmacenForma();
         am=new AlmacenModo();
@@ -57,7 +63,7 @@ public class Ventana extends JFrame{
         controles.add(pRapidez);
         
         
-        //Panel ordenar 1   
+        //Panel Ordenar 1   
         JPanel pOrdenar1=new JPanel(); pOrdenar1.setBackground(Color.LIGHT_GRAY);
         pOrdenar1.setLayout(new BorderLayout());
         pOrdenar1.add(pDireccion,BorderLayout.NORTH);
@@ -88,8 +94,12 @@ public class Ventana extends JFrame{
 //        pObstaculo.add(circulo);
 //        pOrdenar2.add(pObstaculo,BorderLayout.CENTER);     
         
+        //Panel Extra
+        JPanel pExtra2=new JPanel(); pExtra2.setBackground(Color.LIGHT_GRAY); 
+        controles.add(pExtra2);
         
-        //Panel reset-restart
+		
+		 //Panel reset-restart
         JPanel pRestartReset=new JPanel(); pRestartReset.setBackground(Color.LIGHT_GRAY);
         pRestartReset.add(new ActionButton("Restart"));
         pRestartReset.add(new ActionButton("Reset"));        
@@ -97,14 +107,10 @@ public class Ventana extends JFrame{
 		
         //Panel start-stop
         JPanel pStartStop=new JPanel(); pStartStop.setBackground(Color.LIGHT_GRAY);
-	pStartStop.add(new ActionButton("Start"));
-	pStartStop.add(new ActionButton("Stop"));
+		pStartStop.add(new ActionButton("Start"));
+		pStartStop.add(new ActionButton("Stop"));
         controles.add(pStartStop);
-        
-        //Panel Extra
-        JPanel pExtra2=new JPanel(); pExtra2.setBackground(Color.LIGHT_GRAY); 
-        controles.add(pExtra2);
-        
+		
         //Panel Ordenar 3
         JPanel pOrdenar3=new JPanel(); pOrdenar3.setBackground(Color.LIGHT_GRAY);
         pOrdenar3.setLayout(new BorderLayout()); 
@@ -112,6 +118,7 @@ public class Ventana extends JFrame{
         pOrdenar3.add(pRestartReset,BorderLayout.CENTER);
         controles.add(pOrdenar3);
         
+		
         this.add(controles,BorderLayout.WEST);     
         this.setSize(ancho,alto);
         this.setVisible(true);
@@ -119,6 +126,11 @@ public class Ventana extends JFrame{
         
     private class BotonDireccion extends JButton implements ActionListener{
         public String direccion;
+		
+		/**
+		 * Método constructor
+		 * @param direccion Nombre del boton e identificador de acción
+		 */
         public BotonDireccion(String direccion){
             super(direccion);
             this.direccion=direccion;
@@ -149,8 +161,10 @@ public class Ventana extends JFrame{
             dp.repaint();
         }
     } 
-     
+    
     private class BotonFigura extends JRadioButton implements ActionListener{
+		//Estos botones se usaran para seleccionar que figura se desea 
+		//agregar como obstaculo (circulo o rectangulo)
         private int forma;
 		
 		/**
@@ -171,6 +185,7 @@ public class Ventana extends JFrame{
     } 
 	
     private class ActionButton extends JButton implements ActionListener {
+		//Estos botones permiten dar comienzo, pausar, reanudar, reiniciar y reconfigurar la simulación
     	private String action;
 		
 		/**
@@ -190,6 +205,8 @@ public class Ventana extends JFrame{
     }
 	
     class GravitySlider extends JSlider implements ChangeListener{
+		//Esta clase define un slider que será usado para controlar la gravedad en la simulación
+		
 		/**
 		 * Método constructor
 		 * @param min valor mínimo

@@ -5,6 +5,7 @@ package proyectofinal.physics;
  * 
  */
 public class Collision {
+	//Esta clase contiene metodos estáticos para lidiar con colisiones
 	
 	
 //	public static boolean boxVbox(Box a, Box b) {
@@ -27,7 +28,7 @@ public class Collision {
     }
 	
 	/**
-	 * Resuelve una colision entre 2 circulos, devolviendo el vector velocidad con el que debe rebotar la pelota.
+	 * Resuelve una colision entre la pelota y un circulo/obstaculo, devolviendo el vector velocidad con el que debe rebotar la pelota.
 	 * @param a
 	 * @param b
 	 * @return 

@@ -2,13 +2,12 @@ package proyectofinal;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import proyectofinal.physics.*;
 
 public class Caja{
+	//Esta clase dibuja los bordes del espacio de juego
+	
     int ancho;
     int alto;
-    ArrayList<Box> bordes;
 	
 	/**
 	 * Método constructor
@@ -16,23 +15,9 @@ public class Caja{
 	 * @param alto 
 	 */
     public Caja(int ancho, int alto){
-		this.bordes = new ArrayList();
-        bordes.add((new Box(new Vector2d(),ancho-180,20)));
-        bordes.add((new Box(new Vector2d(0,alto-45),ancho-180,20)));
-        bordes.add((new Box(new Vector2d(),20,alto-25)));
-        bordes.add((new Box(new Vector2d(ancho-235,0),20,alto-25)));
         this.ancho=ancho;
         this.alto=alto;
     }
-    
-	/* //metodo no utilizado
-    public boolean colision(Box box) {
-        int i;
-        for (i = 0; i < bordes.size(); ++i) {
-            if(bordes.get(i).intersects(box)) return true;
-        }
-        return false;
-    }*/
     
     public void paint (Graphics g){
         g.setColor(Color.black);        

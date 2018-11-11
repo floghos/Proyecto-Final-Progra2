@@ -3,7 +3,13 @@ package proyectofinal.physics;
 import java.awt.Graphics;
 import proyectofinal.interfaz.Ventana;
 
+/**
+ * Define los circulos, usados para la pelota y obstaculos, que estaran en la simulación
+ * 
+ */
 public class Circle {
+	//Esta clase define los circulos, usados para la pelota y obstaculos, que estaran en la simulación
+	
     float radius;
     public Vector2d pos;
     public Vector2d velocity;
@@ -89,7 +95,10 @@ public class Circle {
             velocity.x *= -restitucion;
 		}
     }
-        
+    /**
+	 * Dibuja el circulo desde su centro
+	 * @param g 
+	 */
     public void paint (Graphics g){
         g.fillOval((int)(pos.x-radius), (int)(pos.y-radius), (int)radius*2, (int)radius*2);
     }
