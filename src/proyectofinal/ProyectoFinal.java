@@ -2,7 +2,7 @@ package proyectofinal;
 
 import proyectofinal.interfaz.Ventana;
 /**
- * Clase principal de la Aplicación.
+ * Clase principal de la Aplicación, crea ventana.
  */
 public class ProyectoFinal {
     /**

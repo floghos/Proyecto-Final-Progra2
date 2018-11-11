@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import proyectofinal.interfaz.Ventana;
 
 /**
- * Clase que define los circulos usados para la pelota y obstaculos, que estaran en la simulación.
+ * Clase que Define un círculo, con posición, velocidad y aceleración, para interactuar en la simulación.
  */
 public class Circle {
     //Esta clase define los circulos, usados para la pelota y obstaculos, que estaran en la simulación.
