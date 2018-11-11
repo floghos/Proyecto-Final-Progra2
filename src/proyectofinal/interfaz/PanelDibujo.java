@@ -13,10 +13,16 @@ import proyectofinal.physics.*;
 import static proyectofinal.physics.Collision.circleVcircle;
 import static proyectofinal.physics.Collision.resColCircle;
 import static proyectofinal.physics.Vector2d.*;
-
+/**
+ * Clase utilizada para llevar a cabo las acciones de botones que se muestran por pantalla 
+ * Dirección: "↺" "↻"
+ * Rapidez: "-" "+"
+ * Modo: "Añadir" "Quitar"
+ * Estado: "Start" "Stop" "Restart" "Reset"
+ */
 public class PanelDibujo extends JPanel implements MouseListener,ActionListener {
-    AlmacenForma af;
-    AlmacenModo am;
+    AlmacenForma aForma;
+    AlmacenModo aModo;
     Caja caja;
     Timer tiempo;
     int fps;//cuadros por segundo
@@ -25,21 +31,21 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     ArrayList<Circle> obstaculos;
     Vector2d gravedad;
     Vector2d velPelota;
-    boolean comenzo;
+    boolean comienzo;
     Vector2d respaldoVel;
 	
 	/**
 	 * Método constructor 
-	 * @param af 
-	 * @param am
+	 * @param aForma 
+	 * @param aModo
 	 * @param ventana
 	 */
-    public PanelDibujo(AlmacenForma af, AlmacenModo am, Ventana ventana){
-        comenzo=false;
+    public PanelDibujo(AlmacenForma aForma, AlmacenModo aModo, Ventana ventana){
+        comienzo=false;
         this.setBackground(Color.darkGray);
         obstaculos= new ArrayList();
-        this.af = af;
-        this.am = am;
+        this.aForma = aForma;
+        this.aModo = aModo;
         this.ventana=ventana;
         this.addMouseListener(this);
 	this.caja = new Caja(ventana.ancho, ventana.alto);
@@ -74,13 +80,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         switch(accion) {                
             case "Start":
                 tiempo.start();
-                comenzo=true;
+                comienzo=true;
                 break;
             case "Stop":
 		tiempo.stop();
                 break;
             case "Reset":
-		comenzo=false;                    
+		comienzo=false;                    
 		tiempo.stop();
                 obstaculos.removeAll(obstaculos);    
                 for(int i=0; i<12;i++){
@@ -101,7 +107,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 this.repaint();
                 break;
             case "Restart":
-		comenzo=false;
+		comienzo=false;
                 tiempo.stop();
                 velPelota = new Vector2d(1, 0);
                 velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
@@ -120,7 +126,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	 * @param accion "↺" gira la dirección en sentido anti-horario, "↻" gira la dirección en sentido horario, "+" aumenta la rapidez inicial, "-" dismunuye la rapidez inicial
 	 */
         public void velocidadInicial(String accion){            
-            if(!comenzo){
+            if(!comienzo){
                 switch(accion){
                 case "↺":
                     velPelota=rotateVector(velPelota,-Math.PI/36);                           
@@ -145,7 +151,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 repaint();
 	}
     }
-        
+    /**
+    * Dibuja todos los elementos de la simulación: "Caja" "Pelota" "Obstaculos" "Linea de velocidad inicial"
+    * @param g 
+    */
     public void paint (Graphics g){
         super.paint(g);
         caja.paint(g);
@@ -157,17 +166,20 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             obstaculos.get(i).paint(g);
         }
         g.setColor(Color.white);
-        if(!comenzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*3), (int)(pelota.pos.y+velPelota.y*3));       
+        if(!comienzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*3), (int)(pelota.pos.y+velPelota.y*3));       
     }
-	
+    /**
+     * Realiza la acción seleccionada por BotonModo para obstaculos: "Añadir" "Quitar"
+     * @param e 
+     */
     public void mousePressed(MouseEvent e) {	
-        if(am.getModo()==1){//crear obstaculo
+        if(aModo.getModo()==1){//Añadir obstaculo
             float rad=(float)Math.random()*40+5;
             Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,ventana);
             obstaculos.add(aux);
             repaint();
         }
-        if(am.getModo()==2){//borrar obstaculo
+        if(aModo.getModo()==2){//Quitar obstaculo
             for(int i=obstaculos.size()-1;i>=0;i--){
                 if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).getRadius()*obstaculos.get(i).getRadius())){
                     obstaculos.remove(i);
@@ -188,6 +200,9 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     public void mouseExited(MouseEvent e) {}
 	
     @Override
+    /**
+     * Revisa el ArrayList de circulos a cada actualización del Timer comprobando si hay o no colisión entre la pelota y los obstaculos.
+     */
     public void actionPerformed(ActionEvent e) {
         this.repaint();
 	pelota.update();

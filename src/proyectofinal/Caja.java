@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import proyectofinal.physics.*;
 
 public class Caja{
+    
     int ancho;
     int alto;
     ArrayList<Box> bordes;
@@ -16,7 +17,7 @@ public class Caja{
 	 * @param alto 
 	 */
     public Caja(int ancho, int alto){
-		this.bordes = new ArrayList();
+	this.bordes = new ArrayList();
         bordes.add((new Box(new Vector2d(),ancho-180,20)));
         bordes.add((new Box(new Vector2d(0,alto-45),ancho-180,20)));
         bordes.add((new Box(new Vector2d(),20,alto-25)));
@@ -34,6 +35,10 @@ public class Caja{
         return false;
     }*/
     
+    /**
+     * Dibuja los bordes que definen el espacio de juego
+     * @param g 
+     */
     public void paint (Graphics g){
         g.setColor(Color.black);        
         g.fillRect(0,0,ancho-180,20); //borde superior
