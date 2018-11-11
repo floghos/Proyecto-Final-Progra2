@@ -161,7 +161,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     */
     public void paint (Graphics g){
         super.paint(g);        
-        g.setColor(new Color(128,0,64));
+        g.setColor(new Color(150,40,40));
         pelota.paint(g);
         g.setColor(new Color(40,40,40));
         for(int i=0; i<obstaculos.size();++i){

@@ -35,7 +35,8 @@ public class Ventana extends JFrame{
         
         //Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
-	GravitySlider slider = new GravitySlider(0, 10, 1);
+	GravitySlider slider = new GravitySlider(0, 10, 1); 
+        slider.setBackground(Color.LIGHT_GRAY); 
 	slider.setMajorTickSpacing(50);
 	slider.setMinorTickSpacing(10);
 	slider.setPaintTicks(true);
@@ -45,8 +46,8 @@ public class Ventana extends JFrame{
         controles.add(pGravedad);
 		
         //Panel Dirección.
-        JLabel direccion= new JLabel("Direccion");        
-        JPanel pDireccion=new JPanel();
+        JLabel direccion= new JLabel("Direccion"); 
+        JPanel pDireccion=new JPanel(); pDireccion.setBackground(Color.LIGHT_GRAY); 
         pDireccion.add(direccion);
         pDireccion.add(new BotonDireccion("↺"));
         pDireccion.add(new BotonDireccion("↻"));
@@ -54,7 +55,7 @@ public class Ventana extends JFrame{
         
         //Panel Rapidez.
         JLabel rapidez= new JLabel("Rapidez");        
-        JPanel pRapidez=new JPanel();
+        JPanel pRapidez=new JPanel(); pRapidez.setBackground(Color.LIGHT_GRAY); 
         pRapidez.add(rapidez);
         pRapidez.add(new BotonDireccion("-"));
         pRapidez.add(new BotonDireccion("+"));
@@ -72,7 +73,7 @@ public class Ventana extends JFrame{
         controles.add(pExtra1);
         
         //Panel Añadir y Quitar Obstaculos.        
-        JLabel añadirQuitar= new JLabel("            Añadir/Quitar Obstaculo"); 
+        JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); 
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(Color.LIGHT_GRAY);                
         BotonModo añadir=new BotonModo("Añadir",1);        
         pAñadirQuitar.add(añadir);
