@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class Caja{
 	//Esta clase dibuja los bordes del espacio de juego
-	
+
     int ancho;
     int alto;
 	
@@ -15,10 +15,15 @@ public class Caja{
 	 * @param alto 
 	 */
     public Caja(int ancho, int alto){
+
         this.ancho=ancho;
         this.alto=alto;
     }
     
+    /**
+     * Dibuja los bordes que definen el espacio de juego
+     * @param g 
+     */
     public void paint (Graphics g){
         g.setColor(Color.black);        
         g.fillRect(0,0,ancho-180,20); //borde superior
