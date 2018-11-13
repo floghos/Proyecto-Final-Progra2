@@ -37,23 +37,23 @@ public class Ventana extends JFrame{
         //Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
 	this.slider = new GravitySlider(0, 100, 10); 
-		Hashtable etiquetas = new Hashtable();
-		etiquetas.put(new Integer(0), new JLabel("0"));
-		etiquetas.put(new Integer(10), new JLabel("1"));
-		etiquetas.put(new Integer(20), new JLabel("2"));
-		etiquetas.put(new Integer(30), new JLabel("3"));
-		etiquetas.put(new Integer(40), new JLabel("4"));
-		etiquetas.put(new Integer(50), new JLabel("5"));
-		etiquetas.put(new Integer(60), new JLabel("6"));
-		etiquetas.put(new Integer(70), new JLabel("7"));
-		etiquetas.put(new Integer(80), new JLabel("8"));
-		etiquetas.put(new Integer(90), new JLabel("9"));
-		etiquetas.put(new Integer(100), new JLabel("10"));
-		slider.setLabelTable(etiquetas);
+	Hashtable etiquetas = new Hashtable();
+	etiquetas.put(new Integer(0), new JLabel("0"));
+	etiquetas.put(new Integer(10), new JLabel("1"));
+	etiquetas.put(new Integer(20), new JLabel("2"));
+	etiquetas.put(new Integer(30), new JLabel("3"));
+	etiquetas.put(new Integer(40), new JLabel("4"));
+	etiquetas.put(new Integer(50), new JLabel("5"));
+	etiquetas.put(new Integer(60), new JLabel("6"));
+	etiquetas.put(new Integer(70), new JLabel("7"));
+	etiquetas.put(new Integer(80), new JLabel("8"));
+	etiquetas.put(new Integer(90), new JLabel("9"));
+	etiquetas.put(new Integer(100), new JLabel("10"));
+	slider.setLabelTable(etiquetas);
         slider.setBackground(Color.LIGHT_GRAY); 
-		slider.setMajorTickSpacing(50);
-		slider.setMinorTickSpacing(10);
-		slider.setPaintTicks(true);
+	slider.setMajorTickSpacing(50);
+	slider.setMinorTickSpacing(10);
+	slider.setPaintTicks(true);
 	slider.setPaintLabels(true);
 	slider.setToolTipText("Modifica la gravedad");
 	pGravedad.add(slider);
@@ -96,13 +96,23 @@ public class Ventana extends JFrame{
         ButtonGroup bGrupo1=new ButtonGroup();
         bGrupo1.add(añadir);bGrupo1.add(quitar);   
         
+        //Panel obstaculo normal-potenciador
+        JPanel pNormalPoten=new JPanel(); pNormalPoten.setBackground(Color.LIGHT_GRAY);                
+        BotonFigura normal=new BotonFigura("Normal",1);        
+        pNormalPoten.add(normal);
+        BotonFigura potenciador=new BotonFigura("Potenciador",2);        
+        pNormalPoten.add(potenciador);    
+        ButtonGroup bGrupo2=new ButtonGroup();
+        bGrupo2.add(normal);bGrupo2.add(potenciador);
+        
         //Panel Ordenar 2.
         JPanel pOrdenar2=new JPanel(); pOrdenar2.setBackground(Color.LIGHT_GRAY);
         pOrdenar2.setLayout(new BorderLayout()); 
         pOrdenar2.add(añadirQuitar,BorderLayout.NORTH); 
-        pOrdenar2.add(pAñadirQuitar,BorderLayout.CENTER);        
+        pOrdenar2.add(pAñadirQuitar,BorderLayout.CENTER);   
+        pOrdenar2.add(pNormalPoten,BorderLayout.SOUTH); 
         controles.add(pOrdenar2);        
-        
+               
         //Panel Extra.
         JPanel pExtra2=new JPanel(); pExtra2.setBackground(Color.LIGHT_GRAY); 
         controles.add(pExtra2);

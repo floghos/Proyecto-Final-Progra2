@@ -30,6 +30,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     private Ventana ventana;
     private Circle pelota;
     private ArrayList<Circle> obstaculos;
+    private ArrayList<Circle> potenciadores;
     private Vector2d gravedad;
     private Vector2d velPelota;
     private boolean comienzo;
@@ -46,6 +47,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         comienzo=false;
         this.setBackground(new Color(150,150,100));
         obstaculos= new ArrayList();
+        potenciadores= new ArrayList();
         this.aForma = aForma;
         this.aModo = aModo;
         this.ventana=ventana;
@@ -57,12 +59,19 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         tiempo.addActionListener(this);
         pelota= new Circle(new Vector2d(200, 100),20f,ventana);
         
-        for(int i=0; i<12;i++){
+        for(int i=0; i<10;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
             float y= (float)Math.random()*(ventana.alto-25);
             float rad=(float)Math.random()*80+5;
             Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
             obstaculos.add(aux);
+        }
+        for(int i=0; i<3;i++){
+            float x= (float)Math.random()*(ventana.ancho-215);
+            float y= (float)Math.random()*(ventana.alto-25);
+            float rad=(float)Math.random()*80+5;
+            Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
+            potenciadores.add(aux);
         }
 
         velPelota = new Vector2d(1, 0);
@@ -92,14 +101,22 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             case "Reset":
 		comienzo=false;                    
 		tiempo.stop();
-				ventana.slider.setValue(10);
+		ventana.slider.setValue(10);
                 obstaculos.removeAll(obstaculos);    
-                for(int i=0; i<12;i++){
+                potenciadores.removeAll(potenciadores); 
+                for(int i=0; i<10;i++){
                     float x= (float)Math.random()*(ventana.ancho-215);
                     float y= (float)Math.random()*(ventana.alto-25);
                     float rad=(float)Math.random()*80+5;
                     Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
                     obstaculos.add(aux);
+                }
+                for(int i=0; i<3;i++){
+                    float x= (float)Math.random()*(ventana.ancho-215);
+                    float y= (float)Math.random()*(ventana.alto-25);
+                    float rad=(float)Math.random()*80+5;
+                    Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
+                    potenciadores.add(aux);
                 }
                 velPelota = new Vector2d(1, 0);
                 velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
@@ -175,6 +192,11 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         for(int i=0; i<obstaculos.size();++i){
             obstaculos.get(i).paint(g);
         }
+        g.setColor(new Color(40,70,120));
+        for(int i=0; i<potenciadores.size();++i){
+            potenciadores.get(i).paint(g);
+        }
+        g.setColor(new Color(40,40,40));
         caja.paint(g);
         g.setColor(Color.white);
         if(!comienzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*3), (int)(pelota.pos.y+velPelota.y*3));       
@@ -186,15 +208,30 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     */
     public void mousePressed(MouseEvent e) {	
         if(aModo.getModo()==1){//Añadir obstaculo.
-            float rad=(float)Math.random()*40+5;
-            Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,ventana);
-            obstaculos.add(aux);
-            repaint();
+            if(aForma.getForma()==1){//normal
+                float rad=(float)Math.random()*40+5;
+                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,ventana);
+                obstaculos.add(aux);
+                repaint();
+            }else if(aForma.getForma()==2){//potenciador
+                float rad=(float)Math.random()*40+5;
+                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,ventana);
+                potenciadores.add(aux);
+                repaint();
+            }
+            
         }
         if(aModo.getModo()==2){//Quitar obstaculo.
             for(int i=obstaculos.size()-1;i>=0;i--){
                 if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).getRadius()*obstaculos.get(i).getRadius())){
                     obstaculos.remove(i);
+                    repaint();
+                    break;
+                }
+            }
+            for(int i=potenciadores.size()-1;i>=0;i--){
+                if(((e.getX()-potenciadores.get(i).pos.x)*(e.getX()-potenciadores.get(i).pos.x)+(e.getY()-potenciadores.get(i).pos.y)*(e.getY()-potenciadores.get(i).pos.y))<=(potenciadores.get(i).getRadius()*potenciadores.get(i).getRadius())){
+                    potenciadores.remove(i);
                     repaint();
                     break;
                 }
@@ -214,6 +251,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             if(circleVcircle(pelota,obstaculos.get(i)) && escalarProyeccion(pelota.velocity, vPosicion)>0){
                 pelota.translate(Collision.pushOut(pelota, obstaculos.get(i)));
                 pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,obstaculos.get(i)), pelota.getRestitucion()));     
+            }
+        }
+        for(int i=0; i<potenciadores.size();i++){
+            Vector2d vPosicion = resta(pelota.pos,potenciadores.get(i).pos);
+            if(circleVcircle(pelota,potenciadores.get(i)) && escalarProyeccion(pelota.velocity, vPosicion)>0){
+                pelota.translate(Collision.pushOut(pelota, potenciadores.get(i)));
+                pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,potenciadores.get(i)), 1.2f));     
             }
         }
 		
