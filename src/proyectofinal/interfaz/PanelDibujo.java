@@ -34,6 +34,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     private Vector2d velPelota;
     private boolean comienzo;
     private Vector2d respaldoVel;
+	private float gravMultiplier;
 	
     /**
      * Método constructor. Crea la pelota en su posición inicial y le da una velocidad aleatoria, crea 12 obstaculos de radio y posición al azar en el espacio de juego.
@@ -48,6 +49,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.aForma = aForma;
         this.aModo = aModo;
         this.ventana=ventana;
+		this.gravMultiplier = 1;
         this.addMouseListener(this);
 	this.caja = new Caja(ventana.ancho, ventana.alto);
         this.fps = 30;
@@ -90,6 +92,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             case "Reset":
 		comienzo=false;                    
 		tiempo.stop();
+				ventana.slider.setValue(10);
                 obstaculos.removeAll(obstaculos);    
                 for(int i=0; i<12;i++){
                     float x= (float)Math.random()*(ventana.ancho-215);
@@ -117,7 +120,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 velPelota.x *= factor;
                 velPelota.y *= factor;
                 pelota.setPos(new Vector2d(200,100));
-                pelota.setAccel(gravedad);
+                pelota.setAccel(vecPorEscalar(gravedad, gravMultiplier));
                 pelota.setVelocity(velPelota);
                 this.repaint();
                 break;
@@ -154,6 +157,11 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             repaint();
         }
     }
+	
+	public void modGrav (float multiplicador) {
+		gravMultiplier = multiplicador;
+		pelota.setAccel(vecPorEscalar(gravedad, multiplicador));
+	}
     
     /**
     * Dibuja todos los elementos de la simulación: Caja, Pelota, Obstaculos y Linea de velocidad inicial.
@@ -208,6 +216,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,obstaculos.get(i)), pelota.getRestitucion()));     
             }
         }
+		
     }
     
     @Override

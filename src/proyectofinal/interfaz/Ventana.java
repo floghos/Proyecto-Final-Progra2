@@ -2,6 +2,7 @@ package proyectofinal.interfaz;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Hashtable;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.event.ChangeEvent;
@@ -15,6 +16,7 @@ public class Ventana extends JFrame{
     private PanelDibujo dp;
     private AlmacenForma af;
     private AlmacenModo am;
+	public GravitySlider slider;
     public final int alto=600;
     public final int ancho=940;
 	
@@ -27,7 +29,6 @@ public class Ventana extends JFrame{
         af=new AlmacenForma();
         am=new AlmacenModo();
         dp=new PanelDibujo(af,am, this);
-
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(dp,BorderLayout.CENTER);
         JPanel controles=new JPanel();
@@ -35,11 +36,24 @@ public class Ventana extends JFrame{
         
         //Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
-	GravitySlider slider = new GravitySlider(0, 10, 1); 
+	this.slider = new GravitySlider(0, 100, 10); 
+		Hashtable etiquetas = new Hashtable();
+		etiquetas.put(new Integer(0), new JLabel("0"));
+		etiquetas.put(new Integer(10), new JLabel("1"));
+		etiquetas.put(new Integer(20), new JLabel("2"));
+		etiquetas.put(new Integer(30), new JLabel("3"));
+		etiquetas.put(new Integer(40), new JLabel("4"));
+		etiquetas.put(new Integer(50), new JLabel("5"));
+		etiquetas.put(new Integer(60), new JLabel("6"));
+		etiquetas.put(new Integer(70), new JLabel("7"));
+		etiquetas.put(new Integer(80), new JLabel("8"));
+		etiquetas.put(new Integer(90), new JLabel("9"));
+		etiquetas.put(new Integer(100), new JLabel("10"));
+		slider.setLabelTable(etiquetas);
         slider.setBackground(Color.LIGHT_GRAY); 
-	slider.setMajorTickSpacing(50);
-	slider.setMinorTickSpacing(10);
-	slider.setPaintTicks(true);
+		slider.setMajorTickSpacing(50);
+		slider.setMinorTickSpacing(10);
+		slider.setPaintTicks(true);
 	slider.setPaintLabels(true);
 	slider.setToolTipText("Modifica la gravedad");
 	pGravedad.add(slider);
@@ -205,12 +219,11 @@ public class Ventana extends JFrame{
     	public GravitySlider(int min, int max, int ini) {
             super(min, max, ini);
             this.addChangeListener(this);
-	}
+		}
 		
-	public void stateChanged(ChangeEvent e) {
+		public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
-            System.out.println("Falta implementar");
-            //dp.changeSpeed(source.getValue()); //falta implementar
-	}
+            dp.modGrav(source.getValue()/10f);
+		}
     }
 }
