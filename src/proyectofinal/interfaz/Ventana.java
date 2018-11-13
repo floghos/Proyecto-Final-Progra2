@@ -36,7 +36,8 @@ public class Ventana extends JFrame{
         
         //Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
-	this.slider = new GravitySlider(0, 100, 10); 
+
+	this.slider = new GravitySlider(0, 50, 10); 
 	Hashtable etiquetas = new Hashtable();
 	etiquetas.put(new Integer(0), new JLabel("0"));
 	etiquetas.put(new Integer(10), new JLabel("1"));
@@ -44,11 +45,6 @@ public class Ventana extends JFrame{
 	etiquetas.put(new Integer(30), new JLabel("3"));
 	etiquetas.put(new Integer(40), new JLabel("4"));
 	etiquetas.put(new Integer(50), new JLabel("5"));
-	etiquetas.put(new Integer(60), new JLabel("6"));
-	etiquetas.put(new Integer(70), new JLabel("7"));
-	etiquetas.put(new Integer(80), new JLabel("8"));
-	etiquetas.put(new Integer(90), new JLabel("9"));
-	etiquetas.put(new Integer(100), new JLabel("10"));
 	slider.setLabelTable(etiquetas);
         slider.setBackground(Color.LIGHT_GRAY); 
 	slider.setMajorTickSpacing(50);
