@@ -69,8 +69,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         gravedad = new Vector2d(0, 1);
         velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
         float factor = (float)Math.random()*20 + 5;
-        velPelota.x *= factor;
-        velPelota.y *= factor;		
+		velPelota = vecPorEscalar(velPelota, factor);
         this.pelota.setAccel(gravedad);
         this.pelota.setVelocity(velPelota);
     }
@@ -216,6 +215,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,obstaculos.get(i)), pelota.getRestitucion()));     
             }
         }
+		if (Vector2d.modulo(pelota.velocity) < 0.1) {
+			tiempo.stop();
+			comienzo = false;
+		}
 		
     }
     
