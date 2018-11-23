@@ -61,7 +61,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         cPelota=new Color(150,40,40);
         cObstaculo=new Color(40,40,40);
         cPotenciador=new Color(40,70,120);
-        pelota= new Ball(new Vector2d(200, 100),20f,ventana,0.9f,cPelota);
+        pelota= new Ball(new Vector2d(40,40),20f,ventana,0.9f,cPelota);
         
         for(int i=0; i<10;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
@@ -129,7 +129,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 factor = (float)Math.random()*20 + 5;
                 velPelota.x *= factor;
                 velPelota.y *= factor;
-                pelota.setPos(new Vector2d(200,100));
+                pelota.setPos(new Vector2d(40,40));
                 pelota.setAccel(gravedad);
                 pelota.setVelocity(velPelota);
                 this.repaint();
@@ -142,7 +142,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 factor = (float)Math.random()*20 + 5;
                 velPelota.x *= factor;
                 velPelota.y *= factor;
-                pelota.setPos(new Vector2d(200,100));
+                pelota.setPos(new Vector2d(40,40));
                 pelota.setAccel(vecPorEscalar(gravedad, gravMultiplier));
                 pelota.setVelocity(velPelota);
                 this.repaint();
