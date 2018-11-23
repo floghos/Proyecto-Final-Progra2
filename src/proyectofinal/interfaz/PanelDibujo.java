@@ -87,14 +87,9 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.pelota.setVelocity(velPelota);
     }
     
-	
 	public Caja getCaja() {
 		return this.caja;
 	}
-	
-//	public Ball getPelota() {
-//		return this.pelota;
-//	}
 	
     /**
      * Detiene y reanuda el tiempo, además de reiniciar y reconfigurar la simulacion.
@@ -202,7 +197,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             obstaculos.get(i).paint(g);
         }
         caja.paint(g);
-        g.setColor(Color.white);
+        g.setColor(Color.white); //color linea de lanzamiento
         if(!comienzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*3), (int)(pelota.pos.y+velPelota.y*3));       
     }
     
