@@ -53,14 +53,15 @@ public class Ventana extends JFrame{
 	slider.setPaintLabels(true);
 	slider.setToolTipText("Modifica la gravedad");
 	pGravedad.add(slider);
-        controles.add(pGravedad);
+        //controles.add(pGravedad);
 		
         //Panel Nombre slider
-        JLabel nombreS=new JLabel("Gravedad");
+        JLabel nombreS=new JLabel("  Gravedad");
         JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(Color.LIGHT_GRAY);
         pOrdenar.setLayout(new BorderLayout());
         pOrdenar.add(nombreS,BorderLayout.NORTH);
         pOrdenar.add(pGravedad,BorderLayout.CENTER);
+        controles.add(pOrdenar);
         
         //Panel Dirección.
         JLabel direccion= new JLabel("Direccion"); 

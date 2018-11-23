@@ -24,7 +24,7 @@ public class Collision {
      * @param b
      * @return 
      */
-    public static Vector2d resColCircle(Circle a, Circle b) {
+    public static Vector2d resColCircle(Ball a, Circle b) {
     	float m = (b.pos.y - a.pos.y)/(b.pos.x - a.pos.x);
         m = -(1/m);
         Vector2d velA = new Vector2d(a.velocity);

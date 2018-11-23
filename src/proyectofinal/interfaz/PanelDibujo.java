@@ -28,14 +28,16 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     private Timer tiempo;
     private int fps;//cuadros por segundo.
     private Ventana ventana;
-    private Circle pelota;
+    private Ball pelota;
     private ArrayList<Circle> obstaculos;
-    private ArrayList<Circle> potenciadores;
     private Vector2d gravedad;
     private Vector2d velPelota;
     private boolean comienzo;
     private Vector2d respaldoVel;
-	private float gravMultiplier;
+    private float gravMultiplier;
+    private Color cPelota;
+    private Color cObstaculo;
+    private Color cPotenciador;
 	
     /**
      * Método constructor. Crea la pelota en su posición inicial y le da una velocidad aleatoria, crea 12 obstaculos de radio y posición al azar en el espacio de juego.
@@ -47,31 +49,33 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         comienzo=false;
         this.setBackground(new Color(150,150,100));
         obstaculos= new ArrayList();
-        potenciadores= new ArrayList();
         this.aForma = aForma;
         this.aModo = aModo;
         this.ventana=ventana;
-		this.gravMultiplier = 1;
+	this.gravMultiplier = 1;
         this.addMouseListener(this);
 	this.caja = new Caja(ventana.ancho, ventana.alto);
         this.fps = 30;
         tiempo = new Timer(1000/fps,null);
         tiempo.addActionListener(this);
-        pelota= new Circle(new Vector2d(200, 100),20f,ventana);
+        cPelota=new Color(150,40,40);
+        cObstaculo=new Color(40,40,40);
+        cPotenciador=new Color(40,70,120);
+        pelota= new Ball(new Vector2d(200, 100),20f,ventana,0.9f,cPelota);
         
         for(int i=0; i<10;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
             float y= (float)Math.random()*(ventana.alto-25);
             float rad=(float)Math.random()*80+5;
-            Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
+            Circle aux= new Circle(new Vector2d(x,y),rad,0.9f,cObstaculo);
             obstaculos.add(aux);
         }
-        for(int i=0; i<3;i++){
+        for(int i=0; i<2;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
             float y= (float)Math.random()*(ventana.alto-25);
             float rad=(float)Math.random()*80+5;
-            Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
-            potenciadores.add(aux);
+            Circle aux= new Circle(new Vector2d(x,y),rad,1.1f,cPotenciador);
+            obstaculos.add(aux);
         }
 
         velPelota = new Vector2d(1, 0);
@@ -102,20 +106,19 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		tiempo.stop();
 		ventana.slider.setValue(10);
                 obstaculos.removeAll(obstaculos);    
-                potenciadores.removeAll(potenciadores); 
                 for(int i=0; i<10;i++){
                     float x= (float)Math.random()*(ventana.ancho-215);
                     float y= (float)Math.random()*(ventana.alto-25);
                     float rad=(float)Math.random()*80+5;
-                    Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
+                    Circle aux= new Circle(new Vector2d(x,y),rad,0.9f,cObstaculo);
                     obstaculos.add(aux);
                 }
-                for(int i=0; i<3;i++){
+                for(int i=0; i<2;i++){
                     float x= (float)Math.random()*(ventana.ancho-215);
                     float y= (float)Math.random()*(ventana.alto-25);
                     float rad=(float)Math.random()*80+5;
-                    Circle aux= new Circle(new Vector2d(x,y),rad,ventana);
-                    potenciadores.add(aux);
+                    Circle aux= new Circle(new Vector2d(x,y),rad,1.1f,cPotenciador);
+                    obstaculos.add(aux);
                 }
                 velPelota = new Vector2d(1, 0);
                 velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
@@ -185,15 +188,9 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     */
     public void paint (Graphics g){
         super.paint(g);        
-        g.setColor(new Color(150,40,40));
         pelota.paint(g);
-        g.setColor(new Color(40,40,40));
         for(int i=0; i<obstaculos.size();++i){
             obstaculos.get(i).paint(g);
-        }
-        g.setColor(new Color(40,70,120));
-        for(int i=0; i<potenciadores.size();++i){
-            potenciadores.get(i).paint(g);
         }
         g.setColor(new Color(40,40,40));
         caja.paint(g);
@@ -209,13 +206,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         if(aModo.getModo()==1){//Añadir obstaculo.
             if(aForma.getForma()==1){//normal
                 float rad=(float)Math.random()*40+5;
-                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,ventana);
+                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,0.9f,cObstaculo);
                 obstaculos.add(aux);
                 repaint();
             }else if(aForma.getForma()==2){//potenciador
                 float rad=(float)Math.random()*40+5;
-                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,ventana);
-                potenciadores.add(aux);
+                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,1.1f,cPotenciador);
+                obstaculos.add(aux);
                 repaint();
             }
             
@@ -224,13 +221,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             for(int i=obstaculos.size()-1;i>=0;i--){
                 if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).getRadius()*obstaculos.get(i).getRadius())){
                     obstaculos.remove(i);
-                    repaint();
-                    break;
-                }
-            }
-            for(int i=potenciadores.size()-1;i>=0;i--){
-                if(((e.getX()-potenciadores.get(i).pos.x)*(e.getX()-potenciadores.get(i).pos.x)+(e.getY()-potenciadores.get(i).pos.y)*(e.getY()-potenciadores.get(i).pos.y))<=(potenciadores.get(i).getRadius()*potenciadores.get(i).getRadius())){
-                    potenciadores.remove(i);
                     repaint();
                     break;
                 }
@@ -246,21 +236,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.repaint();
         pelota.update();
         for(int i=0; i<obstaculos.size();i++){
-            Vector2d vPosicion = resta(pelota.pos,obstaculos.get(i).pos);
-            if(circleVcircle(pelota,obstaculos.get(i)) && escalarProyeccion(pelota.velocity, vPosicion)>0){
-                pelota.translate(Collision.pushOut(pelota, obstaculos.get(i)));
-                pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,obstaculos.get(i)), pelota.getRestitucion()));     
+            Circle aux = obstaculos.get(i);
+            Vector2d vPosicion = resta(pelota.pos,aux.pos);
+            if(circleVcircle(pelota,aux) && escalarProyeccion(pelota.velocity, vPosicion)>0){
+                pelota.translate(Collision.pushOut(pelota, aux));
+                pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,aux), aux.getRestitucion()));     
             }
-        }
-        for(int i=0; i<potenciadores.size();i++){
-            Vector2d vPosicion = resta(pelota.pos,potenciadores.get(i).pos);
-            if(circleVcircle(pelota,potenciadores.get(i)) && escalarProyeccion(pelota.velocity, vPosicion)>0){
-                pelota.translate(Collision.pushOut(pelota, potenciadores.get(i)));
-                pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,potenciadores.get(i)), 1.2f));     
-            }
-        }
-
-		
+        }		
     }
     
     @Override

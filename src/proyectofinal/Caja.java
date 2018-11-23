@@ -25,8 +25,8 @@ public class Caja{
      */
     public void paint (Graphics g){
         g.setColor(new Color(20,20,20));        
-        g.fillRect(0,0,ancho-180,20); //borde superior.
-        g.fillRect(0,alto-45,ancho-180,20);// borde inferior.
+        g.fillRect(0,0,ancho-215,20); //borde superior.
+        g.fillRect(0,alto-45,ancho-215,20);// borde inferior.
         g.fillRect(0,0,20,alto-25); //borde izquierdo.
         g.fillRect(ancho-235,0,20,alto-25); //borde derecho. 
     }
