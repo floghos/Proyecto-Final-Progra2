@@ -23,6 +23,7 @@ public class Circle {
         this.radius=radius;
         this.restitucion=restitucion;
         this.color=color;
+
     }
     
     public float getRadius(){

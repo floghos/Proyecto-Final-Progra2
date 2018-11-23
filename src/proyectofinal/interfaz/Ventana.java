@@ -11,40 +11,44 @@ import javax.swing.event.ChangeListener;
 /**
  * Extensión de JFrame, define una ventana para nuestra aplicación, junto con sus respectivos botones, JPanel, etc...
  */
-public class Ventana extends JFrame{
+public class Ventana extends JFrame implements ComponentListener{
     //Define la ventana en la cual trabajara nuestra aplicación.
     private PanelDibujo dp;
     private AlmacenForma af;
     private AlmacenModo am;
-    public GravitySlider slider;
-    public final int alto=600;
-    public final int ancho=940;
+	public GravitySlider slider;
+    public int alto;
+    public int ancho;
+
 	
     /**
      * Método constructor.
      */
     public Ventana(){
 	super("Bounce!");
+		this.alto = 600;
+		this.ancho = 940;
         this.setLayout(new BorderLayout());
         af=new AlmacenForma();
         am=new AlmacenModo();
         dp=new PanelDibujo(af,am, this);
+		this.addComponentListener(this);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(dp,BorderLayout.CENTER);
         JPanel controles=new JPanel();
         controles.setLayout(new GridLayout(6,1));
         
-        //Panel Gravedad.
+//        Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
 
 	this.slider = new GravitySlider(0, 50, 10); 
 	Hashtable etiquetas = new Hashtable();
-	etiquetas.put(new Integer(0), new JLabel("0"));
-	etiquetas.put(new Integer(10), new JLabel("1"));
-	etiquetas.put(new Integer(20), new JLabel("2"));
-	etiquetas.put(new Integer(30), new JLabel("3"));
-	etiquetas.put(new Integer(40), new JLabel("4"));
-	etiquetas.put(new Integer(50), new JLabel("5"));
+	etiquetas.put(0, new JLabel("0"));
+	etiquetas.put(10, new JLabel("1"));
+	etiquetas.put(20, new JLabel("2"));
+	etiquetas.put(30, new JLabel("3"));
+	etiquetas.put(40, new JLabel("4"));
+	etiquetas.put(50, new JLabel("5"));
 	slider.setLabelTable(etiquetas);
         slider.setBackground(Color.LIGHT_GRAY); 
 	slider.setMajorTickSpacing(50);
@@ -53,8 +57,7 @@ public class Ventana extends JFrame{
 	slider.setPaintLabels(true);
 	slider.setToolTipText("Modifica la gravedad");
 	pGravedad.add(slider);
-        //controles.add(pGravedad);
-		
+
         //Panel Nombre slider
         JLabel nombreS=new JLabel("  Gravedad");
         JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(Color.LIGHT_GRAY);
@@ -144,6 +147,19 @@ public class Ventana extends JFrame{
         this.setSize(ancho,alto);
         this.setVisible(true);
     }
+
+	@Override
+	public void componentResized(ComponentEvent ce) {
+		Dimension d = new Dimension();
+		d = this.getSize();
+		this.alto = d.height;
+		this.ancho = d.width;
+		dp.getCaja().updateSize(this.alto, this.ancho);
+	}
+	
+	public void componentMoved(ComponentEvent ce) {;}
+	public void componentShown(ComponentEvent ce) {;}
+	public void componentHidden(ComponentEvent ce) {;}
         
     private class BotonDireccion extends JButton implements ActionListener{
         public String direccion;

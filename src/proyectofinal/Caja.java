@@ -7,8 +7,8 @@ import java.awt.Graphics;
  */
 public class Caja{
     //Esta clase dibuja los bordes del espacio de juego.
-    private int ancho;
     private int alto;
+	private int ancho;
     /**
      * Método constructor.
      * @param ancho
@@ -19,6 +19,10 @@ public class Caja{
         this.alto=alto;
     }
     
+	public void updateSize(int alto, int ancho) {
+		this.alto = alto;
+		this.ancho = ancho;
+	}
     /**
      * Dibuja los bordes que definen el espacio de juego.
      * @param g 

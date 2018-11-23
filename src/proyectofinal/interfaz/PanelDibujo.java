@@ -87,6 +87,15 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.pelota.setVelocity(velPelota);
     }
     
+	
+	public Caja getCaja() {
+		return this.caja;
+	}
+	
+//	public Ball getPelota() {
+//		return this.pelota;
+//	}
+	
     /**
      * Detiene y reanuda el tiempo, además de reiniciar y reconfigurar la simulacion.
      * @param accion "Start", "Stop", "Reset", "Restart"
@@ -97,6 +106,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             case "Start":
                 tiempo.start();
                 comienzo=true;
+				System.out.println("Ancho: " + ventana.ancho);
                 break;
             case "Stop":
 		tiempo.stop();
@@ -219,7 +229,8 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         }
         if(aModo.getModo()==2){//Quitar obstaculo.
             for(int i=obstaculos.size()-1;i>=0;i--){
-                if(((e.getX()-obstaculos.get(i).pos.x)*(e.getX()-obstaculos.get(i).pos.x)+(e.getY()-obstaculos.get(i).pos.y)*(e.getY()-obstaculos.get(i).pos.y))<=(obstaculos.get(i).getRadius()*obstaculos.get(i).getRadius())){
+                Circle aux = obstaculos.get(i);
+                if(((e.getX()-aux.pos.x)*(e.getX()-aux.pos.x)+(e.getY()-aux.pos.y)*(e.getY()-aux.pos.y))<=(aux.getRadius()*aux.getRadius())){
                     obstaculos.remove(i);
                     repaint();
                     break;
