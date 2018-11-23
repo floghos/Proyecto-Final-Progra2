@@ -43,12 +43,12 @@ public class Ventana extends JFrame implements ComponentListener{
 
 	this.slider = new GravitySlider(0, 50, 10); 
 	Hashtable etiquetas = new Hashtable();
-	etiquetas.put(new Integer(0), new JLabel("0"));
-	etiquetas.put(new Integer(10), new JLabel("1"));
-	etiquetas.put(new Integer(20), new JLabel("2"));
-	etiquetas.put(new Integer(30), new JLabel("3"));
-	etiquetas.put(new Integer(40), new JLabel("4"));
-	etiquetas.put(new Integer(50), new JLabel("5"));
+	etiquetas.put(0, new JLabel("0"));
+	etiquetas.put(10, new JLabel("1"));
+	etiquetas.put(20, new JLabel("2"));
+	etiquetas.put(30, new JLabel("3"));
+	etiquetas.put(40, new JLabel("4"));
+	etiquetas.put(50, new JLabel("5"));
 	slider.setLabelTable(etiquetas);
         slider.setBackground(Color.LIGHT_GRAY); 
 	slider.setMajorTickSpacing(50);
@@ -57,7 +57,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	slider.setPaintLabels(true);
 	slider.setToolTipText("Modifica la gravedad");
 	pGravedad.add(slider);
-        controles.add(pGravedad);
+        
 		
         //Panel Nombre slider
         JLabel nombreS=new JLabel("Gravedad");
@@ -65,6 +65,7 @@ public class Ventana extends JFrame implements ComponentListener{
         pOrdenar.setLayout(new BorderLayout());
         pOrdenar.add(nombreS,BorderLayout.NORTH);
         pOrdenar.add(pGravedad,BorderLayout.CENTER);
+		controles.add(pOrdenar);
         
         //Panel Dirección.
         JLabel direccion= new JLabel("Direccion"); 
