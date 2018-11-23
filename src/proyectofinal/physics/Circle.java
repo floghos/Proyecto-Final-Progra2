@@ -25,8 +25,8 @@ public class Circle {
         this.pos = new Vector2d(pos);		
 	this.velocity = new Vector2d();
 	this.accel = new Vector2d();
-        this.radius=radius;
-        this.v=v;
+        this.radius = radius;
+        this.v = v;
 	this.restitucion = 0.9f;
     }
     

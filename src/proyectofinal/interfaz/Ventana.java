@@ -11,30 +11,33 @@ import javax.swing.event.ChangeListener;
 /**
  * Extensión de JFrame, define una ventana para nuestra aplicación, junto con sus respectivos botones, JPanel, etc...
  */
-public class Ventana extends JFrame{
+public class Ventana extends JFrame implements ComponentListener{
     //Define la ventana en la cual trabajara nuestra aplicación.
     private PanelDibujo dp;
     private AlmacenForma af;
     private AlmacenModo am;
 	public GravitySlider slider;
-    public final int alto=600;
-    public final int ancho=940;
+    public int alto;
+    public int ancho;
 	
     /**
      * Método constructor.
      */
     public Ventana(){
 	super("Bounce!");
+		this.alto = 600;
+		this.ancho = 940;
         this.setLayout(new BorderLayout());
         af=new AlmacenForma();
         am=new AlmacenModo();
         dp=new PanelDibujo(af,am, this);
+		this.addComponentListener(this);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(dp,BorderLayout.CENTER);
         JPanel controles=new JPanel();
         controles.setLayout(new GridLayout(6,1));
         
-        //Panel Gravedad.
+//        Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(Color.LIGHT_GRAY); 
 
 	this.slider = new GravitySlider(0, 50, 10); 
@@ -136,6 +139,19 @@ public class Ventana extends JFrame{
         this.setSize(ancho,alto);
         this.setVisible(true);
     }
+
+	@Override
+	public void componentResized(ComponentEvent ce) {
+		Dimension d = new Dimension();
+		d = this.getSize();
+		this.alto = d.height;
+		this.ancho = d.width;
+		dp.getCaja().updateSize(this.alto, this.ancho);
+	}
+	
+	public void componentMoved(ComponentEvent ce) {;}
+	public void componentShown(ComponentEvent ce) {;}
+	public void componentHidden(ComponentEvent ce) {;}
         
     private class BotonDireccion extends JButton implements ActionListener{
         public String direccion;

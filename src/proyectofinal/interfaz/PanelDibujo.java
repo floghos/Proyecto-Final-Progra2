@@ -83,6 +83,15 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.pelota.setVelocity(velPelota);
     }
     
+	
+	public Caja getCaja() {
+		return this.caja;
+	}
+	
+//	public Ball getPelota() {
+//		return this.pelota;
+//	}
+	
     /**
      * Detiene y reanuda el tiempo, además de reiniciar y reconfigurar la simulacion.
      * @param accion "Start", "Stop", "Reset", "Restart"
@@ -93,6 +102,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             case "Start":
                 tiempo.start();
                 comienzo=true;
+				System.out.println("Ancho: " + ventana.ancho);
                 break;
             case "Stop":
 		tiempo.stop();
@@ -259,8 +269,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,potenciadores.get(i)), 1.2f));     
             }
         }
-
-		
     }
     
     @Override
