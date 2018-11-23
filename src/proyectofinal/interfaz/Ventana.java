@@ -16,7 +16,7 @@ public class Ventana extends JFrame{
     private PanelDibujo dp;
     private AlmacenForma af;
     private AlmacenModo am;
-	public GravitySlider slider;
+    public GravitySlider slider;
     public final int alto=600;
     public final int ancho=940;
 	
@@ -55,6 +55,13 @@ public class Ventana extends JFrame{
 	pGravedad.add(slider);
         controles.add(pGravedad);
 		
+        //Panel Nombre slider
+        JLabel nombreS=new JLabel("Gravedad");
+        JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(Color.LIGHT_GRAY);
+        pOrdenar.setLayout(new BorderLayout());
+        pOrdenar.add(nombreS,BorderLayout.NORTH);
+        pOrdenar.add(pGravedad,BorderLayout.CENTER);
+        
         //Panel Dirección.
         JLabel direccion= new JLabel("Direccion"); 
         JPanel pDireccion=new JPanel(); pDireccion.setBackground(Color.LIGHT_GRAY); 
