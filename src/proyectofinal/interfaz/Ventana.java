@@ -19,6 +19,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	public GravitySlider slider;
     public int alto;
     public int ancho;
+
 	
     /**
      * Método constructor.
@@ -58,6 +59,13 @@ public class Ventana extends JFrame implements ComponentListener{
 	pGravedad.add(slider);
         controles.add(pGravedad);
 		
+        //Panel Nombre slider
+        JLabel nombreS=new JLabel("Gravedad");
+        JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(Color.LIGHT_GRAY);
+        pOrdenar.setLayout(new BorderLayout());
+        pOrdenar.add(nombreS,BorderLayout.NORTH);
+        pOrdenar.add(pGravedad,BorderLayout.CENTER);
+        
         //Panel Dirección.
         JLabel direccion= new JLabel("Direccion"); 
         JPanel pDireccion=new JPanel(); pDireccion.setBackground(Color.LIGHT_GRAY); 
