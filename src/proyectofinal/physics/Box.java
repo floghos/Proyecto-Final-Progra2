@@ -7,10 +7,11 @@ import java.awt.Rectangle;
 /**
  * Clase que define rectangulos.
  */
-public class Box extends Rectangle{
+public class Box {
     //Esta clase define los rectangulos que seran usados como obstaculos, en caso de implementarlos.
     private Vector2d pos;
-    private final float restitucion = 0.8f;
+	private int width;
+	private int height;
     
     /**
      * Metodo constructor
@@ -19,8 +20,9 @@ public class Box extends Rectangle{
      * @param height alto del rectángulo
      */
     public Box (Vector2d pos, int width, int height) {
-	super((int)pos.x, (int)pos.y, width, height);
-	this.pos = new Vector2d(pos);		
+	this.pos = new Vector2d(pos);
+		this.width = width;
+		this.height = height;
     }
 	
     /**
@@ -29,6 +31,6 @@ public class Box extends Rectangle{
      */
     public void paint(Graphics g) {	
         g.setColor(Color.red);
-	g.fillRect((int)pos.x, (int)pos.y, 30, 30); //para tests, se supone que debe ser un rectangulo!!
+		g.fillRect((int)pos.x, (int)pos.y, width, height);
     }
 }

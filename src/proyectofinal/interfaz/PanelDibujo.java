@@ -292,6 +292,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.repaint();
         motorColisiones();	
     }
+    
     /**
      * Revisa el ArrayList de circulos a cada actualización del Timer comprobando si hay o no colisión entre la pelota y los obstaculos.
      */

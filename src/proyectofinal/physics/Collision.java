@@ -36,10 +36,10 @@ public class Collision {
     }
 	
     /**
-     * En caso de que la pelota (player) esté sobreponiedose a un obstaculo, el metodo devuelve el vector que indica la distancia sobrepuesta.
-     * @param player 
-     * @param obstacle
-     * @return 
+     * Entrega un vector representando tan lejos debe ser empujando el primer objeto para que deje de colisionar con el segundo.
+     * @param player Objeto que sera empujado 
+     * @param obstacle Objeto contra el cual se esta colisionando
+     * @return Vector2d con la dirección para solucionar la colisión.
      */
     public static Vector2d pushOut(Circle player, Circle obstacle) {
         Vector2d vecDir = Vector2d.resta(player.pos, obstacle.pos);
