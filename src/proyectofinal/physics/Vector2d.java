@@ -46,7 +46,7 @@ public class Vector2d {
      * Rota un vector "v" en un angulo "angle", en sentido horario.
      * @param v
      * @param angle
-     * @return vector resultante.
+     * @return Vector2d resultante.
      */
     public static Vector2d rotateVector(Vector2d v, double angle) {
     	Vector2d newVector = new Vector2d();
@@ -59,7 +59,7 @@ public class Vector2d {
      * Suma dos vectores.
      * @param a
      * @param b
-     * @return vector resultante.
+     * @return Vector2d resultante.
      */
     public static Vector2d sum(Vector2d a, Vector2d b) {
     	Vector2d temp = new Vector2d(a.x + b.x, a.y + b.y);
@@ -70,7 +70,7 @@ public class Vector2d {
      * Resta 2 vectores (a - b).
      * @param a
      * @param b
-     * @return vector resultante.
+     * @return Vector2d resultante.
      */
     public static Vector2d resta(Vector2d a, Vector2d b){
         Vector2d rest = new Vector2d(b.x - a.x, b.y - a.y);
@@ -81,7 +81,7 @@ public class Vector2d {
      * Calcula el producto escalar (producto punto) entre 2 vectores.
      * @param a
      * @param b
-     * @return 
+     * @return Escalar (float) resultante.
      */
     public static float productoPunto(Vector2d a,Vector2d b){
         float pPunto;
@@ -92,7 +92,7 @@ public class Vector2d {
     /**
      * Calcula el modulo de un vector.
      * @param a
-     * @return 
+     * @return Escalar (float) resultante.
      */
     public static float modulo(Vector2d a){
         return (float)Math.sqrt(a.x*a.x + a.y*a.y);
@@ -102,7 +102,7 @@ public class Vector2d {
       * Retorna el angulo entre 2 vectores.
       * @param a
       * @param b
-      * @return 
+      * @return Angulo resultante en radianes (float).
       */   
     public static float angulo(Vector2d a,Vector2d b){
         return (float)Math.acos((productoPunto(a,b))/(modulo(a)*modulo(b)));
@@ -122,7 +122,7 @@ public class Vector2d {
      * Multiplica un vector "v" por un escalar "e".
      * @param v
      * @param e
-     * @return 
+     * @return Vector2d resultante
      */
     public static Vector2d vecPorEscalar(Vector2d v, float e) {
     	return new Vector2d(v.x * e, v.y * e);
@@ -130,11 +130,11 @@ public class Vector2d {
 	
     /**
      * Retorna un vector unitario con la dirección del vector original.
-     * @param vec
-     * @return 
+     * @param v
+     * @return Vector2d resultante.
      */
-    public static Vector2d normalize(Vector2d vec) {
-    	float n = modulo(vec);
-	return vecPorEscalar(vec, 1/n);
+    public static Vector2d normalize(Vector2d v) {
+    	float n = modulo(v);
+	return vecPorEscalar(v, 1/n);
     }
 }

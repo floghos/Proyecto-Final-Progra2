@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import proyectofinal.Caja;
@@ -287,7 +285,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	 * Revisa el ArrayList de circulos a cada actualización del Timer comprobando si hay o no colisión entre la pelota y los obstaculos.
 	 */
 	private void motorColisiones() {
-		 for(int i=0; i<obstaculos.size();i++){
+		for(int i=0; i<obstaculos.size();i++){
             Circle aux = obstaculos.get(i);
             Vector2d vPosicion = resta(pelota.pos,aux.pos);
             if(circleVcircle(pelota,aux) && escalarProyeccion(pelota.velocity, vPosicion)>0){
