@@ -70,13 +70,23 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             float y= (float)Math.random()*(ventana.alto-25);
             float rad=(float)Math.random()*75+5;
             Circle aux= new Circle(new Vector2d(x,y),rad,0.9f,cObstaculo);
-            obstaculos.add(aux);
+			if (!circleVcircle(pelota, aux)) {
+				obstaculos.add(aux);
+			} else {
+				i--;
+			}
+            
         }
         for(int i=0; i<2;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
             float y= (float)Math.random()*(ventana.alto-25);
             float rad=(float)Math.random()*75+5;
             Circle aux= new Circle(new Vector2d(x,y),rad,1.1f,cPotenciador);
+			if (!Collision.circleVcircle(pelota, aux)) {
+				obstaculos.add(aux);
+			} else {
+				i--;
+			}
             obstaculos.add(aux);
         }
 
@@ -112,23 +122,31 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		tiempo.stop();
                 break;
             case "Reset":
-		comienzo=false;                    
-		tiempo.stop();
-		ventana.slider.setValue(10);
+				comienzo=false;                    
+				tiempo.stop();
+				ventana.slider.setValue(10);
                 obstaculos.removeAll(obstaculos);    
                 for(int i=0; i<10;i++){
                     float x= (float)Math.random()*(ventana.ancho-215);
                     float y= (float)Math.random()*(ventana.alto-25);
                     float rad=(float)Math.random()*80+5;
                     Circle aux= new Circle(new Vector2d(x,y),rad,0.9f,cObstaculo);
-                    obstaculos.add(aux);
+					if (!circleVcircle(pelota, aux)) {
+						obstaculos.add(aux);
+					} else {
+						i--;
+					}
                 }
                 for(int i=0; i<2;i++){
                     float x= (float)Math.random()*(ventana.ancho-215);
                     float y= (float)Math.random()*(ventana.alto-25);
                     float rad=(float)Math.random()*80+5;
                     Circle aux= new Circle(new Vector2d(x,y),rad,1.1f,cPotenciador);
-                    obstaculos.add(aux);
+					if (!circleVcircle(pelota, aux)) {
+						obstaculos.add(aux);
+					} else {
+						i--;
+					}
                 }
                 velPelota = new Vector2d(1, 0);
                 velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
@@ -141,7 +159,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                 this.repaint();
                 break;
             case "Restart":
-		comienzo=false;
+				comienzo=false;
                 tiempo.stop();
                 velPelota = new Vector2d(1, 0);
                 velPelota = Vector2d.rotateVector(velPelota, Math.random()*2*Math.PI);
@@ -191,7 +209,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	
 	public void modGrav (float multiplicador) {
 		gravMultiplier = multiplicador;
-		System.out.println(multiplicador);
 		pelota.setAccel(vecPorEscalar(gravedad, multiplicador));
 		pelota.g = multiplicador;
 	}

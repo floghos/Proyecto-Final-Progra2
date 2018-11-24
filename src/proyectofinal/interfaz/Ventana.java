@@ -1,6 +1,7 @@
 package proyectofinal.interfaz;
 
 import java.awt.*;
+import static java.awt.Font.*;
 import java.awt.event.*;
 import java.util.Hashtable;
 import javax.swing.*;
@@ -54,8 +55,8 @@ public class Ventana extends JFrame implements ComponentListener{
 	etiquetas.put(50, new JLabel("5g"));
 	slider.setLabelTable(etiquetas);
         slider.setBackground(Color.LIGHT_GRAY); 
-	slider.setMajorTickSpacing(50);
-	slider.setMinorTickSpacing(10);
+	slider.setMajorTickSpacing(10);
+	slider.setMinorTickSpacing(1);
 	slider.setPaintTicks(true);
 	slider.setPaintLabels(true);
         //slider.setForeground(Color.red);//barritas
@@ -101,6 +102,7 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Añadir y Quitar Obstaculos.        
         JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); 
+		añadirQuitar.setFont(new Font("SansSerif", PLAIN, 15));
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(Color.LIGHT_GRAY);                
         BotonModo añadir=new BotonModo("Añadir",1);  
 		añadir.setBackground(Color.LIGHT_GRAY);
@@ -148,7 +150,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	radSlider.setMinorTickSpacing(10);
 	radSlider.setPaintTicks(true);
 	radSlider.setPaintLabels(true);
-	radSlider.setToolTipText("Modifica radio obstaculos");
+	radSlider.setToolTipText("Modifica radio de los obstaculos");
 	pRadObs.add(radSlider);
         		
         //Panel nombre ModificadorRadio

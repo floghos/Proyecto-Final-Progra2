@@ -19,7 +19,7 @@ public class Ball extends Circle{
      * @param radius
      * @param v 
      */
-    public Ball(Vector2d pos,float radius, Ventana v,float restitucion,Color color){//0.9f
+    public Ball(Vector2d pos,float radius, Ventana v,float restitucion,Color color){
         super(pos, radius,restitucion,color);	
 	this.velocity = new Vector2d();
 	this.accel = new Vector2d();

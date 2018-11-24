@@ -6,6 +6,7 @@ package proyectofinal.physics;
  */
 public class Collision {
     //Esta clase contiene metodos estáticos para lidiar con colisiones.	
+	
     /**
      * Determina si 2 circulos, a y b, estan colisionando
      * @param a
