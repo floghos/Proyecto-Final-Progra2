@@ -22,6 +22,8 @@ public class Ventana extends JFrame implements ComponentListener{
     public radiusSlider radSlider;
     private Color fondo1;
     private Color fondo2;
+    private JLabel radLabel;
+    private JLabel gravLabel;
     /**
      * Método constructor.
      */
@@ -62,11 +64,11 @@ public class Ventana extends JFrame implements ComponentListener{
 	pGravedad.add(slider);
 
         //Panel Nombre slider
-        JLabel nombreS=new JLabel("  Gravedad: ");
+        gravLabel=new JLabel("  Gravedad: " + 1f );
         //nombreS.setForeground(Color.red);
         JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(Color.LIGHT_GRAY);
         pOrdenar.setLayout(new BorderLayout());
-        pOrdenar.add(nombreS,BorderLayout.NORTH);
+        pOrdenar.add(gravLabel,BorderLayout.NORTH);
         pOrdenar.add(pGravedad,BorderLayout.CENTER);
         controles.add(pOrdenar);
         
@@ -149,10 +151,10 @@ public class Ventana extends JFrame implements ComponentListener{
 	pRadObs.add(radSlider);
         		
         //Panel nombre ModificadorRadio
-        JLabel nombreRad=new JLabel("  Radio");
+        radLabel=new JLabel("  Radio: " + 20f);
         JPanel pOrdenarRad=new JPanel(); pOrdenarRad.setBackground(Color.LIGHT_GRAY);
         pOrdenarRad.setLayout(new BorderLayout());
-        pOrdenarRad.add(nombreRad,BorderLayout.CENTER);
+        pOrdenarRad.add(radLabel,BorderLayout.CENTER);
         pOrdenarRad.add(pRadObs,BorderLayout.SOUTH);
         controles.add(pOrdenarRad); 
         
@@ -286,6 +288,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
             dp.modGrav(source.getValue()/10f);
+            gravLabel.setText("  Gravedad: " + (source.getValue()/10f));
 	}
     }
     class radiusSlider extends JSlider implements ChangeListener{
@@ -304,6 +307,8 @@ public class Ventana extends JFrame implements ComponentListener{
 	public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
             dp.obstacleRadius(source.getValue()/10f);
+            radLabel.setText("  Radio: " + (source.getValue()/10f));
+            
 	}
     }
 }

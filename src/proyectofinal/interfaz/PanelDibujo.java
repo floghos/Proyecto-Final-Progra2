@@ -92,6 +92,12 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	public Caja getCaja() {
 		return this.caja;
 	}
+        public float getGravMultiplier() {
+            return gravMultiplier;
+        }
+        public float getRadObs(){
+            return radObs;
+        }
 	
     /**
      * Detiene y reanuda el tiempo, además de reiniciar y reconfigurar la simulacion.
