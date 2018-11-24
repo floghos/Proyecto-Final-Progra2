@@ -11,24 +11,25 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicSliderUI;
 
 /**
- * Extensión de JFrame, define una ventana para nuestra aplicación, junto con sus respectivos botones, JPanel, etc...
+ * Extensión de JFrame, define una ventana para la aplicación, junto con sus respectivos botones, JPanel, etc...
  */
 public class Ventana extends JFrame implements ComponentListener{
     //Define la ventana en la cual trabajara nuestra aplicación.
-    private PanelDibujo dp;
-    private AlmacenForma af;
-    private AlmacenModo am;
+    public radiusSlider radSlider;
     public GravitySlider slider;
     public int alto;
     public int ancho;
-    public radiusSlider radSlider;
+    private JLabel gravLabel;
+    private JLabel radLabel;
+    private AlmacenTipo at;
+    private PanelDibujo dp;
+    private AlmacenModo am;
     private Color fondo0;
     private Color fondo1;
     private Color fondo2;
     private Color fondo3;
     private Color fondo4;
-    private JLabel radLabel;
-    private JLabel gravLabel;
+    
     /**
      * Método constructor.
      */
@@ -37,20 +38,20 @@ public class Ventana extends JFrame implements ComponentListener{
 	this.alto = 600;
 	this.ancho = 940;
         this.setLayout(new BorderLayout());
-        af=new AlmacenForma();
+        at=new AlmacenTipo();
         am=new AlmacenModo();
-        dp=new PanelDibujo(af,am, this);
+        dp=new PanelDibujo(at,am, this);
 	this.addComponentListener(this);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(dp,BorderLayout.CENTER);
         JPanel controles=new JPanel();
         controles.setLayout(new GridLayout(6,1));
+        controles.setBackground(new Color(20,20,20));
         fondo0= new Color(100,200,100);
         fondo1= new Color(153, 138, 111);
         fondo2= new Color(200, 138, 111);
         fondo3= new Color(153, 200, 111);
         fondo4= new Color(153, 138, 140);
-        controles.setBackground(new Color(20,20,20));
         
         //Panel Titulo.
         JLabel titulo1=new JLabel("SIMULADOR");
@@ -61,18 +62,14 @@ public class Ventana extends JFrame implements ComponentListener{
         JPanel t1 = new JPanel(); t1.setBackground(fondo0);
         JPanel t2 = new JPanel(); t2.setBackground(fondo0);
         JPanel t3 = new JPanel(); t3.setBackground(fondo0);
-        t1.add(titulo1);
-        t2.add(titulo2);
-        t3.add(titulo3);
-        pTitulo.add(t1);
-        pTitulo.add(t2);
-        pTitulo.add(t3);
+        t1.add(titulo1);t2.add(titulo2);t3.add(titulo3);
+        pTitulo.add(t1);pTitulo.add(t2);pTitulo.add(t3);
         titulo1.setFont(new Font("Times new roman", BOLD, 14));
         titulo2.setFont(new Font("Times new roman", BOLD, 14));
         titulo3.setFont(new Font("Times new roman", BOLD, 14));
         controles.add(pTitulo);
         
-//        Panel Gravedad.
+        //Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(fondo1); 
 	this.slider = new GravitySlider(0, 50, 10); 
 	Hashtable etiquetas = new Hashtable();
@@ -83,7 +80,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	etiquetas.put(40, new JLabel("4g"));
 	etiquetas.put(50, new JLabel("5g"));
 	slider.setLabelTable(etiquetas);
-        slider.setBackground(Color.LIGHT_GRAY); 
+        slider.setBackground(fondo1); 
 	slider.setMajorTickSpacing(10);
 	slider.setMinorTickSpacing(1);
 	slider.setPaintTicks(true);
@@ -93,9 +90,8 @@ public class Ventana extends JFrame implements ComponentListener{
 	slider.setToolTipText("Modifica la gravedad");
 	pGravedad.add(slider);
 
-        //Panel Nombre slider
-        gravLabel=new JLabel("  Gravedad: " + 1f );
-        //nombreS.setForeground(Color.red);
+        //Panel Nombre Slider.
+        gravLabel=new JLabel("  Gravedad: " + 1f);
         JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(fondo1);
         pOrdenar.setLayout(new BorderLayout());
         pOrdenar.add(gravLabel,BorderLayout.NORTH);
@@ -137,7 +133,6 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Añadir y Quitar Obstaculos.        
         JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); 
-
         añadirQuitar.setFont(new Font("Times new roman", PLAIN, 15));
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(fondo3);                
         BotonModo añadir=new BotonModo("Añadir",1);  
@@ -149,12 +144,12 @@ public class Ventana extends JFrame implements ComponentListener{
         ButtonGroup bGrupo1=new ButtonGroup();
         bGrupo1.add(añadir);bGrupo1.add(quitar);   
         
-        //Panel obstaculo normal-potenciador
+        //Panel Obstaculo Normal-Potenciador
         JPanel pNormalPoten=new JPanel(); pNormalPoten.setBackground(fondo3);                
-        BotonFigura normal=new BotonFigura("Normal",1);    
+        BotonTipo normal=new BotonTipo("Normal",1);    
         normal.setBackground(fondo3);
         pNormalPoten.add(normal);
-        BotonFigura potenciador=new BotonFigura("Potenciador",2);
+        BotonTipo potenciador=new BotonTipo("Potenciador",2);
         potenciador.setBackground(fondo3);
         pNormalPoten.add(potenciador);    
         ButtonGroup bGrupo2=new ButtonGroup();
@@ -168,7 +163,7 @@ public class Ventana extends JFrame implements ComponentListener{
         pOrdenar2.add(pNormalPoten,BorderLayout.SOUTH); 
         controles.add(pOrdenar2);        
     
-        //Panel RadioObstaculos.
+        //Panel Radio Obstaculos.
         JPanel pRadObs=new JPanel(); pRadObs.setBackground(fondo3); 
 	this.radSlider = new radiusSlider(50, 800, 200); 
 	Hashtable etiquetasRadio = new Hashtable();
@@ -187,10 +182,10 @@ public class Ventana extends JFrame implements ComponentListener{
 	radSlider.setMinorTickSpacing(10);
 	radSlider.setPaintTicks(true);
 	radSlider.setPaintLabels(true);
-	radSlider.setToolTipText("Modifica el radio del obstaculo");
+	radSlider.setToolTipText("Modifica radio del obstaculo");
 	pRadObs.add(radSlider);
         		
-        //Panel nombre ModificadorRadio
+        //Panel Nombre Modificador Radio.
         radLabel=new JLabel("     Radio: " + 20f);
         JPanel pOrdenarRad=new JPanel(); pOrdenarRad.setBackground(fondo3);
         pOrdenarRad.setLayout(new BorderLayout());
@@ -198,7 +193,7 @@ public class Ventana extends JFrame implements ComponentListener{
         pOrdenarRad.add(pRadObs,BorderLayout.SOUTH);
         controles.add(pOrdenarRad); 
         
-        //Panel reset-restart.
+        //Panel Restart-Reset.
         JPanel pRestartReset=new JPanel(); pRestartReset.setBackground(fondo4);
         ActionButton r1=new ActionButton("Restart");
         ActionButton r2=new ActionButton("Reset");
@@ -208,7 +203,7 @@ public class Ventana extends JFrame implements ComponentListener{
         pRestartReset.add(r2);        
         controles.add(pRestartReset);
 		
-        //Panel start-stop.
+        //Panel Start-Stop.
         JPanel pStartStop=new JPanel(); pStartStop.setBackground(fondo4);
         ActionButton s1=new ActionButton("Start");
         ActionButton s2=new ActionButton("Stop");
@@ -229,24 +224,33 @@ public class Ventana extends JFrame implements ComponentListener{
         this.setSize(ancho,alto);
         this.setVisible(true);
     }
-	
-	public PanelDibujo getDp() {
-		return this.dp;
-	}
+    
+    /**
+     * Accessor para dp.
+     * @return 
+     */
+    public PanelDibujo getDp() {
+    	return this.dp;
+    }
 
-	@Override
-	public void componentResized(ComponentEvent ce) {
-		Dimension d = new Dimension();
-		d = this.getSize();
-		this.alto = d.height;
-		this.ancho = d.width;
-		dp.getCaja().updateSize(this.alto, this.ancho);
-	}
+    @Override
+    public void componentResized(ComponentEvent ce) {
+	Dimension d = new Dimension();
+	d = this.getSize();
+	this.alto = d.height;
+	this.ancho = d.width;
+	dp.getCaja().updateSize(this.alto, this.ancho);
+    }
 	
-	public void componentMoved(ComponentEvent ce) {;}
-	public void componentShown(ComponentEvent ce) {;}
-	public void componentHidden(ComponentEvent ce) {;}
-        
+    public void componentMoved(ComponentEvent ce) {;}
+    public void componentShown(ComponentEvent ce) {;}
+    public void componentHidden(ComponentEvent ce) {;}
+    
+    /**
+     * Clase utilizada para realizar las siguientes acciones:
+     * Dirección: "↺", "↻"
+     * Rapidez: "-", "+"
+     */
     private class BotonDireccion extends JButton implements ActionListener{
         public String direccion;
 	/**
@@ -264,6 +268,10 @@ public class Ventana extends JFrame implements ComponentListener{
         }        
     }
    
+    /**
+     * Clase utilizada para realizar las siguientes acciones:
+     * Modo: "Añadir", "Quitar"
+     */
     private class BotonModo extends JRadioButton implements ActionListener{
         private int modo;
 	/**
@@ -283,27 +291,35 @@ public class Ventana extends JFrame implements ComponentListener{
         }
     } 
     
-    private class BotonFigura extends JRadioButton implements ActionListener{
+    /**
+     * Clase utitizada para realizar las siguienres acciones:
+     * Tipo: "Normal", "Potenciador"
+     */
+    private class BotonTipo extends JRadioButton implements ActionListener{
 	//Estos botones se usaran para seleccionar que figura se desea. 
-	//agregar como obstaculo (circulo o rectangulo).
-        private int forma;
+	//agregar como obstaculo (normal o potenciador).
+        private int tipo;
 	/**
 	 * Método constructor.
 	 * @param nom Nombre del botón.
-	 * @param forma (1 = circulo, 2 = rectángulo).
+	 * @param tipo (1 = normal, 2 = potenciador).
 	 */
-        BotonFigura(String nom, int forma){
+        BotonTipo(String nom, int tipo){
             super(nom);
-            this.forma=forma;
+            this.tipo=tipo;
             this.addActionListener(this);
         }
         @Override
         public void actionPerformed(ActionEvent ae) {
-            af.setForma(forma);
+            at.setTipo(tipo);
             dp.repaint();
         }
     } 
 	
+    /**
+     * Clase utilizada para realizar las siguientes acciones:
+     * Estado: "Start", "Stop", "Restart", "Reset"
+     */
     private class ActionButton extends JButton implements ActionListener {
 	//Estos botones permiten dar comienzo, pausar, reanudar, reiniciar y reconfigurar la simulación.
     	private String action;
@@ -323,7 +339,10 @@ public class Ventana extends JFrame implements ComponentListener{
             dp.accion(action);
 	}
     }
-	
+
+    /**
+     * Clase que define JSlider para modificar la gravedad.
+     */
     class GravitySlider extends JSlider implements ChangeListener{
 	//Esta clase define un slider que será usado para controlar la gravedad en la simulación.
 	/**
@@ -343,8 +362,12 @@ public class Ventana extends JFrame implements ComponentListener{
             gravLabel.setText("  Gravedad: " + (source.getValue()/10f));
 	}
     }
+    
+    /**
+     * Clase que define JSlider para modificar radio de el obstaculo a añadir.
+     */
     class radiusSlider extends JSlider implements ChangeListener{
-	//Esta clase define un slider que será usado para controlar la gravedad en la simulación.
+	//Esta clase define un slider que será usado para controlar el radio de los obstaculos.
 	/**
 	 * Método constructor.
 	 * @param min valor mínimo.
@@ -360,15 +383,6 @@ public class Ventana extends JFrame implements ComponentListener{
             JSlider source = (JSlider)e.getSource();
             dp.obstacleRadius(source.getValue()/10f);
             radLabel.setText("  Radio: " + (source.getValue()/10f));        
-		}
-    }
-    
-    class sliderColorUI extends BasicSliderUI{
-        Color c;
-        public sliderColorUI(JSlider b,Color c) {
-            super(b);
-            this.c=c;
-        }
-    
+	}
     }
 }
