@@ -9,7 +9,7 @@ public class Ball extends Circle{
     public Vector2d velocity;
     private Vector2d accel;
     private Ventana v;
-   
+	int timer;//for tests
     /**
      * Método constructor
      * @param pos
@@ -21,6 +21,7 @@ public class Ball extends Circle{
 	this.velocity = new Vector2d();
 	this.accel = new Vector2d();
         this.v=v;
+		this.timer = 0;
     }
 
     /**
@@ -32,6 +33,7 @@ public class Ball extends Circle{
 	this.pos.y += t.y;
     }
     
+	
     /**
      * Actualiza la velocidad y posición del circulo en base a su aceleración y velocidad, respectivamente.
      */
@@ -39,7 +41,12 @@ public class Ball extends Circle{
         this.velocity = Vector2d.sum(velocity, accel);
 	translate(velocity);
         restriccion();
-		System.out.println("posicion Y: " + pos.y + " | vel: " + Vector2d.modulo(velocity));
+		timer++;
+		if (timer >= 30) {
+			System.out.println("posicion Y: " + pos.y + " | vel: " + Vector2d.modulo(velocity));
+			timer = 0;
+		}
+		
     }
 	
     /**

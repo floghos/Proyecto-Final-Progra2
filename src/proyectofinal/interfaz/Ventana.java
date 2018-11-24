@@ -256,4 +256,22 @@ public class Ventana extends JFrame implements ComponentListener{
             dp.modGrav(source.getValue()/10f);
 		}
     }
+	class radiusSlider extends JSlider implements ChangeListener{
+	//Esta clase define un slider que será usado para controlar la gravedad en la simulación.
+	/**
+	 * Método constructor.
+	 * @param min valor mínimo.
+	 * @param max valor máximo.
+	 * @param ini valor inicial.
+	 */
+    	public radiusSlider(int min, int max, int ini) {
+            super(min, max, ini);
+            this.addChangeListener(this);
+		}
+		
+		public void stateChanged(ChangeEvent e) {
+            JSlider source = (JSlider)e.getSource();
+			dp.obstacleRadius(source.getValue()/10f);
+		}
+    }
 }

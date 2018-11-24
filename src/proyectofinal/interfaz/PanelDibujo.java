@@ -235,20 +235,26 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     
     @Override
     /**
-    * Revisa el ArrayList de circulos a cada actualización del Timer comprobando si hay o no colisión entre la pelota y los obstaculos.
+    * Ejecutado a cada tick de nuestro Timer, redibuja todos los objetos, actualiza la posición de la pelota y ejecuta el motor de colisiones
     */
     public void actionPerformed(ActionEvent e) {
+		pelota.update();
         this.repaint();
-        pelota.update();
-        for(int i=0; i<obstaculos.size();i++){
+        motorColisiones();	
+    }
+	/**
+	 * Revisa el ArrayList de circulos a cada actualización del Timer comprobando si hay o no colisión entre la pelota y los obstaculos.
+	 */
+	private void motorColisiones() {
+		 for(int i=0; i<obstaculos.size();i++){
             Circle aux = obstaculos.get(i);
             Vector2d vPosicion = resta(pelota.pos,aux.pos);
             if(circleVcircle(pelota,aux) && escalarProyeccion(pelota.velocity, vPosicion)>0){
                 pelota.translate(Collision.pushOut(pelota, aux));
                 pelota.setVelocity(Vector2d.vecPorEscalar(resColCircle(pelota,aux), aux.getRestitucion()));     
             }
-        }		
-    }
+        }
+	}
     
     @Override
     public void mouseClicked(MouseEvent e) {}
