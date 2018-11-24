@@ -186,7 +186,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	pRadObs.add(radSlider);
         		
         //Panel Nombre Modificador Radio.
-        radLabel=new JLabel("     Radio: " + 20f);
+        radLabel=new JLabel("  Radio: " + 20f);
         JPanel pOrdenarRad=new JPanel(); pOrdenarRad.setBackground(fondo3);
         pOrdenarRad.setLayout(new BorderLayout());
         pOrdenarRad.add(radLabel,BorderLayout.CENTER);
