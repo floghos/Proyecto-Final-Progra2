@@ -183,6 +183,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	
 	public void modGrav (float multiplicador) {
 		gravMultiplier = multiplicador;
+		System.out.println(multiplicador);
 		pelota.setAccel(vecPorEscalar(gravedad, multiplicador));
 	}
     

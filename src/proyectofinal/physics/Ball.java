@@ -39,6 +39,7 @@ public class Ball extends Circle{
         this.velocity = Vector2d.sum(velocity, accel);
 	translate(velocity);
         restriccion();
+		System.out.println("posicion Y: " + pos.y + " | vel: " + Vector2d.modulo(velocity));
     }
 	
     /**
