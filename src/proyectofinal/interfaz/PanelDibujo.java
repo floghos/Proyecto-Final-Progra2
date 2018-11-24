@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import proyectofinal.Caja;
 import proyectofinal.physics.*;
 import static proyectofinal.physics.Collision.circleVcircle;
+import static proyectofinal.physics.Collision.pushOut;
 import static proyectofinal.physics.Collision.resColCircle;
 import static proyectofinal.physics.Vector2d.*;
 /**
@@ -37,6 +40,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     private Color cPelota;
     private Color cObstaculo;
     private Color cPotenciador;
+    private Color cError;
 	public Timer tiempo;
     public boolean comienzo;
 	
@@ -63,6 +67,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         cPelota=new Color(150,40,40);
         cObstaculo=new Color(40,40,40);
         cPotenciador=new Color(40,70,120);
+        cError=new Color (100,10,10);
         pelota= new Ball(new Vector2d(40,40),20f,ventana,0.9f,cPelota);
         
         for(int i=0; i<10;i++){
@@ -122,9 +127,9 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		tiempo.stop();
                 break;
             case "Reset":
-				comienzo=false;                    
-				tiempo.stop();
-				ventana.slider.setValue(10);
+		comienzo=false;                    
+		tiempo.stop();
+		ventana.slider.setValue(10);
                 obstaculos.removeAll(obstaculos);    
                 for(int i=0; i<10;i++){
                     float x= (float)Math.random()*(ventana.ancho-215);
@@ -239,17 +244,23 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     public void mousePressed(MouseEvent e) {	
         if(aModo.getModo()==1){//Añadir obstaculo.
             if(aForma.getForma()==1){//normal
-//                float rad=(float)Math.random()*40+5;
+//              float rad=(float)Math.random()*40+5;
                 Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),radObs,0.9f,cObstaculo);
                 obstaculos.add(aux);
-                repaint();
+                if (circleVcircle(pelota, aux)) {
+                    aux.pos=sum(aux.pos,pushOut(aux,pelota));
+		}
+                
+                
             }else if(aForma.getForma()==2){//potenciador
 //                float rad=(float)Math.random()*40+5;
                 Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),radObs,1.1f,cPotenciador);
                 obstaculos.add(aux);
-                repaint();
+                if (circleVcircle(pelota, aux)) {
+                    aux.pos=sum(aux.pos,pushOut(aux,pelota));
+		}
             }
-            
+            repaint();
         }
         if(aModo.getModo()==2){//Quitar obstaculo.
             for(int i=obstaculos.size()-1;i>=0;i--){

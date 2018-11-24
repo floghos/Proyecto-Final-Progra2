@@ -74,9 +74,7 @@ public class Ball extends Circle{
 	this.velocity = vel;
     }
     
-    public void setPos(Vector2d a){
-        this.pos=a;
-    }
+    
 	
 	public boolean hasStopped() {
 //		if (lastPos.x == pos.x && lastPos.y == pos.y) {

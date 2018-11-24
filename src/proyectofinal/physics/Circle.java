@@ -26,6 +26,14 @@ public class Circle {
 
     }
     
+    public void setColor(Color c){
+        this.color=c;
+    }
+    
+    public void setPos(Vector2d a){
+        this.pos=a;
+    }
+    
     public float getRadius(){
         return radius;
     }
@@ -33,6 +41,8 @@ public class Circle {
     public float getRestitucion() {
    	return restitucion;
     }   
+    
+    
 	
     /**
      * Dibuja el circulo desde su centro.

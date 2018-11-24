@@ -22,6 +22,7 @@ public class Ventana extends JFrame implements ComponentListener{
     public int alto;
     public int ancho;
     public radiusSlider radSlider;
+    private Color fondo0;
     private Color fondo1;
     private Color fondo2;
     private Color fondo3;
@@ -44,10 +45,33 @@ public class Ventana extends JFrame implements ComponentListener{
         this.add(dp,BorderLayout.CENTER);
         JPanel controles=new JPanel();
         controles.setLayout(new GridLayout(6,1));
+        fondo0= new Color(100,200,100);
         fondo1= new Color(153, 138, 111);
         fondo2= new Color(200, 138, 111);
         fondo3= new Color(153, 200, 111);
         fondo4= new Color(153, 138, 140);
+        controles.setBackground(new Color(20,20,20));
+        
+        //Panel Titulo.
+        JLabel titulo1=new JLabel("SIMULADOR");
+        JLabel titulo2=new JLabel("DE");
+        JLabel titulo3=new JLabel("COLISIONES");
+        JPanel pTitulo=new JPanel();
+        pTitulo.setLayout(new GridLayout(3,1));
+        JPanel t1 = new JPanel(); t1.setBackground(fondo0);
+        JPanel t2 = new JPanel(); t2.setBackground(fondo0);
+        JPanel t3 = new JPanel(); t3.setBackground(fondo0);
+        t1.add(titulo1);
+        t2.add(titulo2);
+        t3.add(titulo3);
+        pTitulo.add(t1);
+        pTitulo.add(t2);
+        pTitulo.add(t3);
+        titulo1.setFont(new Font("Times new roman", BOLD, 14));
+        titulo2.setFont(new Font("Times new roman", BOLD, 14));
+        titulo3.setFont(new Font("Times new roman", BOLD, 14));
+        controles.add(pTitulo);
+        
 //        Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(fondo1); 
 	this.slider = new GravitySlider(0, 50, 10); 
@@ -103,15 +127,13 @@ public class Ventana extends JFrame implements ComponentListener{
         controles.add(pRapidez);
         
         //Panel Ordenar 1.   
+        JLabel velLabel=new JLabel("  Velocidad");
         JPanel pOrdenar1=new JPanel(); pOrdenar1.setBackground(fondo2);
         pOrdenar1.setLayout(new BorderLayout());
-        pOrdenar1.add(pDireccion,BorderLayout.NORTH);
-        pOrdenar1.add(pRapidez,BorderLayout.CENTER);
+        pOrdenar1.add(velLabel,BorderLayout.NORTH);
+        pOrdenar1.add(pDireccion,BorderLayout.CENTER);
+        pOrdenar1.add(pRapidez,BorderLayout.SOUTH);
         controles.add(pOrdenar1);
-        
-        //Panel Extra.
-        JPanel pExtra1=new JPanel(); pExtra1.setBackground(Color.LIGHT_GRAY); 
-        controles.add(pExtra1);
         
         //Panel Añadir y Quitar Obstaculos.        
         JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); 
