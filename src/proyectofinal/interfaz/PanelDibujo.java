@@ -33,6 +33,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     private Vector2d velPelota;
     private Vector2d respaldoVel;
     private float gravMultiplier;
+    private float radObs;
     private Color cPelota;
     private Color cObstaculo;
     private Color cPotenciador;
@@ -53,6 +54,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.aModo = aModo;
         this.ventana=ventana;
 	this.gravMultiplier = 1;
+        this.radObs= 20;
         this.addMouseListener(this);
 	this.caja = new Caja(ventana.ancho, ventana.alto);
         this.fps = 30;
@@ -66,14 +68,14 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         for(int i=0; i<10;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
             float y= (float)Math.random()*(ventana.alto-25);
-            float rad=(float)Math.random()*80+5;
+            float rad=(float)Math.random()*75+5;
             Circle aux= new Circle(new Vector2d(x,y),rad,0.9f,cObstaculo);
             obstaculos.add(aux);
         }
         for(int i=0; i<2;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
             float y= (float)Math.random()*(ventana.alto-25);
-            float rad=(float)Math.random()*80+5;
+            float rad=(float)Math.random()*75+5;
             Circle aux= new Circle(new Vector2d(x,y),rad,1.1f,cPotenciador);
             obstaculos.add(aux);
         }
@@ -194,6 +196,10 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		pelota.g = multiplicador;
 	}
     
+    public void obstacleRadius(float radio){
+        radObs = radio;
+    }
+    
     /**
     * Dibuja todos los elementos de la simulación: Caja, Pelota, Obstaculos y Linea de velocidad inicial.
     * @param g 
@@ -216,13 +222,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     public void mousePressed(MouseEvent e) {	
         if(aModo.getModo()==1){//Añadir obstaculo.
             if(aForma.getForma()==1){//normal
-                float rad=(float)Math.random()*40+5;
-                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,0.9f,cObstaculo);
+//                float rad=(float)Math.random()*40+5;
+                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),radObs,0.9f,cObstaculo);
                 obstaculos.add(aux);
                 repaint();
             }else if(aForma.getForma()==2){//potenciador
-                float rad=(float)Math.random()*40+5;
-                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),rad,1.1f,cPotenciador);
+//                float rad=(float)Math.random()*40+5;
+                Circle aux= new Circle(new Vector2d(e.getX(),e.getY()),radObs,1.1f,cPotenciador);
                 obstaculos.add(aux);
                 repaint();
             }
