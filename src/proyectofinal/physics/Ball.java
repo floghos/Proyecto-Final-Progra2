@@ -93,8 +93,8 @@ public class Ball extends Circle{
             pos.y = 20+radius;
             velocity.y *= -restitucion;
         }
-		if (pos.x < 20+radius) {
-			pos.x = 20+radius;
+		if (pos.x < radius) {
+			pos.x = radius;
 			velocity.x *= -restitucion;               
 		} else if (pos.x > v.ancho-235-radius) {
 			pos.x =  v.ancho-235-radius;

@@ -232,7 +232,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         }
         caja.paint(g);
         g.setColor(Color.white); //color linea de lanzamiento
-        if(!comienzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*3), (int)(pelota.pos.y+velPelota.y*3));       
+        if(!comienzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*2), (int)(pelota.pos.y+velPelota.y*2));       
     }
     
     /**
@@ -285,7 +285,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	 * Revisa el ArrayList de circulos a cada actualización del Timer comprobando si hay o no colisión entre la pelota y los obstaculos.
 	 */
 	private void motorColisiones() {
-		for(int i=0; i<obstaculos.size();i++){
+		 for(int i=0; i<obstaculos.size();i++){
             Circle aux = obstaculos.get(i);
             Vector2d vPosicion = resta(pelota.pos,aux.pos);
             if(circleVcircle(pelota,aux) && escalarProyeccion(pelota.velocity, vPosicion)>0){

@@ -2,7 +2,6 @@ package proyectofinal.physics;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 /**
  * Clase que define rectangulos.
