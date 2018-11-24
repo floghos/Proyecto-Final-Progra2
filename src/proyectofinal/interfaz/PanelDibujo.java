@@ -25,19 +25,19 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     private AlmacenForma aForma;
     private AlmacenModo aModo;
     private Caja caja;
-    private Timer tiempo;
     private int fps;//cuadros por segundo.
     private Ventana ventana;
     private Ball pelota;
     private ArrayList<Circle> obstaculos;
     private Vector2d gravedad;
     private Vector2d velPelota;
-    private boolean comienzo;
     private Vector2d respaldoVel;
     private float gravMultiplier;
     private Color cPelota;
     private Color cObstaculo;
     private Color cPotenciador;
+	public Timer tiempo;
+    public boolean comienzo;
 	
     /**
      * Método constructor. Crea la pelota en su posición inicial y le da una velocidad aleatoria, crea 12 obstaculos de radio y posición al azar en el espacio de juego.
@@ -86,9 +86,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         this.pelota.setAccel(gravedad);
         this.pelota.setVelocity(velPelota);
     }
-    
+	
+
 	public Caja getCaja() {
 		return this.caja;
+	}
+	public float getGravMultiplier() {
+		return gravMultiplier;
 	}
 	
     /**
@@ -175,6 +179,8 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
                         velPelota=resta(normalize(velPelota),velPelota);
                     }
                     break;
+				default:
+					break;
             }            
             pelota.setVelocity(velPelota);
             repaint();
@@ -185,6 +191,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 		gravMultiplier = multiplicador;
 		System.out.println(multiplicador);
 		pelota.setAccel(vecPorEscalar(gravedad, multiplicador));
+		pelota.g = multiplicador;
 	}
     
     /**

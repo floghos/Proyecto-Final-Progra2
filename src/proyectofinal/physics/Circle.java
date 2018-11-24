@@ -7,10 +7,10 @@ import java.awt.Graphics;
  */
 public class Circle {
     //Esta clase define los circulos, usados para la pelota y obstaculos, que estaran en la simulación.
-    protected float radius;
     public Vector2d pos;
+	protected float radius;
     protected float restitucion;
-    private Color color;
+    protected Color color;
     
     /**
      * Método constructor

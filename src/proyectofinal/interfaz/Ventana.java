@@ -96,7 +96,8 @@ public class Ventana extends JFrame implements ComponentListener{
         //Panel Añadir y Quitar Obstaculos.        
         JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); 
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(Color.LIGHT_GRAY);                
-        BotonModo añadir=new BotonModo("Añadir",1);        
+        BotonModo añadir=new BotonModo("Añadir",1);  
+		añadir.setBackground(Color.LIGHT_GRAY);
         pAñadirQuitar.add(añadir);
         BotonModo quitar=new BotonModo("Quitar",2);        
         pAñadirQuitar.add(quitar);    
@@ -147,6 +148,10 @@ public class Ventana extends JFrame implements ComponentListener{
         this.setSize(ancho,alto);
         this.setVisible(true);
     }
+	
+	public PanelDibujo getDp() {
+		return this.dp;
+	}
 
 	@Override
 	public void componentResized(ComponentEvent ce) {
@@ -271,7 +276,7 @@ public class Ventana extends JFrame implements ComponentListener{
 		
 		public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
-			dp.obstacleRadius(source.getValue()/10f);
+//			dp.obstacleRadius(source.getValue()/10f);
 		}
     }
 }

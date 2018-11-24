@@ -9,7 +9,10 @@ public class Ball extends Circle{
     public Vector2d velocity;
     private Vector2d accel;
     private Ventana v;
+	private Vector2d lastPos;
+	public float g;
 	int timer;//for tests
+	
     /**
      * Método constructor
      * @param pos
@@ -21,6 +24,7 @@ public class Ball extends Circle{
 	this.velocity = new Vector2d();
 	this.accel = new Vector2d();
         this.v=v;
+		this.g = 1;
 		this.timer = 0;
     }
 
@@ -42,11 +46,16 @@ public class Ball extends Circle{
 	translate(velocity);
         restriccion();
 		timer++;
-		if (timer >= 30) {
-			System.out.println("posicion Y: " + pos.y + " | vel: " + Vector2d.modulo(velocity));
-			timer = 0;
+//		if (timer >= 30) {
+//			
+//			timer = 0;
+//		}
+//		System.out.println("posicion: " + pos.x + "," + pos.y +  " | vel: " + Vector2d.modulo(velocity));
+		if(hasStopped()) {
+			v.getDp().tiempo.stop();
+			v.getDp().comienzo = false;
+			v.getDp().velocidadInicial("Relanzar");
 		}
-		
     }
 	
     /**
@@ -54,7 +63,7 @@ public class Ball extends Circle{
      * @param accel 
      */
     public void setAccel(Vector2d accel) {
-	this.accel = accel;
+		this.accel = accel;
     }
 	
     /**
@@ -69,6 +78,16 @@ public class Ball extends Circle{
         this.pos=a;
     }
 	
+	public boolean hasStopped() {
+//		if (lastPos.x == pos.x && lastPos.y == pos.y) {
+//			return true;
+//		} else {
+//			lastPos = new Vector2d(pos);
+//			return false;
+//		}
+		if (this.pos.y >= 534 && Vector2d.modulo(velocity) <= 0.47*g + 0.02) return true;
+		else return false;
+	}
     /**
      * Restringe el rango de movimento del circulo a los confines del area de juego.
      */
@@ -90,5 +109,9 @@ public class Ball extends Circle{
             pos.x =  v.ancho-235-radius;
             velocity.x *= -restitucion;
 	}
+    }
+	public void paint (Graphics g){
+        g.setColor(color);
+        g.fillOval((int)(pos.x-radius), (int)(pos.y-radius), (int)radius*2 + 2, (int)radius*2 + 2);
     }
 }
