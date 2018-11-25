@@ -64,9 +64,9 @@ public class Ventana extends JFrame implements ComponentListener{
         JPanel t3 = new JPanel(); t3.setBackground(fondo0);
         t1.add(titulo1);t2.add(titulo2);t3.add(titulo3);
         pTitulo.add(t1);pTitulo.add(t2);pTitulo.add(t3);
-        titulo1.setFont(new Font("Times new roman", BOLD, 14));
-        titulo2.setFont(new Font("Times new roman", BOLD, 14));
-        titulo3.setFont(new Font("Times new roman", BOLD, 14));
+        titulo1.setFont(new Font("Georgia", BOLD, 21));
+        titulo2.setFont(new Font("Georgia", BOLD, 21));
+        titulo3.setFont(new Font("Georgia", BOLD, 21));
         controles.add(pTitulo);
         
         //Panel Gravedad.
@@ -92,6 +92,7 @@ public class Ventana extends JFrame implements ComponentListener{
 
         //Panel Nombre Slider.
         gravLabel=new JLabel("  Gravedad: " + 1f);
+        gravLabel.setFont(new Font("Times new roman", PLAIN, 13));
         JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(fondo1);
         pOrdenar.setLayout(new BorderLayout());
         pOrdenar.add(gravLabel,BorderLayout.NORTH);
@@ -100,6 +101,7 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Dirección.
         JLabel direccion= new JLabel("Direccion"); 
+        direccion.setFont(new Font("Times new roman", PLAIN, 13));
         JPanel pDireccion=new JPanel(); pDireccion.setBackground(fondo2); 
         pDireccion.add(direccion);
         BotonDireccion d1=new BotonDireccion("↺");
@@ -111,7 +113,8 @@ public class Ventana extends JFrame implements ComponentListener{
         controles.add(pDireccion);
         
         //Panel Rapidez.
-        JLabel rapidez= new JLabel("Rapidez");        
+        JLabel rapidez= new JLabel("Rapidez"); 
+        rapidez.setFont(new Font("Times new roman", PLAIN, 13));
         JPanel pRapidez=new JPanel(); pRapidez.setBackground(fondo2); 
         pRapidez.add(rapidez);
         BotonDireccion b1=new BotonDireccion("-");
@@ -124,6 +127,7 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Ordenar 1.   
         JLabel velLabel=new JLabel("  Velocidad");
+        velLabel.setFont(new Font("Times new roman", PLAIN, 16));
         JPanel pOrdenar1=new JPanel(); pOrdenar1.setBackground(fondo2);
         pOrdenar1.setLayout(new BorderLayout());
         pOrdenar1.add(velLabel,BorderLayout.NORTH);
@@ -133,12 +137,14 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Añadir y Quitar Obstaculos.        
         JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); 
-        añadirQuitar.setFont(new Font("Times new roman", PLAIN, 15));
+        añadirQuitar.setFont(new Font("Times new roman", PLAIN, 16));
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(fondo3);                
-        BotonModo añadir=new BotonModo("Añadir",1);  
+        BotonModo añadir=new BotonModo("Añadir",1);
+        añadir.setFont(new Font("Times new roman", PLAIN, 13));
 	añadir.setBackground(fondo3);
         pAñadirQuitar.add(añadir);
-        BotonModo quitar=new BotonModo("Quitar",2);     
+        BotonModo quitar=new BotonModo("Quitar",2); 
+        quitar.setFont(new Font("Times new roman", PLAIN, 13));
         quitar.setBackground(fondo3);
         pAñadirQuitar.add(quitar);    
         ButtonGroup bGrupo1=new ButtonGroup();
@@ -146,10 +152,12 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Obstaculo Normal-Potenciador
         JPanel pNormalPoten=new JPanel(); pNormalPoten.setBackground(fondo3);                
-        BotonTipo normal=new BotonTipo("Normal",1);    
+        BotonTipo normal=new BotonTipo("Normal",1); 
+        normal.setFont(new Font("Times new roman", PLAIN, 13));
         normal.setBackground(fondo3);
         pNormalPoten.add(normal);
         BotonTipo potenciador=new BotonTipo("Potenciador",2);
+        potenciador.setFont(new Font("Times new roman", PLAIN, 13));
         potenciador.setBackground(fondo3);
         pNormalPoten.add(potenciador);    
         ButtonGroup bGrupo2=new ButtonGroup();
@@ -187,6 +195,7 @@ public class Ventana extends JFrame implements ComponentListener{
         		
         //Panel Nombre Modificador Radio.
         radLabel=new JLabel("  Radio: " + 20f);
+        radLabel.setFont(new Font("Times new roman", PLAIN, 13));
         JPanel pOrdenarRad=new JPanel(); pOrdenarRad.setBackground(fondo3);
         pOrdenarRad.setLayout(new BorderLayout());
         pOrdenarRad.add(radLabel,BorderLayout.CENTER);
@@ -196,7 +205,9 @@ public class Ventana extends JFrame implements ComponentListener{
         //Panel Restart-Reset.
         JPanel pRestartReset=new JPanel(); pRestartReset.setBackground(fondo4);
         ActionButton r1=new ActionButton("Restart");
+        r1.setFont(new Font("Times new roman", PLAIN, 13));
         ActionButton r2=new ActionButton("Reset");
+        r2.setFont(new Font("Times new roman", PLAIN, 13));
         r1.setBackground(fondo4);
         r2.setBackground(fondo4);
         pRestartReset.add(r1);
@@ -206,7 +217,9 @@ public class Ventana extends JFrame implements ComponentListener{
         //Panel Start-Stop.
         JPanel pStartStop=new JPanel(); pStartStop.setBackground(fondo4);
         ActionButton s1=new ActionButton("Start");
+        s1.setFont(new Font("Times new roman", PLAIN, 13));
         ActionButton s2=new ActionButton("Stop");
+        s2.setFont(new Font("Times new roman", PLAIN, 13));
         s1.setBackground(fondo4);
         s2.setBackground(fondo4);
 	pStartStop.add(s1);
