@@ -91,7 +91,6 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
             } else {
                 i--;
             }
-            obstaculos.add(aux);
         }
 
         velPelota = new Vector2d(1, 0);
@@ -111,6 +110,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	return this.caja;
     }
     
+	/**
+	 * Accessor para pelota.
+	 * @return 
+	 */
+	public Ball getPelota() {
+		return this.pelota;
+	}
     /**
      * Accessor para gravMultiplier.
      * @return 
@@ -249,7 +255,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
         }
         caja.paint(g);
         g.setColor(Color.white); //color linea de lanzamiento
-        if(!comienzo)g.drawLine((int)pelota.pos.x, (int)pelota.pos.y, (int)(pelota.pos.x+velPelota.x*2), (int)(pelota.pos.y+velPelota.y*2));       
+        if(!comienzo)g.drawLine(Math.round(pelota.pos.x), Math.round(pelota.pos.y), Math.round(pelota.pos.x+velPelota.x*2), Math.round(pelota.pos.y+velPelota.y*2));       
     }
     
     /**

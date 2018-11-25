@@ -93,8 +93,8 @@ public class Ball extends Circle{
             pos.y = 20+radius;
             velocity.y *= -restitucion;
         }
-		if (pos.x < radius) {
-			pos.x = radius;
+		if (pos.x < 20 + radius) {
+			pos.x = 20 + radius;
 			velocity.x *= -restitucion;               
 		} else if (pos.x > v.ancho-235-radius) {
 			pos.x =  v.ancho-235-radius;
@@ -103,6 +103,6 @@ public class Ball extends Circle{
     }
 	public void paint (Graphics g){
         g.setColor(color);
-        g.fillOval((int)(pos.x-radius), (int)(pos.y-radius), (int)radius*2 + 2, (int)radius*2 + 2);
+        g.fillOval(Math.round(pos.x-radius), Math.round(pos.y-radius), (int)radius*2 + 2, (int)radius*2 + 2);
     }
 }

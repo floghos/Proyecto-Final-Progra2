@@ -8,7 +8,7 @@ import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.basic.BasicSliderUI;
+import proyectofinal.physics.Ball;
 
 /**
  * Extensión de JFrame, define una ventana para la aplicación, junto con sus respectivos botones, JPanel, etc...
@@ -237,11 +237,30 @@ public class Ventana extends JFrame implements ComponentListener{
 
     @Override
     public void componentResized(ComponentEvent ce) {
-	Dimension d = new Dimension();
-	d = this.getSize();
-	this.alto = d.height;
-	this.ancho = d.width;
-	dp.getCaja().updateSize(this.alto, this.ancho);
+		Dimension d = new Dimension();
+		d = this.getSize();
+		this.alto = d.height;
+		this.ancho = d.width;
+		dp.getCaja().updateSize(this.alto, this.ancho);
+		Ball pelota = dp.getPelota();
+		float r = pelota.getRadius();
+		if (!dp.comienzo) {
+			if (pelota.pos.y != 40 || pelota.pos.x != 40) {
+				if (pelota.pos.y >= this.alto - 46 - r) {
+					pelota.pos.y = this.alto - 46 - r;
+				}
+				if (pelota.pos.x > this.ancho - 235 - r) {
+					pelota.pos.x = this.ancho - 235 - r;
+				}
+				if (pelota.pos.x < 20 + r) {
+					pelota.pos.x = 20 + r;
+				}
+				if (pelota.pos.y < 20 + r) {
+					pelota.pos.y = 20 + r;
+				}
+				dp.repaint();
+			}
+		}
     }
 	
     public void componentMoved(ComponentEvent ce) {;}
@@ -379,12 +398,12 @@ public class Ventana extends JFrame implements ComponentListener{
     	public radiusSlider(int min, int max, int ini) {
             super(min, max, ini);
             this.addChangeListener(this);
-	}
+		}
 		
-	public void stateChanged(ChangeEvent e) {
-            JSlider source = (JSlider)e.getSource();
-            dp.obstacleRadius(source.getValue()/10f);
-            radLabel.setText("  Radio: " + (source.getValue()/10f));        
-	}
+		public void stateChanged(ChangeEvent e) {
+				JSlider source = (JSlider)e.getSource();
+				dp.obstacleRadius(source.getValue()/10f);
+				radLabel.setText("  Radio: " + (source.getValue()/10f));        
+		}
     }
 }
