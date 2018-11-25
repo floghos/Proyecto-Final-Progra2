@@ -37,6 +37,7 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
     private Vector2d respaldoVel;
     private float gravMultiplier;
     private float radObs;
+    private Color cCaja;
     private Color cPelota;
     private Color cObstaculo;
     private Color cPotenciador;
@@ -51,21 +52,23 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
      */
     public PanelDibujo(AlmacenTipo aTipo, AlmacenModo aModo, Ventana ventana){        
         comienzo=false;
-        this.setBackground(new Color(150,150,100));
+        this.setBackground(ventana.fondo1);
         obstaculos= new ArrayList();
         this.aTipo = aTipo;
         this.aModo = aModo;
         this.ventana=ventana;
+        this.cCaja = ventana.fondo0;
+        this.cPelota = ventana.fondo2;
+        this.cObstaculo = ventana.fondo4;
+        this.cPotenciador = ventana.fondo3;
 	this.gravMultiplier = 1;
         this.radObs= 20;
         this.addMouseListener(this);
-	this.caja = new Caja(ventana.ancho, ventana.alto);
+	this.caja = new Caja(ventana.ancho, ventana.alto, cCaja);
         this.fps = 30;
         tiempo = new Timer(1000/fps,null);
         tiempo.addActionListener(this);
-        cPelota=new Color(150,40,40);
-        cObstaculo=new Color(40,40,40);
-        cPotenciador=new Color(40,70,120);
+
         pelota= new Ball(new Vector2d(40,40),20f,ventana,0.9f,cPelota);
         for(int i=0; i<10;i++){
             float x= (float)Math.random()*(ventana.ancho-215);
