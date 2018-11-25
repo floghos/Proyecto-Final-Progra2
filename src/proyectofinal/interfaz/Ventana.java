@@ -29,11 +29,6 @@ public class Ventana extends JFrame implements ComponentListener{
     public Color fondo2;
     public Color fondo3;
     public Color fondo4;
-    private Color lTit;
-    private Color lGrav;
-    private Color lVel;
-    private Color lAñQui;
-    private Color lStaStop;
     private Font letraChica;
     private Font letraMediana;
     private Font letraGrande;
@@ -50,11 +45,6 @@ public class Ventana extends JFrame implements ComponentListener{
 	fondo2= new Color(215, 0, 38);
 	fondo3= new Color(248, 245, 242);
 	fondo4= new Color(237, 184, 61);
-	lTit = new Color(248, 245, 242);
-	lGrav = new Color(248, 245, 242);
-	lVel = Color.WHITE;
-	lAñQui = Color.BLACK;
-	lStaStop = Color.BLACK;
 	letraChica = new Font("Times new roman", PLAIN, 13);
 	letraMediana = new Font("Times new roman", PLAIN, 16);
 	letraGrande = new Font("Georgia", BOLD, 22);
@@ -71,9 +61,9 @@ public class Ventana extends JFrame implements ComponentListener{
         controles.setBackground(new Color(20,20,20));
         
         //Panel Titulo.
-        JLabel titulo1=new JLabel("SIMULADOR"); titulo1.setForeground(lTit); titulo1.setFont(letraGrande);
-        JLabel titulo2=new JLabel("DE"); titulo2.setForeground(lTit); titulo2.setFont(letraGrande);
-        JLabel titulo3=new JLabel("COLISIONES"); titulo3.setForeground(lTit); titulo3.setFont(letraGrande);
+        JLabel titulo1=new JLabel("SIMULADOR"); titulo1.setForeground(fondo3); titulo1.setFont(letraGrande);
+        JLabel titulo2=new JLabel("DE"); titulo2.setForeground(fondo3); titulo2.setFont(letraGrande);
+        JLabel titulo3=new JLabel("COLISIONES"); titulo3.setForeground(fondo3); titulo3.setFont(letraGrande);
         JPanel pTitulo=new JPanel();
         pTitulo.setLayout(new GridLayout(3,1));
         JPanel t1 = new JPanel(); t1.setBackground(fondo0); 
@@ -85,16 +75,16 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(fondo1); 
-	this.slider = new GravitySlider(0, 50, 10); slider.setBackground(fondo1); slider.setForeground(lGrav);
+	this.slider = new GravitySlider(0, 50, 10); slider.setBackground(fondo1); slider.setForeground(fondo3);
 	Hashtable etiquetas = new Hashtable();
         JLabel LabelG0=new JLabel("0"),LabelG1 =new JLabel("1g"), LabelG2=new JLabel("2g");
         JLabel LabelG3=new JLabel("3g"),LabelG4 =new JLabel("4g"),LabelG5 =new JLabel("5g");
-	etiquetas.put(0, LabelG0); LabelG0.setForeground(lGrav); LabelG0.setFont(letraChica);
-	etiquetas.put(10, LabelG1); LabelG1.setForeground(lGrav); LabelG1.setFont(letraChica);
-	etiquetas.put(20, LabelG2); LabelG2.setForeground(lGrav); LabelG2.setFont(letraChica);
-	etiquetas.put(30, LabelG3); LabelG3.setForeground(lGrav); LabelG3.setFont(letraChica);
-	etiquetas.put(40, LabelG4); LabelG4.setForeground(lGrav); LabelG4.setFont(letraChica);
-	etiquetas.put(50, LabelG5); LabelG5.setForeground(lGrav); LabelG5.setFont(letraChica);
+	etiquetas.put(0, LabelG0); LabelG0.setForeground(fondo3); LabelG0.setFont(letraChica);
+	etiquetas.put(10, LabelG1); LabelG1.setForeground(fondo3); LabelG1.setFont(letraChica);
+	etiquetas.put(20, LabelG2); LabelG2.setForeground(fondo3); LabelG2.setFont(letraChica);
+	etiquetas.put(30, LabelG3); LabelG3.setForeground(fondo3); LabelG3.setFont(letraChica);
+	etiquetas.put(40, LabelG4); LabelG4.setForeground(fondo3); LabelG4.setFont(letraChica);
+	etiquetas.put(50, LabelG5); LabelG5.setForeground(fondo3); LabelG5.setFont(letraChica);
 	slider.setLabelTable(etiquetas);
 	slider.setMajorTickSpacing(10);
 	slider.setMinorTickSpacing(1);
@@ -104,7 +94,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	pGravedad.add(slider);
 
         //Panel Nombre Slider.
-        gravLabel=new JLabel("  Gravedad: " + 1f); gravLabel.setForeground(lGrav); gravLabel.setFont(letraChica);
+        gravLabel=new JLabel("  Gravedad: " + 1f); gravLabel.setForeground(fondo3); gravLabel.setFont(letraChica);
         JPanel pOrdenar=new JPanel(); pOrdenar.setBackground(fondo1);
         pOrdenar.setLayout(new BorderLayout());
         pOrdenar.add(gravLabel,BorderLayout.NORTH);
@@ -112,29 +102,29 @@ public class Ventana extends JFrame implements ComponentListener{
         controles.add(pOrdenar);
         
         //Panel Dirección.
-        JLabel direccion= new JLabel("Direccion"); direccion.setForeground(lVel);direccion.setFont(letraChica);
+        JLabel direccion= new JLabel("Direccion"); direccion.setForeground(fondo3);direccion.setFont(letraChica);
         JPanel pDireccion=new JPanel(); pDireccion.setBackground(fondo2); 
         pDireccion.add(direccion);
-        BotonDireccion d1=new BotonDireccion("↺"); d1.setBackground(fondo2); d1.setForeground(lVel);
+        BotonDireccion d1=new BotonDireccion("↺"); d1.setBackground(fondo2); d1.setForeground(fondo3);
 	d1.setToolTipText("Gira en sentido anti-horario");
-        BotonDireccion d2=new BotonDireccion("↻"); d2.setBackground(fondo2); d2.setForeground(lVel);
+        BotonDireccion d2=new BotonDireccion("↻"); d2.setBackground(fondo2); d2.setForeground(fondo3);
 	d2.setToolTipText("Gira en sentido horario");
         pDireccion.add(d1);
         pDireccion.add(d2);
         controles.add(pDireccion);
         
         //Panel Rapidez.
-        JLabel rapidez= new JLabel("Rapidez"); rapidez.setForeground(lVel); rapidez.setFont(letraChica);
+        JLabel rapidez= new JLabel("Rapidez"); rapidez.setForeground(fondo3); rapidez.setFont(letraChica);
         JPanel pRapidez=new JPanel(); pRapidez.setBackground(fondo2);
         pRapidez.add(rapidez);
-        BotonDireccion b1=new BotonDireccion("-"); b1.setBackground(fondo2); b1.setForeground(lVel);
-        BotonDireccion b2=new BotonDireccion("+"); b2.setBackground(fondo2); b2.setForeground(lVel);        
+        BotonDireccion b1=new BotonDireccion("-"); b1.setBackground(fondo2); b1.setForeground(fondo3);
+        BotonDireccion b2=new BotonDireccion("+"); b2.setBackground(fondo2); b2.setForeground(fondo3);        
         pRapidez.add(b1);
         pRapidez.add(b2);
         controles.add(pRapidez);
         
         //Panel Ordenar 1.   
-        JLabel velLabel=new JLabel("  Velocidad"); velLabel.setForeground(lVel); velLabel.setFont(letraMediana);
+        JLabel velLabel=new JLabel("  Velocidad"); velLabel.setForeground(fondo3); velLabel.setFont(letraMediana);
         JPanel pOrdenar1=new JPanel(); pOrdenar1.setBackground(fondo2);
         pOrdenar1.setLayout(new BorderLayout());
         pOrdenar1.add(velLabel,BorderLayout.NORTH);
@@ -143,10 +133,10 @@ public class Ventana extends JFrame implements ComponentListener{
         controles.add(pOrdenar1);
         
         //Panel Añadir y Quitar Obstaculos.        
-        JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); añadirQuitar.setForeground(lAñQui); añadirQuitar.setFont(letraMediana);
+        JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); añadirQuitar.setForeground(fondo0); añadirQuitar.setFont(letraMediana);
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(fondo3);                
-        BotonModo añadir=new BotonModo("Añadir",1); añadir.setBackground(fondo3); añadir.setForeground(lAñQui); añadir.setFont(letraChica); 
-        BotonModo quitar=new BotonModo("Quitar",2); quitar.setBackground(fondo3); quitar.setForeground(lAñQui); quitar.setFont(letraChica);
+        BotonModo añadir=new BotonModo("Añadir",1); añadir.setBackground(fondo3); añadir.setForeground(fondo0); añadir.setFont(letraChica); 
+        BotonModo quitar=new BotonModo("Quitar",2); quitar.setBackground(fondo3); quitar.setForeground(fondo0); quitar.setFont(letraChica);
         pAñadirQuitar.add(añadir);
         pAñadirQuitar.add(quitar);    
         ButtonGroup bGrupo1=new ButtonGroup();
@@ -154,9 +144,9 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Obstaculo Normal-Potenciador
         JPanel pNormalPoten=new JPanel(); pNormalPoten.setBackground(fondo3);                
-        BotonTipo normal=new BotonTipo("Normal",1); normal.setBackground(fondo3); normal.setForeground(lAñQui); normal.setFont(letraChica); 
+        BotonTipo normal=new BotonTipo("Normal",1); normal.setBackground(fondo3); normal.setForeground(fondo0); normal.setFont(letraChica); 
 	normal.setToolTipText("Agrega un obstaculo que disminuye la velocidad con cada colisión");
-        BotonTipo potenciador=new BotonTipo("Potenciador",2); potenciador.setBackground(fondo3); potenciador.setForeground(lAñQui); potenciador.setFont(letraChica); 
+        BotonTipo potenciador=new BotonTipo("Potenciador",2); potenciador.setBackground(fondo3); potenciador.setForeground(fondo0); potenciador.setFont(letraChica); 
 	potenciador.setToolTipText("Agrega un obstaculo que aumenta la velocidad con cada colisión");
         pNormalPoten.add(normal);
         pNormalPoten.add(potenciador);    
@@ -173,20 +163,20 @@ public class Ventana extends JFrame implements ComponentListener{
     
         //Panel Radio Obstaculos.
         JPanel pRadObs=new JPanel(); pRadObs.setBackground(fondo3);
-	this.radSlider = new radiusSlider(50, 800, 200); radSlider.setBackground(fondo3); radSlider.setForeground(lAñQui);
+	this.radSlider = new radiusSlider(50, 800, 200); radSlider.setBackground(fondo3); radSlider.setForeground(fondo0);
 	Hashtable etiquetasRadio = new Hashtable();
         JLabel LabelR0=new JLabel(""), LabelR1=new JLabel("1"), LabelR2=new JLabel("2");
         JLabel LabelR3=new JLabel("3"), LabelR4=new JLabel("4"), LabelR5=new JLabel("5");
         JLabel LabelR6=new JLabel("6"), LabelR7=new JLabel("7"), LabelR8=new JLabel("8");
-	etiquetasRadio.put(50, LabelR0); LabelR0.setForeground(lAñQui); LabelR0.setFont(letraChica);
-	etiquetasRadio.put(100, LabelR1); LabelR1.setForeground(lAñQui); LabelR1.setFont(letraChica);
-	etiquetasRadio.put(200, LabelR2); LabelR2.setForeground(lAñQui); LabelR2.setFont(letraChica);
-	etiquetasRadio.put(300, LabelR3); LabelR3.setForeground(lAñQui); LabelR3.setFont(letraChica);
-	etiquetasRadio.put(400, LabelR4); LabelR4.setForeground(lAñQui); LabelR4.setFont(letraChica);
-	etiquetasRadio.put(500, LabelR5); LabelR5.setForeground(lAñQui); LabelR5.setFont(letraChica);
-        etiquetasRadio.put(600, LabelR6); LabelR6.setForeground(lAñQui); LabelR6.setFont(letraChica);
-        etiquetasRadio.put(700, LabelR7); LabelR7.setForeground(lAñQui); LabelR7.setFont(letraChica);
-        etiquetasRadio.put(800, LabelR8); LabelR8.setForeground(lAñQui); LabelR8.setFont(letraChica);
+	etiquetasRadio.put(50, LabelR0); LabelR0.setForeground(fondo0); LabelR0.setFont(letraChica);
+	etiquetasRadio.put(100, LabelR1); LabelR1.setForeground(fondo0); LabelR1.setFont(letraChica);
+	etiquetasRadio.put(200, LabelR2); LabelR2.setForeground(fondo0); LabelR2.setFont(letraChica);
+	etiquetasRadio.put(300, LabelR3); LabelR3.setForeground(fondo0); LabelR3.setFont(letraChica);
+	etiquetasRadio.put(400, LabelR4); LabelR4.setForeground(fondo0); LabelR4.setFont(letraChica);
+	etiquetasRadio.put(500, LabelR5); LabelR5.setForeground(fondo0); LabelR5.setFont(letraChica);
+        etiquetasRadio.put(600, LabelR6); LabelR6.setForeground(fondo0); LabelR6.setFont(letraChica);
+        etiquetasRadio.put(700, LabelR7); LabelR7.setForeground(fondo0); LabelR7.setFont(letraChica);
+        etiquetasRadio.put(800, LabelR8); LabelR8.setForeground(fondo0); LabelR8.setFont(letraChica);
 	radSlider.setLabelTable(etiquetasRadio);         
 	radSlider.setMajorTickSpacing(50);
 	radSlider.setMinorTickSpacing(10);
@@ -196,7 +186,7 @@ public class Ventana extends JFrame implements ComponentListener{
 	pRadObs.add(radSlider);
         		
         //Panel Nombre Modificador Radio.
-        radLabel=new JLabel("  Radio: " + 20f); radLabel.setForeground(lAñQui); radLabel.setFont(letraChica);
+        radLabel=new JLabel("  Radio: " + 20f); radLabel.setForeground(fondo0); radLabel.setFont(letraChica);
         JPanel pOrdenarRad=new JPanel(); pOrdenarRad.setBackground(fondo3);
         pOrdenarRad.setLayout(new BorderLayout());
         pOrdenarRad.add(radLabel,BorderLayout.CENTER);
@@ -205,8 +195,8 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Restart-Reset.
         JPanel pRestartReset=new JPanel(); pRestartReset.setBackground(fondo4);
-        ActionButton r1=new ActionButton("Restart"); r1.setBackground(fondo4); r1.setForeground(lStaStop); r1.setFont(letraChica);
-        ActionButton r2=new ActionButton("Reset"); r2.setBackground(fondo4); r2.setForeground(lStaStop); r2.setFont(letraChica);
+        ActionButton r1=new ActionButton("Restart"); r1.setBackground(fondo4); r1.setForeground(fondo0); r1.setFont(letraChica);
+        ActionButton r2=new ActionButton("Reset"); r2.setBackground(fondo4); r2.setForeground(fondo0); r2.setFont(letraChica);
         r1.setToolTipText("Reiniciar en mismo mapa");
         r2.setToolTipText("Reiniciar en mapa aleatorio");
         pRestartReset.add(r1);
@@ -215,8 +205,8 @@ public class Ventana extends JFrame implements ComponentListener{
 		
         //Panel Start-Stop.
         JPanel pStartStop=new JPanel(); pStartStop.setBackground(fondo4);
-        ActionButton s1=new ActionButton("Start"); s1.setBackground(fondo4); s1.setForeground(lStaStop); s1.setFont(letraChica);
-        ActionButton s2=new ActionButton("Stop"); s2.setBackground(fondo4); s2.setForeground(lStaStop); s2.setFont(letraChica);
+        ActionButton s1=new ActionButton("Start"); s1.setBackground(fondo4); s1.setForeground(fondo0); s1.setFont(letraChica);
+        ActionButton s2=new ActionButton("Stop"); s2.setBackground(fondo4); s2.setForeground(fondo0); s2.setFont(letraChica);
 	pStartStop.add(s1);
 	pStartStop.add(s2);
         controles.add(pStartStop);
