@@ -42,29 +42,29 @@ public class Ventana extends JFrame implements ComponentListener{
      * Método constructor.
      */
     public Ventana(){
-	super("Bounce!");
-	this.alto = 600;
-	this.ancho = 940;
-	fondo0= new Color(0 ,0 ,0);
-	fondo1= new Color(0, 11, 41);
-	fondo2= new Color(215, 0, 38);
-	fondo3= new Color(248, 245, 242);
-	fondo4= new Color(237, 184, 61);
-        lTit = new Color(248, 245, 242);
-        lGrav = new Color(248, 245, 242);
-        lVel = Color.WHITE;
-        lAñQui = Color.BLACK;
-        lStaStop = Color.BLACK;
-        letraChica = new Font("Times new roman", PLAIN, 13);
-        letraMediana = new Font("Times new roman", PLAIN, 16);
-        letraGrande = new Font("Georgia", BOLD, 22);
-        
-        this.setLayout(new BorderLayout());
-        at=new AlmacenTipo();
-        am=new AlmacenModo();
-        dp=new PanelDibujo(at,am, this);
-	this.addComponentListener(this);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		super("Bounce!");
+		this.alto = 600;
+		this.ancho = 940;
+		fondo0= new Color(0 ,0 ,0);
+		fondo1= new Color(0, 11, 41);
+		fondo2= new Color(215, 0, 38);
+		fondo3= new Color(248, 245, 242);
+		fondo4= new Color(237, 184, 61);
+		lTit = new Color(248, 245, 242);
+		lGrav = new Color(248, 245, 242);
+		lVel = Color.WHITE;
+		lAñQui = Color.BLACK;
+		lStaStop = Color.BLACK;
+		letraChica = new Font("Times new roman", PLAIN, 13);
+		letraMediana = new Font("Times new roman", PLAIN, 16);
+		letraGrande = new Font("Georgia", BOLD, 22);
+
+		this.setLayout(new BorderLayout());
+		at=new AlmacenTipo();
+		am=new AlmacenModo();
+		dp=new PanelDibujo(at,am, this);
+		this.addComponentListener(this);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(dp,BorderLayout.CENTER);
         JPanel controles=new JPanel();
         controles.setLayout(new GridLayout(6,1));
@@ -85,23 +85,23 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Gravedad.
         JPanel pGravedad=new JPanel(); pGravedad.setBackground(fondo1); 
-	this.slider = new GravitySlider(0, 50, 10); slider.setBackground(fondo1); slider.setForeground(lGrav);
-	Hashtable etiquetas = new Hashtable();
+		this.slider = new GravitySlider(0, 50, 10); slider.setBackground(fondo1); slider.setForeground(lGrav);
+		Hashtable etiquetas = new Hashtable();
         JLabel LabelG0=new JLabel("0"),LabelG1 =new JLabel("1g"), LabelG2=new JLabel("2g");
         JLabel LabelG3=new JLabel("3g"),LabelG4 =new JLabel("4g"),LabelG5 =new JLabel("5g");
-	etiquetas.put(0, LabelG0); LabelG0.setForeground(lGrav); LabelG0.setFont(letraChica);
-	etiquetas.put(10, LabelG1); LabelG1.setForeground(lGrav); LabelG1.setFont(letraChica);
-	etiquetas.put(20, LabelG2); LabelG2.setForeground(lGrav); LabelG2.setFont(letraChica);
-	etiquetas.put(30, LabelG3); LabelG3.setForeground(lGrav); LabelG3.setFont(letraChica);
-	etiquetas.put(40, LabelG4); LabelG4.setForeground(lGrav); LabelG4.setFont(letraChica);
-	etiquetas.put(50, LabelG5); LabelG5.setForeground(lGrav); LabelG5.setFont(letraChica);
-	slider.setLabelTable(etiquetas);
-	slider.setMajorTickSpacing(10);
-	slider.setMinorTickSpacing(1);
-	slider.setPaintTicks(true);
-	slider.setPaintLabels(true);        
-	slider.setToolTipText("Modifica la gravedad");
-	pGravedad.add(slider);
+		etiquetas.put(0, LabelG0); LabelG0.setForeground(lGrav); LabelG0.setFont(letraChica);
+		etiquetas.put(10, LabelG1); LabelG1.setForeground(lGrav); LabelG1.setFont(letraChica);
+		etiquetas.put(20, LabelG2); LabelG2.setForeground(lGrav); LabelG2.setFont(letraChica);
+		etiquetas.put(30, LabelG3); LabelG3.setForeground(lGrav); LabelG3.setFont(letraChica);
+		etiquetas.put(40, LabelG4); LabelG4.setForeground(lGrav); LabelG4.setFont(letraChica);
+		etiquetas.put(50, LabelG5); LabelG5.setForeground(lGrav); LabelG5.setFont(letraChica);
+		slider.setLabelTable(etiquetas);
+		slider.setMajorTickSpacing(10);
+		slider.setMinorTickSpacing(1);
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);        
+		slider.setToolTipText("Modifica la gravedad");
+		pGravedad.add(slider);
 
         //Panel Nombre Slider.
         gravLabel=new JLabel("  Gravedad: " + 1f); gravLabel.setForeground(lGrav); gravLabel.setFont(letraChica);
@@ -116,7 +116,9 @@ public class Ventana extends JFrame implements ComponentListener{
         JPanel pDireccion=new JPanel(); pDireccion.setBackground(fondo2); 
         pDireccion.add(direccion);
         BotonDireccion d1=new BotonDireccion("↺"); d1.setBackground(fondo2); d1.setForeground(lVel);
+		d1.setToolTipText("Gira en sentido anti-horario");
         BotonDireccion d2=new BotonDireccion("↻"); d2.setBackground(fondo2); d2.setForeground(lVel);
+		d2.setToolTipText("Gira en sentido horario");
         pDireccion.add(d1);
         pDireccion.add(d2);
         controles.add(pDireccion);
@@ -143,7 +145,7 @@ public class Ventana extends JFrame implements ComponentListener{
         //Panel Añadir y Quitar Obstaculos.        
         JLabel añadirQuitar= new JLabel(" Añadir/Quitar Obstaculo"); añadirQuitar.setForeground(lAñQui); añadirQuitar.setFont(letraMediana);
         JPanel pAñadirQuitar=new JPanel(); pAñadirQuitar.setBackground(fondo3);                
-        BotonModo añadir=new BotonModo("Añadir",1); añadir.setBackground(fondo3); añadir.setForeground(lAñQui); añadir.setFont(letraChica);
+        BotonModo añadir=new BotonModo("Añadir",1); añadir.setBackground(fondo3); añadir.setForeground(lAñQui); añadir.setFont(letraChica); 
         BotonModo quitar=new BotonModo("Quitar",2); quitar.setBackground(fondo3); quitar.setForeground(lAñQui); quitar.setFont(letraChica);
         pAñadirQuitar.add(añadir);
         pAñadirQuitar.add(quitar);    
@@ -152,8 +154,10 @@ public class Ventana extends JFrame implements ComponentListener{
         
         //Panel Obstaculo Normal-Potenciador
         JPanel pNormalPoten=new JPanel(); pNormalPoten.setBackground(fondo3);                
-        BotonTipo normal=new BotonTipo("Normal",1); normal.setBackground(fondo3); normal.setForeground(lAñQui); normal.setFont(letraChica);
-        BotonTipo potenciador=new BotonTipo("Potenciador",2); potenciador.setBackground(fondo3); potenciador.setForeground(lAñQui); potenciador.setFont(letraChica);
+        BotonTipo normal=new BotonTipo("Normal",1); normal.setBackground(fondo3); normal.setForeground(lAñQui); normal.setFont(letraChica); 
+		normal.setToolTipText("Agrega un obstaculo que disminuye la velocidad con cada colisión");
+        BotonTipo potenciador=new BotonTipo("Potenciador",2); potenciador.setBackground(fondo3); potenciador.setForeground(lAñQui); potenciador.setFont(letraChica); 
+		potenciador.setToolTipText("Agrega un obstaculo que aumenta la velocidad con cada colisión");
         pNormalPoten.add(normal);
         pNormalPoten.add(potenciador);    
         ButtonGroup bGrupo2=new ButtonGroup();
@@ -169,27 +173,27 @@ public class Ventana extends JFrame implements ComponentListener{
     
         //Panel Radio Obstaculos.
         JPanel pRadObs=new JPanel(); pRadObs.setBackground(fondo3);
-	this.radSlider = new radiusSlider(50, 800, 200); radSlider.setBackground(fondo3); radSlider.setForeground(lAñQui);
-	Hashtable etiquetasRadio = new Hashtable();
+		this.radSlider = new radiusSlider(50, 800, 200); radSlider.setBackground(fondo3); radSlider.setForeground(lAñQui);
+		Hashtable etiquetasRadio = new Hashtable();
         JLabel LabelR0=new JLabel(""), LabelR1=new JLabel("1"), LabelR2=new JLabel("2");
         JLabel  LabelR3=new JLabel("3"), LabelR4=new JLabel("4"), LabelR5=new JLabel("5");
         JLabel  LabelR6=new JLabel("6"), LabelR7=new JLabel("7"), LabelR8=new JLabel("8");
-	etiquetasRadio.put(50, LabelR0); LabelR0.setForeground(lAñQui); LabelR0.setFont(letraChica);
-	etiquetasRadio.put(100, LabelR1); LabelR1.setForeground(lAñQui); LabelR1.setFont(letraChica);
-	etiquetasRadio.put(200, LabelR2); LabelR2.setForeground(lAñQui); LabelR2.setFont(letraChica);
-	etiquetasRadio.put(300, LabelR3); LabelR3.setForeground(lAñQui); LabelR3.setFont(letraChica);
-	etiquetasRadio.put(400, LabelR4); LabelR4.setForeground(lAñQui); LabelR4.setFont(letraChica);
-	etiquetasRadio.put(500, LabelR5); LabelR5.setForeground(lAñQui); LabelR5.setFont(letraChica);
+		etiquetasRadio.put(50, LabelR0); LabelR0.setForeground(lAñQui); LabelR0.setFont(letraChica);
+		etiquetasRadio.put(100, LabelR1); LabelR1.setForeground(lAñQui); LabelR1.setFont(letraChica);
+		etiquetasRadio.put(200, LabelR2); LabelR2.setForeground(lAñQui); LabelR2.setFont(letraChica);
+		etiquetasRadio.put(300, LabelR3); LabelR3.setForeground(lAñQui); LabelR3.setFont(letraChica);
+		etiquetasRadio.put(400, LabelR4); LabelR4.setForeground(lAñQui); LabelR4.setFont(letraChica);
+		etiquetasRadio.put(500, LabelR5); LabelR5.setForeground(lAñQui); LabelR5.setFont(letraChica);
         etiquetasRadio.put(600, LabelR6); LabelR6.setForeground(lAñQui); LabelR6.setFont(letraChica);
         etiquetasRadio.put(700, LabelR7); LabelR7.setForeground(lAñQui); LabelR7.setFont(letraChica);
         etiquetasRadio.put(800, LabelR8); LabelR8.setForeground(lAñQui); LabelR8.setFont(letraChica);
-	radSlider.setLabelTable(etiquetasRadio);         
-	radSlider.setMajorTickSpacing(50);
-	radSlider.setMinorTickSpacing(10);
-	radSlider.setPaintTicks(true);
-	radSlider.setPaintLabels(true);
-	radSlider.setToolTipText("Modifica radio del obstaculo");
-	pRadObs.add(radSlider);
+		radSlider.setLabelTable(etiquetasRadio);         
+		radSlider.setMajorTickSpacing(50);
+		radSlider.setMinorTickSpacing(10);
+		radSlider.setPaintTicks(true);
+		radSlider.setPaintLabels(true);
+		radSlider.setToolTipText("Modifica radio del obstaculo");
+		pRadObs.add(radSlider);
         		
         //Panel Nombre Modificador Radio.
         radLabel=new JLabel("  Radio: " + 20f); radLabel.setForeground(lAñQui); radLabel.setFont(letraChica);
@@ -211,8 +215,8 @@ public class Ventana extends JFrame implements ComponentListener{
         JPanel pStartStop=new JPanel(); pStartStop.setBackground(fondo4);
         ActionButton s1=new ActionButton("Start"); s1.setBackground(fondo4); s1.setForeground(lStaStop); s1.setFont(letraChica);
         ActionButton s2=new ActionButton("Stop"); s2.setBackground(fondo4); s2.setForeground(lStaStop); s2.setFont(letraChica);
-	pStartStop.add(s1);
-	pStartStop.add(s2);
+		pStartStop.add(s1);
+		pStartStop.add(s2);
         controles.add(pStartStop);
 		
         //Panel Ordenar 3.
@@ -355,10 +359,10 @@ public class Ventana extends JFrame implements ComponentListener{
             this.addActionListener(this);
         }
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-            dp.accion(action);
-	}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dp.accion(action);
+		}
     }
 
     /**
@@ -366,22 +370,22 @@ public class Ventana extends JFrame implements ComponentListener{
      */
     class GravitySlider extends JSlider implements ChangeListener{
 	//Esta clase define un slider que será usado para controlar la gravedad en la simulación.
-	/**
-	 * Método constructor.
-	 * @param min valor mínimo.
-	 * @param max valor máximo.
-	 * @param ini valor inicial.
-	 */
+		/**
+		 * Método constructor.
+		 * @param min valor mínimo.
+		 * @param max valor máximo.
+		 * @param ini valor inicial.
+		 */
     	public GravitySlider(int min, int max, int ini) {
-            super(min, max, ini);
-            this.addChangeListener(this);
-	}
+			super(min, max, ini);
+			this.addChangeListener(this);
+		}
 		
-	public void stateChanged(ChangeEvent e) {
+		public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
             dp.modGrav(source.getValue()/10f);
             gravLabel.setText("  Gravedad: " + (source.getValue()/10f));
-	}
+		}
     }
     
     /**
@@ -401,9 +405,9 @@ public class Ventana extends JFrame implements ComponentListener{
 		}
 		
 		public void stateChanged(ChangeEvent e) {
-				JSlider source = (JSlider)e.getSource();
-				dp.obstacleRadius(source.getValue()/10f);
-				radLabel.setText("  Radio: " + (source.getValue()/10f));        
+			JSlider source = (JSlider)e.getSource();
+			dp.obstacleRadius(source.getValue()/10f);
+			radLabel.setText("  Radio: " + (source.getValue()/10f));        
 		}
     }
 }
