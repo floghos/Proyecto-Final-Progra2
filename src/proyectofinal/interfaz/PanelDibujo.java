@@ -110,13 +110,13 @@ public class PanelDibujo extends JPanel implements MouseListener,ActionListener 
 	return this.caja;
     }
     
-	/**
-	 * Accessor para pelota.
-	 * @return 
-	 */
-	public Ball getPelota() {
-		return this.pelota;
-	}
+    /**
+     * Accessor para pelota.
+     * @return 
+     */
+    public Ball getPelota() {
+	return this.pelota;
+    }
     /**
      * Accessor para gravMultiplier.
      * @return 

@@ -22,6 +22,11 @@ public class Caja{
         this.color=color;
     }
     
+    /**
+     * Actualiza el tamaño de la caja cuando se modifican las dimensiones de ventana.
+     * @param alto
+     * @param ancho 
+     */
     public void updateSize(int alto, int ancho) {
 	this.alto = alto;
 	this.ancho = ancho;

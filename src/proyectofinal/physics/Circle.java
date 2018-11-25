@@ -8,7 +8,7 @@ import java.awt.Graphics;
 public class Circle {
     //Esta clase define los circulos, usados para la pelota y obstaculos, que estaran en la simulación.
     public Vector2d pos;
-	protected float radius;
+    protected float radius;
     protected float restitucion;
     protected Color color;
     
@@ -17,7 +17,7 @@ public class Circle {
      * @param pos Posición del centro del circulo.
      * @param radius
      * @param restitucion
-	 * @param color
+     * @param color
      */
     public Circle(Vector2d pos, float radius, float restitucion, Color color){
         this.pos = new Vector2d(pos);		
@@ -27,36 +27,36 @@ public class Circle {
 
     }
     
-	/**
-	 * Mutator para color.
-	 * @param c 
-	 */
+    /**
+     * Mutator para color.
+     * @param c 
+     */
     public void setColor(Color c){
         this.color = c;
     }
 	
     /**
-	 * Mutator para pos.
-	 * @param a 
-	 */
+     * Mutator para pos.
+     * @param a 
+     */
     public void setPos(Vector2d a){
         this.pos = a;
     }
     
-	/**
-	 * Accessor para radius.
-	 * @return 
-	 */
+    /**
+     * Accessor para radius.
+     * @return 
+     */
     public float getRadius(){
         return radius;
     }
 	
-	/**
-	 * Accessor para restitucion.
-	 * @return 
-	 */
+    /**
+     * Accessor para restitucion.
+     * @return 
+     */
     public float getRestitucion() {
-		return restitucion;
+	return restitucion;
     }
 	
     /**
